@@ -10,11 +10,11 @@ The two main differences are that:
 
 Download tikzmod.lua
 
-In Finder, click on Go > Go to folder (or use Cmd + Alt + G) and go to Users/{your-username}/.ipe/Ipelets/
+In Finder, press Cmd+Alt+G and go to Users/{your-username}/.ipe/ipelets/
 
-Copy the .lua file into that folder.
+Copy the .lua file you just downloaded into that folder.
 
-Close all instances of IPE (use e.g. Cmd + Q) and restart it.
+Close all instances of IPE (use e.g. Cmd+Q on it) and run it again.
 
 ## How to install in GNU/Linux
 
