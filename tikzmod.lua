@@ -3,9 +3,9 @@
 ----------------------------------------------------------------------
 --[[
 
-    Copyright (C) 2016  Joseph Rabinoff.
+    Copyright (C) 2024 Alberto Ruiz de Alarcon (albertoruizdealarcon@ucm.es)
 
-    Fork by Alberto Ruiz de Alarcon (albertoruizdealarcon@ucm.es)
+    Fork of Joseph Rabinoff's ...
 
     ipe2tikz is free software; you can redistribute it and/or modify it under
     the terms of the GNU General Public License as published by the Free
