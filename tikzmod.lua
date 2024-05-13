@@ -25,12 +25,12 @@
 --]]
 
 
-label = ">>> Export TikZ code"
+label = "Export TikZ code"
 
 methods = {
     { label="Export selection to clipboard", run=run },
     { label="Copy preamble to clipboard", run=run },
-    { label="Export selection to clipboard (all nodes below)", run=run },
+    { label="Export selection to clipboard (put all nodes in front)", run=run },
 }
 
 about = "Export TikZ code"
