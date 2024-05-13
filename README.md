@@ -28,3 +28,8 @@ Now, we have different options
     A nice key shortcut is Cmd + Alt + T (in OSX), or Win + Alt + T (in GNU/Linux and MS Windows).
 
 .-
+
+## Some useful rules
+
+
+## How to customize it
