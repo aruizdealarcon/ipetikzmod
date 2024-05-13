@@ -77,9 +77,9 @@ Now, we have different options
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Also, you can customize the preamble on the .lua file!
 
-## Some useful rules to take into account before using it!
+## Some useful rules and features
 
-**Rule 1. Change some color names to others**
+**Feature #1. Change some color names to others**
 
 In some occasions, we will want to change the names of the colors for others.
 
@@ -89,7 +89,7 @@ For example, when selecting "lightgreen" in IPE, in the TikZ code it will be spe
 
 However, this can be further customized by editing the .lua file.
 
-**Rule 2. Avoid certain drawings to be exported**
+**Feature #2. Avoid certain drawings to be exported**
 
 On other occasions, especially with complex drawings, it is common to help yourself by creating guide lines or grids to help you draw.
 
@@ -99,7 +99,7 @@ Therefore, you can also designate certain forbidden colors in the code, so that 
 
 For example, I have assigned the color "turquoise" to the forbidden colors. In this way, no lines with the color turquoise will appear in the exported TikZ code.
 
-**Rule 3. Text positioning and scaling**
+**Feature #3. Text positioning and scaling**
 
 When you put text in the figures, the exported result may not be scaled correctly. _You must fix this manually_ in the IPE Editor as follows:
 
@@ -107,7 +107,7 @@ Select the textbox and go to the **Properties** tab, there, set **horizontal ali
 
 That makes the origin of the textbox to be the center and _not_ the lower left corner, which is the default one.
 
-## How to customize it further!
+## How to customize it further?
 
 You can easily edit the following settings:
 
