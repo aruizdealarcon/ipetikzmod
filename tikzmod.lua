@@ -74,8 +74,13 @@ myColorKey = "my"
 -- drawNewLine = "\n"
 -- drawIndent = "        "
 
+-- new line for \draw ? use \n in that case for more readability, otherwise for more compact code, leave empty
 drawNewLine = ""
+
 drawIndent = ""
+
+-- delimiter for node styles e.g. tensorName_large or tensorName_cross
+delimStyle = "_"
 
 --------------------------------------------------------------------------------
 
@@ -724,8 +729,12 @@ function export_mark(model, obj, matrix)
     markshape = "ipe " .. markshape
     drawing = (string.find(actions, "s") ~= nil)
     filling = (string.find(actions, "f") ~= nil)
+
+    -- we add now the specific style of the \node, e.g. tensorName_disk or tensorName_fdisk or tensorName_cross
+    number_option(markshape, "", options, tensorName .. delimStyle)
     
-    number_option(obj:get("symbolsize"), "ipe mark scale", options, tensorName .. "-")
+    -- we add now the specific size of the \node, e.g. tensorName_large or tensorName_tiny
+    number_option(obj:get("symbolsize"), "", options, tensorName .. delimStyle)
     
     -- draw and fill
     if drawing then
