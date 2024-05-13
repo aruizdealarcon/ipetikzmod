@@ -1344,15 +1344,17 @@ function export_path(shape, mode, matrix, obj)
          --    color_option(obj:get("stroke"), "draw", options, nil, not filling)
          -- end
          -- need draw= if filling
-      	 if strocol == virtualSubs1 then
-           color_option(virtualName, "draw", options, nil, not filling)
-         elseif strocol == virtualSubs2 then
-            color_option(virtualName, "draw", options, nil, not filling)
-         elseif strocol == virtualSubs3 then
-            color_option(virtualName, "draw", options, nil, not filling)
-         elseif strocol ~= "black" then
-            color_option(strocol, "draw", options, nil, not filling)
-         end
+
+            if strcol == black then
+                --
+            else
+                for _, pair in ipairs(substitutionColors) do
+                    if pair[1] == strocol then
+                        color_option(pair[2], "draw", options, nil, not filling)
+                        break
+                    end
+                end
+            end
 
          -- pen / line width
          local prepend
@@ -1385,6 +1387,7 @@ function export_path(shape, mode, matrix, obj)
          if farrow or rarrow then
             table.insert(options, (rarrow or "") .. "-" .. (farrow or ""))
          end
+            
       end
 
       if filling then
@@ -1405,34 +1408,48 @@ function export_path(shape, mode, matrix, obj)
       end
 
       -- opacity is always a symbolic name in ipe
+        
       local opacity = obj:get("opacity")
       local prepend = nil
       opacity = string.gsub(opacity, "%%", "") -- strip %
       if opacity ~= "opaque" then
          string_option(sround(opacity/100), "opacity", options, prepend)
       end
+        
    end
 
-   if strocol ~= hideColor then
-      
-      -- indent = old_indent
-      write(indent)
-      if drawing and filling then
-         write("\\filldraw")
-      elseif drawing then
-         write("\\draw")
-      elseif filling then
-         write("\\fill")
-      elseif clipping then
-         write("\\clip")
-      end
-      
-      if #options > 0 then
-         write("[" .. table.concat(options, ", ") .. "]")
-      end
-      
-      write(" " .. path_str .. ";\n")
-   end
+    -- detect if we are dealing with a forbidden color
+    
+    local isForbidden = false
+    for _, color in ipairs(forbiddenColors) do
+        if color == strocol or color == fillcol then
+            isForbidden = true
+            break
+        end
+    end
+
+    if not isForbidden then
+    
+        write(indent)
+        
+        if drawing and filling then
+            write("\\filldraw")
+        elseif drawing then
+            write("\\draw")
+        elseif filling then
+            write("\\fill")
+        elseif clipping then
+            write("\\clip")
+        end
+        
+        if #options > 0 then
+            write("[" .. table.concat(options, ", ") .. "]")
+        end
+        
+        write(" " .. path_str .. ";\n")
+    
+    end
+    
 end
 
 --------------------------------------------------------------------------------
