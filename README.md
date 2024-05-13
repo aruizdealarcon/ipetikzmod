@@ -2,6 +2,8 @@ This project consists of an add-on for the IPE editor that exports clean and cus
 
 It is a fork of Joseph Rabinoff's add-on in https://github.com/QBobWatson/ipe2tikz
 
+# Installation #
+
 ## How to install in Mac OS X
 
 Download tikzmod.lua
