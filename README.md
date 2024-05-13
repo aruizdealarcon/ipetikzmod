@@ -112,33 +112,42 @@ That makes the origin of the textbox to be the center and _not_ the lower left c
 You can easily edit the following settings:
 
 -- Shape resize factor (divides coordinates by this number)
-resFactor = 50
+
+   resFactor = 50
 
 -- Precision decimals for coordinates and angles
-roundPrec = 3
+
+   roundPrec = 3
 
 -- word prepended to every color / node name / dash style from IPE
 -- this allows us to make them customizable and coherent in your LaTeX code
-myPrepend = "my"
+
+   myPrepend = "my"
 
 -- delimiter for node styles e.g. nodeStyleName_large or nodeStyleName_cross
-delimStyle = "_"
 
-dashPrepend = "Dash"
+   delimStyle = "_"
+
+   dashPrepend = "Dash"
 
 -- style added to every \node markings, except for text
-nodeStyleName = "Node"
+
+   nodeStyleName = "Node"
 
 -- all these first colors are substituted with the second one
 -- e.g. if { "color1", "color2" } is present, then "color1" instances are replaced with "color2"
-substitutionColors = { { "gold", "virtual" }, { "red", "virtual" } }
+
+   substitutionColors = { { "gold", "virtual" }, { "red", "virtual" } }
 
 -- the drawings with this color will be discarded; use them as axis, rules...
 -- do not replace them in the previous setting!
-forbiddenColors = { "turquoise" }
+
+   forbiddenColors = { "turquoise" }
 
 -- new line append for "\draw" use "\n" in that case for more readability, otherwise for more compact code, leave empty ""
-drawNewLine = ""
+
+   drawNewLine = ""
 
 -- ...
-drawIndent = ""
+
+   drawIndent = ""
