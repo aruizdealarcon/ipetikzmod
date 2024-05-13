@@ -59,24 +59,24 @@ resFactor = 50
 roundPrec = 3
 
 -- style added to every \node markings, except for text
-tensorName = "tensor"
+nodeStyleName = "myNode"
 
--- all these colors are substitute with virtualName
-virtualSubs = { "gold", "red" }
-virtualName = "virtual"
+-- all these first colors are substituted with the second one
+-- e.g. if { "color1", "color2" } is present, then "color1" instances are replaced with "color2"
+substitutionColors = { { "gold", "virtual" }, { "red", "virtual" } }
 
 -- the drawings with this color will be discarded; use them as axis, rules...
-hideColor = { "turquoise" }
+-- do not replace them in the previous setting!
+forbiddenColors = { "turquoise" }
 
--- word appended to every color from IPE to make them customizable in your Latex
-myColorKey = "my"
+-- word prepended to every color from IPE
+-- this allows us to make them customizable and coherent in your LaTeX code
+myColorPrepend = "my"
 
--- drawNewLine = "\n"
--- drawIndent = "        "
-
--- new line for \draw ? use \n in that case for more readability, otherwise for more compact code, leave empty
+-- new line append for "\draw" use "\n" in that case for more readability, otherwise for more compact code, leave empty ""
 drawNewLine = ""
 
+-- ...
 drawIndent = ""
 
 -- delimiter for node styles e.g. tensorName_large or tensorName_cross
