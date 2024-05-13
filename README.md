@@ -26,6 +26,11 @@ Copy the .lua file you just downloaded into that folder.
 
 Close all instances of IPE (use e.g. Cmd+Q on it) and run it again.
 
+
+If you prefer the terminal, simply execute:
+
+    mkdir -p ~/.ipe/ipelets/ && cp -f ~/Downloads/tikzmod.lua ~/.ipe/ipelets/
+
 ## How to install in Microsoft Windows
 
 ?
