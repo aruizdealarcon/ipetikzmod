@@ -47,7 +47,7 @@ By the way, a nice key shortcut for this option is _Cmd + Alt + T_ (in OSX), or 
 
 Also, you can customize the preamble on the .lua file!
 
-## Some useful rules
+## Some useful rules to take into account before using it!
 
 **Rule 1. Change some color names to others**
 
@@ -71,4 +71,4 @@ For example, I have assigned the color "turquoise" to the forbidden colors. In t
 
 **Rule 3. Avoid certain drawings to be exported**
 
-## How to customize it
+## How to customize it further!
