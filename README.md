@@ -155,3 +155,9 @@ The following is a list of pairs of two color codes (in string format), which di
 -- ...
 
     drawIndent = ""
+
+
+# Some examples
+
+
+...
