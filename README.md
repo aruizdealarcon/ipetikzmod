@@ -3,8 +3,10 @@ This project consists of an add-on for the IPE editor.
 It is a fork of Joseph Rabinoff's add-on in https://github.com/QBobWatson/ipe2tikz.
 
 The two main differences are that:
-(1) there are more options to customize the output, and
-(2) you can **directly export it to the clipboard**, so you don't have to work with files, text-boxes, but you can directly copy the code into your LaTeX project.
+
+(1) you can **directly export it to the clipboard**, so you do not have to work with files nor text-boxes, but it can directly copy the code into the clipboard for your LaTeX project.
+
+(2) there are a few **more options to customize the output**, and
 
 ## How to install in Mac OS X
 
