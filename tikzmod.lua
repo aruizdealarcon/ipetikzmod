@@ -5,7 +5,7 @@
 
     Copyright (C) 2016  Joseph Rabinoff.
 
-    Modified by Alberto Ruiz de Alarcon
+    Fork by Alberto Ruiz de Alarcon
 
     ipe2tikz is free software; you can redistribute it and/or modify it under
     the terms of the GNU General Public License as published by the Free
@@ -25,12 +25,12 @@
 --]]
 
 
-label = ">>> TikZ export"
+label = ">>> Export TikZ code"
 
 methods = {
-   { label="Export selection to clipboard", run=run },
-   { label="Copy preamble to clipboard", run=run },
-   { label="Export selection to clipboard (all nodes below)", run=run },
+    { label="Export selection to clipboard", run=run },
+    { label="Copy preamble to clipboard", run=run },
+    { label="Export selection to clipboard (all nodes below)", run=run },
 }
 
 about = "Export TikZ code"
@@ -42,13 +42,40 @@ shortcuts.ipelet_1_tikzmod = "Ctrl+Shift+T"
 
 -- Globals
 
-write   = _G.io.write
-popen   = _G.io.popen
-getenv  = _G.os.getenv
+write = _G.io.write
+popen = _G.io.popen
+getenv = _G.os.getenv
 execute = _G.os.execute
 
 indent_amt = "    "
 indent = ""
+
+--------------------------------------------------------------------------------
+
+-- Shape resize factor (divides coordinates by this number)
+resFactor = 50
+
+-- Precision decimals for coordinates and angles
+roundPrec = 3
+
+-- style added to every \node markings, except for text
+tensorName = "tensor"
+
+-- all these colors are substitute with virtualName
+virtualSubs = { "gold", "red" }
+virtualName = "virtual"
+
+-- the drawings with this color will be discarded; use them as axis, rules...
+hideColor = { "turquoise" }
+
+-- word appended to every color from IPE to make them customizable in your Latex
+myColorKey = "my"
+
+-- drawNewLine = "\n"
+-- drawIndent = "        "
+
+drawNewLine = ""
+drawIndent = ""
 
 --------------------------------------------------------------------------------
 
@@ -95,8 +122,8 @@ preamble = [[\usepackage{tikz}
 \tikzstyle{tensor-medium} = [ inner sep=1.3pt ]
 \tikzstyle{tensor-tiny}   = [ inner sep=0.8pt ]
 %
-\tikzstyle{->-} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[line width=0.4pt,length=3pt,width=3.5pt]} }, postaction={decorate} ]
-\tikzstyle{-<-} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[line width=0.4pt,length=3pt,width=3.5pt]} }, postaction={decorate} ]
+\tikzstyle{->-}   = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[line width=0.4pt,length=3pt,width=3.5pt]} }, postaction={decorate} ]
+\tikzstyle{-<-}   = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[line width=0.4pt,length=3pt,width=3.5pt]} }, postaction={decorate} ]
 \tikzstyle{->-25} = [ decoration={ markings, mark = at position 0.25*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[line width=0.4pt,length=3pt,width=3.5pt]} }, postaction={decorate} ]
 \tikzstyle{-<-25} = [ decoration={ markings, mark = at position 0.25*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[line width=0.4pt,length=3pt,width=3.5pt]} }, postaction={decorate} ]
 \tikzstyle{->-75} = [ decoration={ markings, mark = at position 0.75*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[line width=0.4pt,length=3pt,width=3.5pt]} }, postaction={decorate} ]
@@ -117,39 +144,16 @@ preamble = [[\usepackage{tikz}
         \pgfusepath{stroke}
     }
 %
-\usepackage{ifdraft}\ifdraft{\usepackage{environ}\RenewEnviron{tikzpicture}[1][]{\fbox{\parbox{30px}{\hspace{30px}\vspace{30px}}}}}{}
+%\usepackage{ifdraft}\ifdraft{\usepackage{environ}\RenewEnviron{tikzpicture}[1][]{\fbox{\parbox{30px}{\hspace{30px}\vspace{30px}}}}}{}
 %]]
-
---------------------------------------------------------------------------------
-
-resfactor = 50 -- Shape resize factor (divides coordinates by this number)
-roundprec = 3  -- Coordinate precision decimals
-
-tensorName = "tensor"
-
-virtualName = "virtual"
-
-virtualSubs1 = "darkorange"  -- these colors are substitute with virtualName
-virtualSubs2 = "orange"
-virtualSubs3 = "red"
-
-myColorKey = "my"
-
-hideColor = "turquoise" -- the drawings with this color will be discarded, use them as axis, etc.
-
--- drawNewLine = "\n"
--- drawIndent = "        "
-
-drawNewLine = ""
-drawIndent = ""
-
 --------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
 -- Copy to clipboard function
 --------------------------------------------------------------------------------
 
-function copy_to_clipboard_multi(text)
+function copy_to_clipboard(text)
+    
     local os_pipe = popen("uname", "r")
     local os_output = os_pipe:read("*a")
     os_pipe:close()
@@ -178,43 +182,41 @@ function copy_to_clipboard_multi(text)
     else
         print("Error: Cannot access clipboard.")
     end
+    
 end
-
-
 
 --------------------------------------------------------------------------------
 -- Utility
 --------------------------------------------------------------------------------
 
 function concat_pairs(t, sep, order)
-   local ret = ""
-   local first = true
-   for i,key in ipairs(order) do
-      if t[key] then
-         if not first then
-            ret = ret .. sep
-         else
-            first = false
-         end
-         ret = ret .. key .. "=" .. t[key]
-      end
-   end
-   return ret
+    local ret = ""
+    local first = true
+    for i,key in ipairs(order) do
+        if t[key] then
+            if not first then
+                ret = ret .. sep
+            else
+                first = false
+            end
+            ret = ret .. key .. "=" .. t[key]
+        end
+    end
+    return ret
 end
 
 
 -- Round a number to idp decimal places
 function round(num, idp)
-  local mult = 10^(idp or roundprec)
+  local mult = 10^(idp or roundPrec)
   return math.floor(num * mult + 0.5) / mult
 end
 
 
--- Convert a number to a string, omitting trailing zeros after the decimal,
--- and rounding.
+-- Convert a number to a string, omitting trailing zeros after the decimal, and rounding.
 function sround(num, idp)
-   idp = idp or roundprec
-   num = round(num/resfactor, idp)
+   idp = idp or roundPrec
+   num = round(num/resFactor, idp)
    local neg = (num < 0)
    if neg then
       num = -num
@@ -245,7 +247,7 @@ end
 -- Convert a number to a string, omitting trailing zeros after the decimal, and
 -- rounding. For angles only, since no re-scale is performed.
 function sroundang(num, idp)
-   idp = idp or roundprec
+   idp = idp or roundPrec
    num = round(num, idp)
    local neg = (num < 0)
    if neg then
@@ -276,14 +278,14 @@ end
 
 -- Convert a Vector to a string, after rounding
 function svec(vec, idp)
-   return "(" .. sround(vec.x, idp) .. ", " .. sround(vec.y, idp) .. ")"
+    return "(" .. sround(vec.x, idp) .. ", " .. sround(vec.y, idp) .. ")"
 end
 
 
 -- Check if the linear part of a matrix is the identity, after rounding
 function is_almost_identity(matrix)
-   local a, c, b, d = table.unpack(matrix:coeff())
-   return (round(a) == 1 and round(b) == 0 and round(c) == 0 and round(d) == 1)
+    local a, c, b, d = table.unpack(matrix:coeff())
+    return (round(a) == 1 and round(b) == 0 and round(c) == 0 and round(d) == 1)
 end
 
 
@@ -291,18 +293,18 @@ end
 -- bugged on my system, because tonumber(str) returns 0 for an invalid number.
 -- So I have to use a regex.
 function is_number(str)
-   return (string.find(str, "^[-+]?%d*%.?%d*$") ~= nil)
+    return (string.find(str, "^[-+]?%d*%.?%d*$") ~= nil)
 end
 
 
 -- Calculate a bounding box for selected, visible objects
 function bounding_box(model)
-   local page = model:page()
-   local box = ipe.Rect()
-   for i,obj,sel,layer in page:objects() do
-      if page:visible(model.vno, i) and sel then box:add(page:bbox(i)) end
-   end
-   return box
+    local page = model:page()
+    local box = ipe.Rect()
+    for i,obj,sel,layer in page:objects() do
+        if page:visible(model.vno, i) and sel then box:add(page:bbox(i)) end
+    end
+    return box
 end
 
 
@@ -318,13 +320,13 @@ end
 -- In case (1), add "key=value" to options.  In case (2), add prepend .. "value"
 -- to options.  In cases (3) and (4), don't do anything.
 function number_option(value, key, options, prepend)
-   if not value or value == "undefined" or value == "normal" then
-      -- do nothing
-   elseif is_number(value) then
-      table.insert(options, key .. "=" .. value)
-   else
-      table.insert(options, (prepend or "") .. value)
-   end
+    if not value or value == "undefined" or value == "normal" then
+        -- do nothing
+    elseif is_number(value) then
+        table.insert(options, key .. "=" .. value)
+    else
+        table.insert(options, (prepend or "") .. value)
+    end
 end
 
 
@@ -703,41 +705,54 @@ end
 --
 -- Relevant attributes: stroke, fill, symbolsize, markshape
 function export_mark(model, obj, matrix)
-   local strocol = obj:get("stroke")
-   local fillcol = obj:get("fill")
 
-   local options = { tensorName }
-   -- The "transformations" attribute has no effect on marks other than
-   -- translation
-   local pos = matrix*obj:position()
+    -- First, we get the stroke and the filling colors
+    local strocol = obj:get("stroke")
+    local fillcol = obj:get("fill")
 
-   local markshape = obj:get("markshape")
-   local actions, drawing, filling
-   _, _, markshape, actions = string.find(markshape, "mark/([^(]+)%(([^)]+)%)")
-   markshape = "ipe " .. markshape
-   drawing = (string.find(actions, "s") ~= nil)
-   filling = (string.find(actions, "f") ~= nil)
-
-   number_option(obj:get("symbolsize"), "ipe mark scale", options, tensorName .. "-")
-
-   -- draw and fill
-   --if drawing then
-   --   if strocol ~= "black" then
-   --      color_option(obj:get("stroke"), "draw", options, nil, not filling)
-   --   end
-   --end
-   if filling then
+    -- We are dealing with a \node for a mark, so let us add a predefined style called
+    -- with the global value 'tensorName'
+    local options = { tensorName }
+    
+    -- The "transformations" attribute has no effect on marks other than
+    -- translation
+    local pos = matrix*obj:position()
+    
+    local markshape = obj:get("markshape")
+    local actions, drawing, filling
+    _, _, markshape, actions = string.find(markshape, "mark/([^(]+)%(([^)]+)%)")
+    markshape = "ipe " .. markshape
+    drawing = (string.find(actions, "s") ~= nil)
+    filling = (string.find(actions, "f") ~= nil)
+    
+    number_option(obj:get("symbolsize"), "ipe mark scale", options, tensorName .. "-")
+    
+    -- draw and fill
+    if drawing then
+       if strocol ~= "black" then
+          color_option(obj:get("stroke"), "draw", options, nil, not filling)
+       end
+    end
+    
+    if filling then
        color_option(obj:get("fill"), "fill", options, nil, not drawing)
-   end
+    end
 
-   if strocol ~= hideColor and fillcol ~= hideColor then
-      write(indent .. "\\node")
-      if #options > 0 then
-         write("[" .. table.concat(options, ", ") .. "]")
-      end
-      --write("\n" .. indent .. indent_amt)
-      write(" at " .. svec(pos) .. " {};\n")
-   end
+    -- Make sure not to write an element that has the forbidden drawing color
+    if strocol ~= hideColor and fillcol ~= hideColor then
+        
+        -- Let us start writing the node
+        write(indent .. "\\node")
+        
+        -- Let us add the options
+        if #options > 0 then
+            write("[" .. table.concat(options, ", ") .. "]")
+        end
+        
+        -- Let us add the position and the final things
+        write(" at " .. svec(pos) .. " {};\n")
+        
+    end
 end
 
 
@@ -956,7 +971,7 @@ function export_text(model, obj, matrix)
    if #options > 0 then
       write("[" .. table.concat(options, ", ") .. "]")
    end
-   -- write("\n" .. indent .. indent_amt .. " at " .. svec(pos, 3) .. " ")
+   -- write("\n" .. indent .. indent_amt .. " at " .. svec(pos, 3) .. " ") -- we dont want newlines
    write(" at " .. svec(pos, 3) .. " ")
 
    if minipage then
@@ -1543,12 +1558,12 @@ end
 
 -- Configuration parameters from export dialogs
 params_text = {
-   fulldoc=false,
-   stylesheets=false,
-   colors=false,
-   scopeonly=false,
-   drawgrid=false,
-   filename=nil
+    fulldoc=false,
+    stylesheets=false,
+    colors=false,
+    scopeonly=false,
+    drawgrid=false,
+    filename=nil
 }
 
 params = {}
@@ -1578,80 +1593,67 @@ function rearrange_tikz_nodes(tikz_code)
     before_end = before_end:gsub("\n%s*\n", "\n")
 
     return before_end .. node_text .. after_end
+    
 end
 
 function run(model, num)
-   local do_clip = (num == 1)
-   local do_pream = (num == 2)
-   local do_nodes = (num == 3)
-   -- local do_text = (num == 3)
+    
+    local do_clip = (num == 1)
+    local do_pream = (num == 2)
+    local do_nodes = (num == 3)
 
-   if do_pream then
-      copy_to_clipboard_multi(preamble)
-      return
-   end
+    if do_pream then
+        copy_to_clipboard(preamble)
+        return
+    end
 
-   local page = model:page()
-   local sheets = model.doc:sheets()
+    local page = model:page()
+    local sheets = model.doc:sheets()
+    
+    -- Run the parameters dialog
+    params = params_text
+    if #model:selection() == 0 then
+        ipeui.messageBox(model.ui:win(), "warning", "TikZ export error", "Please select some objects to convert to a TikZ text object", "ok")
+        return
+    end
 
-   -- indentation (global)
-   indent = ""
+    -- Open files, setup write function(s)
+    local f, e, text_contents, preamble_contents, write_text, write_preamble
+    text_contents = ""
+    write_text = function(arg) text_contents = text_contents .. arg end
+    write = write_text
 
-   -- Run the parameters dialog
-   params = params_text
-   if #model:selection() == 0 then
-      ipeui.messageBox(
-         model.ui:win(), "warning", "TikZ export error",
-         "Please select some objects to convert to a TikZ text object", "ok")
-      return
-   end
+    -- TikZ environment
+    local envname = "tikzpicture"
+    if params.scopeonly then envname = "scope" end
+    write("\\begin{" .. envname .. "}")
+    local options = {}
+    table.insert(options, "scale=1")
+    write("[" .. table.concat(options, ", ") .. "]\n")
+    indent = indent_amt
 
-   -- Open files, setup write function(s)
-   local f, e, text_contents, preamble_contents, write_text, write_preamble
-   text_contents = ""
-   write_text = function(arg) text_contents = text_contents .. arg end
-   preamble_contents = ""
-   write_preamble = function(arg)
-      preamble_contents = preamble_contents .. arg end
-   write = write_text
+    -- Use the bottom-left corner of the bounding box
+    
+    local box = bounding_box(model)
+    local origin = box:bottomLeft()
 
-   -- TikZ environment
-   local envname = "tikzpicture"
-   if params.scopeonly then envname = "scope" end
-   write("\\begin{" .. envname .. "}")
-   local options = {}
-   table.insert(options, "scale=1")
-   write("[" .. table.concat(options, ", ") .. "]\n")
-   indent = indent_amt
+    for i, obj, sel, layer in page:objects() do
+        -- Only export objects that appear in the current view
+        if page:visible(model.vno, i) then
+            -- Only export selected objects
+            if sel then
+                export_object(model, obj, origin)
+            end
+        end
+    end
+    
+    write("\\end{" .. envname .. "}")
 
-   -- Decide on an origin for TikZ
-   local origin = ipe.Vector(0,0)
-
-   -- Use the coordinate system origin if it's set; otherwise use the
-   -- bottom-left corner of the bounding box
-   if model.snap.with_axes then
-      origin = model.snap.origin
-   else
-      local box = bounding_box(model)
-      origin = box:bottomLeft()
-   end
-
-   for i, obj, sel, layer in page:objects() do
-      -- Only export objects that appear in the current view
-      if page:visible(model.vno, i) then
-         -- In do_text mode, only export selected objects
-         if sel then
-            export_object(model, obj, origin)
-         end
-      end
-   end
-   write("\\end{" .. envname .. "}")
-
-   if do_clip then
-      copy_to_clipboard_multi(text_contents)
-   elseif do_nodes then
-      text_contents_reord = rearrange_tikz_nodes(text_contents)
-      copy_to_clipboard_multi(text_contents_reord)
-   --   create_text_obj(model, origin, text_contents, preamble_contents)
-   end
+    if do_clip then
+        copy_to_clipboard(text_contents)
+    elseif do_nodes then
+        text_contents_reord = rearrange_tikz_nodes(text_contents)
+        copy_to_clipboard(text_contents_reord)
+    end
+    
 end
