@@ -1,14 +1,21 @@
 
-How to install in Mac OS X
+##How to install in Mac OS X
+
+Download tikzmod.lua
+
+In Finder, click on Go > Go to folder (or use Cmd + Alt + G) and go to Users/{your-username}/.ipe/Ipelets/
+
+Copy the .lua file into that folder.
+
+Close all instances of IPE (use e.g. Cmd + Q) and restart it.
+
+##How to install in GNU/Linux
 
 
-How to install in GNU/Linux
+##How to install in Microsoft Windows
 
 
-How to install in Microsoft Windows
-
-
-How to use it
+##How to use it
 
 First, select the drawings you want to export to TikZ code.
 
