@@ -26,28 +26,28 @@ Close all instances of IPE (use e.g. Cmd+Q on it) and run it again.
 
 ## How to use it
 
-**1.** Select the drawings you want to export to TikZ code.
+**Step 1.** Select the drawings you want to export to TikZ code.
 <p align="center">
 <img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/selection.png?raw=true" width="600"/>
 </p>
 
-**2.** Click on the tab named _Ipelets_ and then go to _Export TikZ code_
+**Step 2.** Click on the tab named _Ipelets_ and then go to _Export TikZ code_
 <p align="center">
 <img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/menu.png?raw=true" width="600"/>
 </p>
 
 Now, we have different options
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**3.A** Click on _Export selection to clipboard_ to transform the figures into a tex
+**Step 3.A** Click on _Export selection to clipboard_ to transform the figures into a tex
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A key shortcut for this option is _Cmd + Alt + T_ (in OSX), or _Win + Alt + T_ (in GNU/Linux and MS Windows).
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Also, you can customize it on the .lua file!
     
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**3.B** Click on _Export selection to clipboard (nodes first)_ to first reorganize all \nodes to the top layer and export the code.
+**Step 3.B** Click on _Export selection to clipboard (nodes first)_ to first reorganize all \nodes to the top layer and export the code.
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**3.C** Click on _Copy preamble to clipboard_ to get the the necessary code for compiling the exported codes into your LaTeX project.
+**Step 3.C** Click on _Copy preamble to clipboard_ to get the the necessary code for compiling the exported codes into your LaTeX project.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Also, you can customize the preamble on the .lua file!
 
