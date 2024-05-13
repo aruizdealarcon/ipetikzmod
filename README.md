@@ -111,20 +111,19 @@ That makes the origin of the textbox to be the center and _not_ the lower left c
 
 You can easily edit the following settings:
 
--- Shape resize factor (divides coordinates by this number)
+The following variable is the number by which the original coordinates of the drawing are divided. Note that the original coordinates may be too large for Latex to handle. The larger the number, the smaller the Latex drawings are compared to IPE drawings.
     
     resFactor = 50
 
--- Precision decimals for coordinates and angles
+The following variable contains the precision in numbers of decimal places with which coordinates, angles, etc. are calculated. By default, we consider three decimal places.
 
     roundPrec = 3
 
--- word prepended to every color / node name / dash style from IPE
--- this allows us to make them customizable and coherent in your LaTeX code
+For all new styles that will be defined the program will add the following prefix. Here, we have chosen the word "my", so that, for example, all lines that have color blue, will receive the color myblue. We believe this is convenient so that anyone can individually customize their styles and the names do not coincide with default TikZ styles.
 
     myPrepend = "my"
 
--- delimiter for node styles e.g. nodeStyleName_large or nodeStyleName_cross
+The following is a delimiter that separates a style and a sub-style. For example, a node having the style myNode may also have a sub-style myNode_cross, which specifies that it is a particular cross.
 
     delimStyle = "_"
 
