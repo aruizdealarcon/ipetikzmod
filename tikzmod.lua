@@ -5,7 +5,7 @@
 
     Copyright (C) 2016  Joseph Rabinoff.
 
-    Fork by Alberto Ruiz de Alarcon
+    Fork by Alberto Ruiz de Alarcon (albertoruizdealarcon@ucm.es)
 
     ipe2tikz is free software; you can redistribute it and/or modify it under
     the terms of the GNU General Public License as published by the Free
