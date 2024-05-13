@@ -24,33 +24,43 @@ Close all instances of IPE (use e.g. Cmd + Q) and restart it.
 
 ## How to use it
 
-1. Select the drawings you want to export to TikZ code.
+**1.** Select the drawings you want to export to TikZ code.
 <p align="center">
 <img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/selection.png?raw=true" width="600"/>
 </p>
 
-2. Click on the tab named _Ipelets_ and then go to _Export TikZ code_
+**2.** Click on the tab named _Ipelets_ and then go to _Export TikZ code_
 <p align="center">
 <img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/menu.png?raw=true" width="600"/>
 </p>
 
 Now, we have different options
 
-3.A Click on _Export selection to clipboard_ to transform the figures into a tex
+**3.A** Click on _Export selection to clipboard_ to transform the figures into a tex
 
-    A nice key shortcut for this option is _Cmd + Alt + T_ (in OSX), or _Win + Alt + T_ (in GNU/Linux and MS Windows).
+By the way, a nice key shortcut for this option is _Cmd + Alt + T_ (in OSX), or _Win + Alt + T_ (in GNU/Linux and MS Windows).
     
-3.B Click on _Export selection to clipboard (nodes first)_ to first reorganize all \nodes to the top layer and export the code.
+**3.B** Click on _Export selection to clipboard (nodes first)_ to first reorganize all \nodes to the top layer and export the code.
 
 
-3.C Click on _Copy preamble to clipboard_ to 
+**3.C** Click on _Copy preamble to clipboard_ to get the the necessary code for compiling the exported codes into your LaTeX project.
 
-    By the way, you can customize the preamble on the .lua file!
+Also, you can customize the preamble on the .lua file!
 
 ## Some useful rules
 
 **Rule 1. Change some color names to others**
 
+In some occasions, we will want to change the names of the colors for others.
+
+By default, the colors assigned by this add-on to the predefined ones in IPE are preceded by the word "my".
+
+For example, when selecting "lightgreen" in IPE, in the TikZ code it will be specified as "mylightgreen".
+
+However, this can be further customized by editing the .lua file.
+
 **Rule 2. Avoid certain drawings to be exported**
+
+**Rule 3. Avoid certain drawings to be exported**
 
 ## How to customize it
