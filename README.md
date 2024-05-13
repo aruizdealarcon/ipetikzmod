@@ -24,7 +24,7 @@ Create the folder ipelets if it does not exist.
 
 Copy the .lua file you just downloaded into that folder.
 
-Close all instances of IPE (use e.g. Cmd+Q on it) and run it again.
+**Close all instances of IPE** (use e.g. Cmd+Q on it) **and run it again**.
 
 
 If you prefer the terminal, simply execute:
