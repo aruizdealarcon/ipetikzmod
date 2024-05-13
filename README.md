@@ -26,7 +26,7 @@ Close all instances of IPE (use e.g. Cmd + Q) and restart it.
 
 1. Select the drawings you want to export to TikZ code.
 
-![alt text](https://github.com/aruizdealarcon/ipetikzmod/blob/main/ipe_selection.png?raw=true)
+<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/ipe_selection.png?raw=true" width="300"/>
 
 3. Click on tab _Ipelets_ and then _Export TikZ code_
 
