@@ -64,22 +64,28 @@ Copy the .lua file you just downloaded into that folder.
 
 Now, we have different options
 
-### Step 3. Option 1. Click on _Export selection to clipboard_ to transform the figures into a tex
+### Step 3. Option 1.
+
+Click on **Export selection to clipboard** to transform the figures into a tex
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A key shortcut for this option is _Cmd+Shift+T_.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note that you can customize it on the .lua file, see below.
     
-### Step 3. Option 2. Click on _Export selection to clipboard (nodes first)_ to first reorganize all \nodes to the top layer and export the code.
+### Step 3. Option 2.
+
+Click on **Export selection to clipboard (nodes first)** to first reorganize all \nodes to the top layer and export the code.
 
 
-### Step 3. Option 3. Click on _Copy preamble to clipboard_ to get the the necessary code for compiling the exported codes into your LaTeX project.
+### Step 3. Option 3.
+
+Click on **Copy preamble to clipboard** to get the the necessary code for compiling the exported codes into your LaTeX project.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Also, you can customize the preamble on the .lua file!
 
 ## Some useful rules and features
 
-### Feature #1. Change some color names to others**
+### Feature #1. Change some color names to others
 
 In some occasions, we will want to change the names of the colors for others.
 
@@ -89,7 +95,7 @@ For example, when selecting "lightgreen" in IPE, in the TikZ code it will be spe
 
 However, this can be further customized by editing the .lua file.
 
-### Feature #2. Avoid certain drawings to be exported**
+### Feature #2. Avoid certain drawings to be exported
 
 On other occasions, especially with complex drawings, it is common to help yourself by creating guide lines or grids to help you draw.
 
@@ -99,7 +105,7 @@ Therefore, you can also designate certain forbidden colors in the code, so that 
 
 For example, I have assigned the color "turquoise" to the forbidden colors. In this way, no lines with the color turquoise will appear in the exported TikZ code.
 
-### Feature #3. Text positioning and scaling**
+### Feature #3. Text positioning and scaling
 
 When you put text in the figures, the exported result may not be scaled correctly. _You must fix this manually_ in the IPE Editor as follows:
 
