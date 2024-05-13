@@ -29,7 +29,7 @@ Create the folder ipelets if it does not exist.
 
 Copy the .lua file you just downloaded into that folder.
 
-**Close all instances of IPE** (use e.g. Cmd+Q on it) **and run it again**.
+**Close all instances of IPE and run it again**.
 
 
 If you prefer the terminal, simply execute:
@@ -38,7 +38,13 @@ If you prefer the terminal, simply execute:
 
 ## How to install in Microsoft Windows
 
-?
+Download tikzmod.lua
+
+In your file explorer, go to **$USERPROFILE\Ipelets**
+
+Copy the .lua file you just downloaded into that folder.
+
+**Close all instances of IPE and run it again**.
 
 ## How to use it
 
