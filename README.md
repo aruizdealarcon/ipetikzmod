@@ -61,6 +61,14 @@ However, this can be further customized by editing the .lua file.
 
 **Rule 2. Avoid certain drawings to be exported**
 
+On other occasions, especially with complex drawings, it is common to help yourself by creating guide lines or grids to help you draw.
+
+However, many times we do not want to get rid of those guide lines in case we need to fix a drawing in the future.
+
+Therefore, you can also designate certain forbidden colors in the code, so that objects with those colors will not be exported to the TikZ code.
+
+For example, I have assigned the color "turquoise" to the forbidden colors. In this way, no lines with the color turquoise will appear in the exported TikZ code.
+
 **Rule 3. Avoid certain drawings to be exported**
 
 ## How to customize it
