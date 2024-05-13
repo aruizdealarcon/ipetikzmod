@@ -4,9 +4,9 @@ It is a fork of Joseph Rabinoff's add-on in https://github.com/QBobWatson/ipe2ti
 
 The two main differences are that:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) you can **directly export it to the clipboard**, so you do not have to work with files nor text-boxes, but it can directly copy the code into the clipboard for your LaTeX project.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) you can **directly export it to the clipboard**,
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) there are a few **more options to customize the output**, and
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) there are a few **more options to customize the output**.
 
 ## How to install in Mac OS X
 
