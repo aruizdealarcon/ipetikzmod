@@ -139,8 +139,7 @@ The following is a delimiter that separates a style and a sub-style. For example
 
     nodeStyleName = "Node"
 
--- all these first colors are substituted with the second one
--- e.g. if { "color1", "color2" } is present, then "color1" instances are replaced with "color2"
+The following is a list of pairs of two color codes (in string format), which dictate how you should replace the color codes you find with other codes of your choice. For example, the following, which is the default, makes the exporter rename the colors "gold" and "red" with the style "virtual", but you can add and change it as you wish.
 
     substitutionColors = { { "gold", "virtual" }, { "red", "virtual" } }
 
