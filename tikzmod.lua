@@ -1361,7 +1361,7 @@ function export_path(shape, mode, matrix, obj)
 
          -- only symbolic dash styles are supported
          prepend = nil
-         string_option(obj:get("dashstyle"), nil, options, prepend)
+         string_option(obj:get("dashstyle"), nil, options, "dash_")
 
          -- line join: these have the same names in ipe and TikZ
          string_option(obj:get("linejoin"), "line join", options)
@@ -1409,7 +1409,7 @@ function export_path(shape, mode, matrix, obj)
       local prepend = nil
       opacity = string.gsub(opacity, "%%", "") -- strip %
       if opacity ~= "opaque" then
-         string_option(opacity, nil, options, prepend)
+         string_option(sround(opacity/100), "opacity", options, prepend)
       end
    end
 
