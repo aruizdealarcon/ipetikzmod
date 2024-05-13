@@ -24,19 +24,27 @@ Close all instances of IPE (use e.g. Cmd + Q) and restart it.
 
 ## How to use it
 
-First, select the drawings you want to export to TikZ code.
+1. Select the drawings you want to export to TikZ code.
 
-Second, clic on "Ipelets" and ">>> Export TikZ code"
+2. Click on tab _Ipelets_ and then _Export TikZ code_
 
 Now, we have different options
 
-    If you want to
+2.1 Click on _Export selection to clipboard_ to transform the figures into a tex
 
-    A nice key shortcut is Cmd + Alt + T (in OSX), or Win + Alt + T (in GNU/Linux and MS Windows).
+    A nice key shortcut for this option is _Cmd + Alt + T_ (in OSX), or _Win + Alt + T_ (in GNU/Linux and MS Windows).
+    
+2.2 Click on _Export selection to clipboard (nodes first)_ to first reorganize all \nodes to the top layer and export the code.
 
-.-
+
+2.3 Click on _Copy preamble to clipboard_ to 
+
+    By the way, you can customize the preamble on the .lua file!
 
 ## Some useful rules
 
+**Rule 1. Change some color names to others**
+
+**Rule 2. Avoid certain drawings to be exported**
 
 ## How to customize it
