@@ -160,4 +160,12 @@ The following is a list of pairs of two color codes (in string format), which di
 # Some examples
 
 
-...
+
+    \begin{tikzpicture}[scale=1]
+        \draw[black] (0.96, 1.652) .. controls (0.96, 0.798) and (1.387, 0.372) .. (2.24, 0.372);
+        \draw[myseagreen, myDash_dotted] (0, 1.012) .. controls (0.64, 0.585) and (1.28, 0.585) .. (1.92, 1.012);
+        \node[myNode, myNode_disk, myNode_large, myviolet] at (0.32, 1.332) {};
+        \node[myNode, myNode_box, myNode_large] at (1.6, 1.332) {};
+        \node[myNode, myNode_fdisk, myNode_large, fill=mylightgreen] at (0.32, 0.052) {};
+        \draw[virtual, myDash_heavier] (0.752, 0.13) .. controls (1.164, 0.436) and (1.685, 0) .. (1.89, 0.129);
+    \end{tikzpicture}
