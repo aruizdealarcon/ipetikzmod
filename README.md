@@ -73,6 +73,12 @@ Therefore, you can also designate certain forbidden colors in the code, so that 
 
 For example, I have assigned the color "turquoise" to the forbidden colors. In this way, no lines with the color turquoise will appear in the exported TikZ code.
 
-**Rule 3. Avoid certain drawings to be exported**
+**Rule 3. Text positioning and scaling**
+
+When you put text in the figures, the exported result may not be scaled correctly. _You must fix this manually_ in the IPE Editor as follows:
+
+Select the textbox and go to the **Properties** tab, there, set **horizontal alignment** to **center** and **vertical alignment** to **center**.
+
+That makes the origin of the textbox to be the center and _not_ the lower left corner, which is the default one.
 
 ## How to customize it further!
