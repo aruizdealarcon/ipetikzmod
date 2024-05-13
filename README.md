@@ -12,7 +12,9 @@ The two main differences are that:
 
 Download tikzmod.lua
 
-In Finder, press Cmd+Alt+G and go to Users/{your-username}/.ipe/ipelets/
+In **Finder**, press **Cmd+Alt+G** and go to **Users/{your-username}/.ipe/ipelets/**
+
+Create the folder ipelets if it does not exist.
 
 Copy the .lua file you just downloaded into that folder.
 
@@ -20,9 +22,19 @@ Close all instances of IPE (use e.g. Cmd+Q on it) and run it again.
 
 ## How to install in GNU/Linux
 
+Download tikzmod.lua
+
+In your file explorer, go to **~/.ipe/ipelets/**
+
+Create the folder ipelets if it does not exist.
+
+Copy the .lua file you just downloaded into that folder.
+
+Close all instances of IPE (use e.g. Cmd+Q on it) and run it again.
 
 ## How to install in Microsoft Windows
 
+?
 
 ## How to use it
 
