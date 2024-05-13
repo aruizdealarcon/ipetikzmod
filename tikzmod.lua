@@ -36,6 +36,7 @@ methods = {
 
 about = "Export TikZ code"
 
+shortcuts.ipelet_1_tikzmod = "Ctrl+Shift+T"
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -130,8 +131,8 @@ preamble = [[\usepackage{tikz}
 \tikzstyle{myDash_dashdotted}    = [ dash pattern=on 3pt off 1pt on \the\pgflinewidth off 1pt ]
 \tikzstyle{myDash_dashdotdotted} = [ dash pattern=on 3pt off 1pt on \the\pgflinewidth off 1pt ]
 %
-\tikzstyle{bevel}      = [ preaction = { draw, white, line width=2pt,  line cap = round } ]
-\tikzstyle{bevel-wide} = [ preaction = { draw, white, line width=4pt,  line cap = round } ]
+\tikzstyle{myBevel}      = [ preaction = { draw, white, line width=2pt,  line cap = round } ]
+\tikzstyle{myBevel_wide} = [ preaction = { draw, white, line width=4pt,  line cap = round } ]
 %
 \tikzstyle{myNode}        = [ draw=black, fill=black, line width=0.2pt, inner sep=1.6pt ]
 %
@@ -148,8 +149,8 @@ preamble = [[\usepackage{tikz}
 \tikzstyle{myNode_square}  = [ rectangle ]
 %
 \newcommand{\myArrowStyle}{line width=0.4pt,length=3pt,width=3.5pt}
-\tikzstyle{->-} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[\myArrowStyle]} }, postaction={decorate} ]
-\tikzstyle{-<-} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[\myArrowStyle]} }, postaction={decorate} ]
+\tikzstyle{->-}   = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[\myArrowStyle]} }, postaction={decorate} ]
+\tikzstyle{-<-}   = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[\myArrowStyle]} }, postaction={decorate} ]
 \tikzstyle{->-25} = [ decoration={ markings, mark = at position 0.25*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[\myArrowStyle]} }, postaction={decorate} ]
 \tikzstyle{-<-25} = [ decoration={ markings, mark = at position 0.25*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[\myArrowStyle]} }, postaction={decorate} ]
 \tikzstyle{->-75} = [ decoration={ markings, mark = at position 0.75*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[\myArrowStyle]} }, postaction={decorate} ]
