@@ -2,7 +2,7 @@ This project consists of an add-on for the IPE editor that exports clean and cus
 
 It is a fork of Joseph Rabinoff's add-on in https://github.com/QBobWatson/ipe2tikz
 
-# Installation #
+# Installation
 
 ## How to install in Mac OS X
 
@@ -47,6 +47,8 @@ In the File Explorer, go to **$USERPROFILE\Ipelets**
 Copy the .lua file you just downloaded into that folder.
 
 **Close all instances of IPE and run it again**.
+
+# Usage
 
 ## How to use it
 
