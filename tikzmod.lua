@@ -25,7 +25,7 @@
 --]]
 
 
-label = "Export TikZ code"
+label = "TikZ export (beta)"
 
 methods = {
     { label="Export selection to clipboard", run=run },
@@ -35,7 +35,6 @@ methods = {
 
 about = "Export TikZ code"
 
-shortcuts.ipelet_1_tikzmod = "Ctrl+Shift+T"
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -79,7 +78,7 @@ drawNewLine = ""
 -- ...
 drawIndent = ""
 
--- delimiter for node styles e.g. tensorName_large or tensorName_cross
+-- delimiter for node styles e.g. nodeStyleName_large or nodeStyleName_cross
 delimStyle = "_"
 
 --------------------------------------------------------------------------------
@@ -368,7 +367,7 @@ function color_option(value, key, options, prepend, key_optional)
       if value == "black" or value == "white" or value == "virtual" then
          table.insert(options, key .. (prepend or "") .. value)
       else
-         table.insert(options, key .. (prepend or "") .. myColorKey .. value)
+         table.insert(options, key .. (prepend or "") .. myColorPrepend .. value)
       end
    elseif _G.type(value) == "table" then
       table.insert(options, string.format(
@@ -716,8 +715,8 @@ function export_mark(model, obj, matrix)
     local fillcol = obj:get("fill")
 
     -- We are dealing with a \node for a mark, so let us add a predefined style called
-    -- with the global value 'tensorName'
-    local options = { tensorName }
+    -- with the global value 'nodeStyleName'
+    local options = { nodeStyleName }
     
     -- The "transformations" attribute has no effect on marks other than
     -- translation
@@ -726,15 +725,15 @@ function export_mark(model, obj, matrix)
     local markshape = obj:get("markshape")
     local actions, drawing, filling
     _, _, markshape, actions = string.find(markshape, "mark/([^(]+)%(([^)]+)%)")
-    markshape = "ipe " .. markshape
+    markshape = markshape
     drawing = (string.find(actions, "s") ~= nil)
     filling = (string.find(actions, "f") ~= nil)
 
     -- we add now the specific style of the \node, e.g. tensorName_disk or tensorName_fdisk or tensorName_cross
-    number_option(markshape, "", options, tensorName .. delimStyle)
+    number_option(markshape, "", options, nodeStyleName .. delimStyle)
     
     -- we add now the specific size of the \node, e.g. tensorName_large or tensorName_tiny
-    number_option(obj:get("symbolsize"), "", options, tensorName .. delimStyle)
+    number_option(obj:get("symbolsize"), "", options, nodeStyleName .. delimStyle)
     
     -- draw and fill
     if drawing then
@@ -748,8 +747,17 @@ function export_mark(model, obj, matrix)
     end
 
     -- Make sure not to write an element that has the forbidden drawing color
-    if strocol ~= hideColor and fillcol ~= hideColor then
-        
+    
+    local isForbidden = false
+    for _, color in ipairs(forbiddenColors) do
+        if color == strocol or color == fillcol then
+            isForbidden = true
+            break
+        end
+    end
+
+    if not isForbidden then
+    
         -- Let us start writing the node
         write(indent .. "\\node")
         
@@ -760,7 +768,7 @@ function export_mark(model, obj, matrix)
         
         -- Let us add the position and the final things
         write(" at " .. svec(pos) .. " {};\n")
-        
+    
     end
 end
 
@@ -864,8 +872,6 @@ function export_text(model, obj, matrix)
    end
 
    local options = {}
-
-   -- table.insert(options, "ipe node")
 
    -- Handle coordinate transformations
    local pos = matrix*obj:position()
@@ -1359,11 +1365,11 @@ function export_path(shape, mode, matrix, obj)
          -- pen / line width
          local prepend
          prepend = nil
-         number_option(obj:get("pen"), "line width", options, prepend)
+         number_option(obj:get("pen"), "line width", options, "myDash" .. delimStyle)
 
          -- only symbolic dash styles are supported
          prepend = nil
-         string_option(obj:get("dashstyle"), nil, options, "dash_")
+         string_option(obj:get("dashstyle"):gsub("%s+", ""), nil, options, myColorPrepend .. "myDash" .. delimStyle)
 
          -- line join: these have the same names in ipe and TikZ
          string_option(obj:get("linejoin"), "line join", options)
@@ -1413,7 +1419,7 @@ function export_path(shape, mode, matrix, obj)
       local prepend = nil
       opacity = string.gsub(opacity, "%%", "") -- strip %
       if opacity ~= "opaque" then
-         string_option(sround(opacity/100), "opacity", options, prepend)
+         string_option(sroundang(opacity/100), "opacity", options, prepend)
       end
         
    end
