@@ -40,18 +40,20 @@ Now, we have different options
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**3.A** Click on _Export selection to clipboard_ to transform the figures into a tex
 
-By the way, a nice key shortcut for this option is _Cmd + Alt + T_ (in OSX), or _Win + Alt + T_ (in GNU/Linux and MS Windows).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A key shortcut for this option is _Cmd + Alt + T_ (in OSX), or _Win + Alt + T_ (in GNU/Linux and MS Windows).
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Also, you can customize it on the .lua file!
     
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**3.B** Click on _Export selection to clipboard (nodes first)_ to first reorganize all \nodes to the top layer and export the code.
 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**3.C** Click on _Copy preamble to clipboard_ to get the the necessary code for compiling the exported codes into your LaTeX project.
 
-Also, you can customize the preamble on the .lua file!
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Also, you can customize the preamble on the .lua file!
 
 ## Some useful rules to take into account before using it!
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Rule 1. Change some color names to others**
+**Rule 1. Change some color names to others**
 
 In some occasions, we will want to change the names of the colors for others.
 
@@ -61,7 +63,7 @@ For example, when selecting "lightgreen" in IPE, in the TikZ code it will be spe
 
 However, this can be further customized by editing the .lua file.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Rule 2. Avoid certain drawings to be exported**
+**Rule 2. Avoid certain drawings to be exported**
 
 On other occasions, especially with complex drawings, it is common to help yourself by creating guide lines or grids to help you draw.
 
@@ -71,6 +73,6 @@ Therefore, you can also designate certain forbidden colors in the code, so that 
 
 For example, I have assigned the color "turquoise" to the forbidden colors. In this way, no lines with the color turquoise will appear in the exported TikZ code.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Rule 3. Avoid certain drawings to be exported**
+**Rule 3. Avoid certain drawings to be exported**
 
 ## How to customize it further!
