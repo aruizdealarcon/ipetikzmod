@@ -1,12 +1,6 @@
-This project consists of an add-on for the IPE editor.
+This project consists of an add-on for the IPE editor that exports clean and customizable TikZ code from a selection of graphics, directly to the clipboard.
 
-It is a fork of Joseph Rabinoff's add-on in https://github.com/QBobWatson/ipe2tikz.
-
-The two main differences are that:
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) you can **directly export it to the clipboard**,
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) there are a few **more options to customize the output**.
+It is a fork of Joseph Rabinoff's add-on in https://github.com/QBobWatson/ipe2tikz
 
 ## How to install in Mac OS X
 
