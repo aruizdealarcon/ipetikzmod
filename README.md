@@ -40,7 +40,7 @@ Now, we have different options
 
 **Step 3.A** Click on _Export selection to clipboard_ to transform the figures into a tex
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A key shortcut for this option is _Cmd+Shift+T_ (in OSX).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A key shortcut for this option is _Cmd+Shift+T_.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note that you can customize it on the .lua file, see below.
     
