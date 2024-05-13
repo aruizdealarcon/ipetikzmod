@@ -29,21 +29,21 @@ Close all instances of IPE (use e.g. Cmd + Q) and restart it.
 <img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/selection.png?raw=true" width="600"/>
 </p>
 
-3. Click on the tab named _Ipelets_ and then go to _Export TikZ code_
+2. Click on the tab named _Ipelets_ and then go to _Export TikZ code_
 <p align="center">
 <img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/menu.png?raw=true" width="600"/>
 </p>
 
 Now, we have different options
 
-2.1 Click on _Export selection to clipboard_ to transform the figures into a tex
+3.A Click on _Export selection to clipboard_ to transform the figures into a tex
 
     A nice key shortcut for this option is _Cmd + Alt + T_ (in OSX), or _Win + Alt + T_ (in GNU/Linux and MS Windows).
     
-2.2 Click on _Export selection to clipboard (nodes first)_ to first reorganize all \nodes to the top layer and export the code.
+3.B Click on _Export selection to clipboard (nodes first)_ to first reorganize all \nodes to the top layer and export the code.
 
 
-2.3 Click on _Copy preamble to clipboard_ to 
+3.C Click on _Copy preamble to clipboard_ to 
 
     By the way, you can customize the preamble on the .lua file!
 
