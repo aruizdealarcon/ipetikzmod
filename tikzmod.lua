@@ -1,11 +1,11 @@
 ----------------------------------------------------------------------
--- tikzmod export ipelet
+-- tikzmodbeta export ipelet
 ----------------------------------------------------------------------
 --[[
 
-    Copyright (C) 2024 Alberto Ruiz de Alarcon (albertoruizdealarcon@ucm.es)
+    Copyright (C) 2016 Joseph Rabinoff's
 
-    Fork of Joseph Rabinoff's ...
+    Forked by Alberto Ruiz-de-Alarcon (albertoruizdealarcon@ucm.es) 2024
 
     ipe2tikz is free software; you can redistribute it and/or modify it under
     the terms of the GNU General Public License as published by the Free
@@ -25,12 +25,13 @@
 --]]
 
 
-label = "TikZ export (beta)"
+label = "Export TikZ code (Beta)"
 
 methods = {
     { label="Export selection to clipboard", run=run },
     { label="Copy preamble to clipboard", run=run },
     { label="Export selection to clipboard (put all nodes in front)", run=run },
+    { label="Show export rules", run=run },
 }
 
 about = "Export TikZ code"
@@ -57,8 +58,17 @@ resFactor = 50
 -- Precision decimals for coordinates and angles
 roundPrec = 3
 
+-- word prepended to every color / node name / dash style from IPE
+-- this allows us to make them customizable and coherent in your LaTeX code
+myPrepend = "my"
+
+-- delimiter for node styles e.g. nodeStyleName_large or nodeStyleName_cross
+delimStyle = "_"
+
+dashPrepend = "Dash"
+
 -- style added to every \node markings, except for text
-nodeStyleName = "myNode"
+nodeStyleName = "Node"
 
 -- all these first colors are substituted with the second one
 -- e.g. if { "color1", "color2" } is present, then "color1" instances are replaced with "color2"
@@ -68,18 +78,11 @@ substitutionColors = { { "gold", "virtual" }, { "red", "virtual" } }
 -- do not replace them in the previous setting!
 forbiddenColors = { "turquoise" }
 
--- word prepended to every color from IPE
--- this allows us to make them customizable and coherent in your LaTeX code
-myColorPrepend = "my"
-
 -- new line append for "\draw" use "\n" in that case for more readability, otherwise for more compact code, leave empty ""
 drawNewLine = ""
 
 -- ...
 drawIndent = ""
-
--- delimiter for node styles e.g. nodeStyleName_large or nodeStyleName_cross
-delimStyle = "_"
 
 --------------------------------------------------------------------------------
 
@@ -105,6 +108,7 @@ preamble = [[\usepackage{tikz}
 \definecolor{mydarkgreen}{HTML}{1B5E20}
 \definecolor{mydarkmagenta}{HTML}{AD1457}
 \definecolor{mydarkorange}{HTML}{EF6C00}
+\definecolor{mydarkred}{HTML}{8B0000}
 \definecolor{mylightblue}{HTML}{29B6F6}
 \definecolor{mylightcyan}{HTML}{4DD0E1}
 \definecolor{mylightgray}{HTML}{E0E0E0}
@@ -112,26 +116,44 @@ preamble = [[\usepackage{tikz}
 \definecolor{mylightyellow}{HTML}{FFF176}
 %
 \tikzset{baseline={([yshift=-.5ex]current bounding box.center)}}
-\tikzset{every path/.style={ line width=0.4pt, line cap=round }}
 %
-\tikzstyle{virtual}       = [ color = myred, line width=0.5pt ]
-\tikzstyle{heavier}       = [ line width=1pt ]
-\tikzstyle{fat}           = [ line width=1.5pt ]
-\tikzstyle{ultrafat}      = [ line width=2pt ]
-\tikzstyle{bevel}         = [ preaction = { draw, white, line width=2pt,  line cap = round } ]
-\tikzstyle{bevel-wide}    = [ preaction = { draw, white, line width=4pt,  line cap = round } ]
-\tikzstyle{tensor}        = [ circle, draw=black, fill=black, line width=0.2pt, inner sep=1.6pt ]
-\tikzstyle{tensor-large}  = [ inner sep=1.6pt ]
-\tikzstyle{tensor-small}  = [ inner sep=1pt ]
-\tikzstyle{tensor-medium} = [ inner sep=1.3pt ]
-\tikzstyle{tensor-tiny}   = [ inner sep=0.8pt ]
+\tikzset{every path/.style={ line width=0.5pt, line cap=round }}
 %
-\tikzstyle{->-}   = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[line width=0.4pt,length=3pt,width=3.5pt]} }, postaction={decorate} ]
-\tikzstyle{-<-}   = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[line width=0.4pt,length=3pt,width=3.5pt]} }, postaction={decorate} ]
-\tikzstyle{->-25} = [ decoration={ markings, mark = at position 0.25*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[line width=0.4pt,length=3pt,width=3.5pt]} }, postaction={decorate} ]
-\tikzstyle{-<-25} = [ decoration={ markings, mark = at position 0.25*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[line width=0.4pt,length=3pt,width=3.5pt]} }, postaction={decorate} ]
-\tikzstyle{->-75} = [ decoration={ markings, mark = at position 0.75*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[line width=0.4pt,length=3pt,width=3.5pt]} }, postaction={decorate} ]
-\tikzstyle{-<-75} = [ decoration={ markings, mark = at position 0.75*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[line width=0.4pt,length=3pt,width=3.5pt]} }, postaction={decorate} ]
+\tikzstyle{virtual} = [ color = myred, line width=0.5pt ]
+%
+\tikzstyle{myDash_heavier}  = [ line width=1pt ]
+\tikzstyle{myDash_fat}      = [ line width=1.5pt ]
+\tikzstyle{myDash_ultrafat} = [ line width=2pt ]
+%
+\tikzstyle{myDash_dotted}        = [ dash pattern=on \pgflinewidth off 1pt ]
+\tikzstyle{myDash_dashed}        = [ dash pattern=on 3pt off 3pt ]
+\tikzstyle{myDash_dashdotted}    = [ dash pattern=on 3pt off 1pt on \the\pgflinewidth off 1pt ]
+\tikzstyle{myDash_dashdotdotted} = [ dash pattern=on 3pt off 1pt on \the\pgflinewidth off 1pt ]
+%
+\tikzstyle{bevel}      = [ preaction = { draw, white, line width=2pt,  line cap = round } ]
+\tikzstyle{bevel-wide} = [ preaction = { draw, white, line width=4pt,  line cap = round } ]
+%
+\tikzstyle{myNode}        = [ draw=black, fill=black, line width=0.2pt, inner sep=1.6pt ]
+%
+\tikzstyle{myNode_large}  = [ inner sep=1.6pt ]
+\tikzstyle{myNode_small}  = [ inner sep=1pt   ]
+\tikzstyle{myNode_medium} = [ inner sep=1.3pt ]
+\tikzstyle{myNode_tiny}   = [ inner sep=0.8pt ]
+%
+\tikzstyle{myNode_fsquare} = [ rectangle ]
+\tikzstyle{myNode_cross}   = [ circle ]
+\tikzstyle{myNode_box}     = [ rectangle ]
+\tikzstyle{myNode_fdisk}   = [ circle ]
+\tikzstyle{myNode_disk}    = [ circle ]
+\tikzstyle{myNode_square}  = [ rectangle ]
+%
+\newcommand{\myArrowStyle}{line width=0.4pt,length=3pt,width=3.5pt}
+\tikzstyle{->-} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[\myArrowStyle]} }, postaction={decorate} ]
+\tikzstyle{-<-} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[\myArrowStyle]} }, postaction={decorate} ]
+\tikzstyle{->-25} = [ decoration={ markings, mark = at position 0.25*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[\myArrowStyle]} }, postaction={decorate} ]
+\tikzstyle{-<-25} = [ decoration={ markings, mark = at position 0.25*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[\myArrowStyle]} }, postaction={decorate} ]
+\tikzstyle{->-75} = [ decoration={ markings, mark = at position 0.75*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[\myArrowStyle]} }, postaction={decorate} ]
+\tikzstyle{-<-75} = [ decoration={ markings, mark = at position 0.75*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[\myArrowStyle]} }, postaction={decorate} ]
 %
 \pgfdeclarepatternformonly{falling}
     {\pgfqpoint{-1pt}{-1pt}}{\pgfqpoint{5pt}{5pt}}{\pgfqpoint{5pt}{5pt}}{
@@ -147,8 +169,6 @@ preamble = [[\usepackage{tikz}
         \pgfpathlineto{\pgfqpoint{-5pt}{10pt}}
         \pgfusepath{stroke}
     }
-%
-%\usepackage{ifdraft}\ifdraft{\usepackage{environ}\RenewEnviron{tikzpicture}[1][]{\fbox{\parbox{30px}{\hspace{30px}\vspace{30px}}}}}{}
 %]]
 --------------------------------------------------------------------------------
 
@@ -367,7 +387,7 @@ function color_option(value, key, options, prepend, key_optional)
       if value == "black" or value == "white" or value == "virtual" then
          table.insert(options, key .. (prepend or "") .. value)
       else
-         table.insert(options, key .. (prepend or "") .. myColorPrepend .. value)
+         table.insert(options, key .. (prepend or "") .. myPrepend .. value)
       end
    elseif _G.type(value) == "table" then
       table.insert(options, string.format(
@@ -716,7 +736,7 @@ function export_mark(model, obj, matrix)
 
     -- We are dealing with a \node for a mark, so let us add a predefined style called
     -- with the global value 'nodeStyleName'
-    local options = { nodeStyleName }
+    local options = { myPrepend .. nodeStyleName }
     
     -- The "transformations" attribute has no effect on marks other than
     -- translation
@@ -730,10 +750,10 @@ function export_mark(model, obj, matrix)
     filling = (string.find(actions, "f") ~= nil)
 
     -- we add now the specific style of the \node, e.g. tensorName_disk or tensorName_fdisk or tensorName_cross
-    number_option(markshape, "", options, nodeStyleName .. delimStyle)
+    number_option(markshape, "", options, myPrepend .. nodeStyleName .. delimStyle)
     
     -- we add now the specific size of the \node, e.g. tensorName_large or tensorName_tiny
-    number_option(obj:get("symbolsize"), "", options, nodeStyleName .. delimStyle)
+    number_option(obj:get("symbolsize"), "", options, myPrepend .. nodeStyleName .. delimStyle)
     
     -- draw and fill
     if drawing then
@@ -872,6 +892,8 @@ function export_text(model, obj, matrix)
    end
 
    local options = {}
+
+   -- table.insert(options, "ipe node")
 
    -- Handle coordinate transformations
    local pos = matrix*obj:position()
@@ -1271,8 +1293,7 @@ function export_path(shape, mode, matrix, obj)
    local options = {}
 
    local path_str = ""
-   -- local old_indent = indent
-   -- indent = indent .. indent_amt
+
    for i,subpath in ipairs(shape) do
       -- Each export_* function takes the subpath, transformation matrix, and
       -- path options.  If the matrix is a translation, it is returned
@@ -1343,6 +1364,7 @@ function export_path(shape, mode, matrix, obj)
       end
 
       if drawing then
+
          -- stroke color
          -- "default" stroke is black
          -- need draw= if filling
@@ -1351,25 +1373,33 @@ function export_path(shape, mode, matrix, obj)
          -- end
          -- need draw= if filling
 
-            if strcol == black then
-                --
+            if strocol == black then
+                -- do nothing
             else
+                local subtcolor = strocol
                 for _, pair in ipairs(substitutionColors) do
                     if pair[1] == strocol then
-                        color_option(pair[2], "draw", options, nil, not filling)
+                        subtcolor = pair[2]
                         break
                     end
                 end
+                color_option(subtcolor, "draw", options, nil, not filling)
+                --for _, pair in ipairs(substitutionColors) do
+                --   if pair[1] == strocol then
+                --       color_option(pair[2], "draw", options, nil, not filling)
+                --       break
+                --   end
+                --end
             end
 
          -- pen / line width
          local prepend
          prepend = nil
-         number_option(obj:get("pen"), "line width", options, "myDash" .. delimStyle)
+         number_option(obj:get("pen"), "line width", options, myPrepend .. dashPrepend .. delimStyle)
 
          -- only symbolic dash styles are supported
          prepend = nil
-         string_option(obj:get("dashstyle"):gsub("%s+", ""), nil, options, myColorPrepend .. "myDash" .. delimStyle)
+         string_option(obj:get("dashstyle"):gsub("%s+", ""), nil, options, myPrepend .. dashPrepend .. delimStyle)
 
          -- line join: these have the same names in ipe and TikZ
          string_option(obj:get("linejoin"), "line join", options)
@@ -1628,11 +1658,37 @@ function rearrange_tikz_nodes(tikz_code)
     
 end
 
+function getInfoStr()
+
+    local infotext = "I am substituting the following colors for every node and draw ... : "
+
+    for i, pair in ipairs(substitutionColors) do
+        if i > 1 then
+            infotext = infotext .. " and "
+        end
+        infotext = infotext .. pair[1] .. " with " .. pair[2]
+    end
+    
+    infotext = infotext .. "\n Furthermore, I am avoiding to export the figures with the following colors: "
+
+    infotext = infotext .. table.concat(forbiddenColors, ", ")
+ 
+    return infotext
+
+end
+
+
 function run(model, num)
     
     local do_clip = (num == 1)
     local do_pream = (num == 2)
     local do_nodes = (num == 3)
+    local do_info = (num == 4)
+
+    if do_info then
+    	ipeui.messageBox(model.ui:win(), "information", "TikZ export rules", getInfoStr(), "ok")
+        return
+    end
 
     if do_pream then
         copy_to_clipboard(preamble)
