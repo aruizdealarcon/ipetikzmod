@@ -28,15 +28,16 @@
 label = "Export TikZ code (beta)"
 
 methods = {
-    { label="Export selection to clipboard", run=runExportFast },
-    { label="Copy preamble to clipboard", run=runCopyPreamble },
-    { label="Export selection to clipboard (all settings)", run=runExportAll },
-    { label="Load styles", run=runLoadStyles },
+    { label="Export selection to clipboard (fast)", run=runExport },
+    { label="Export selection to clipboard (all settings)", run=runExport },
+    { label="Export preamble to clipboard", run=runCopyPreamble },
+    { label="Load styles to IPE", run=runLoadStyles },
 }
 
 about = ">>> Export TikZ code"
 
 shortcuts.ipelet_1_tikzmod = "Ctrl+Shift+T"
+shortcuts.ipelet_3_tikzmod = "Ctrl+Shift+Y"
 
 --------------------------------------------------------------------------------
 
@@ -44,7 +45,7 @@ shortcuts.ipelet_1_tikzmod = "Ctrl+Shift+T"
 resFactor = 0.03517
 
 -- Precision decimals for coordinates and angles
-roundPrec = 3
+myRoundingPrecision = 3
 
 -- word prepended to every color / node name / dash style from IPE
 -- this allows us to make them customizable and coherent in your LaTeX code
@@ -76,34 +77,10 @@ myIndentAmt = "    "
 
 --------------------------------------------------------------------------------
 
-preamble = [[\usepackage{tikz}
+preamble = [[
+\usepackage{tikz}
 \usetikzlibrary{decorations.pathmorphing, decorations.markings, arrows, arrows.meta, shapes, patterns}
-%
-\definecolor{myred}{HTML}{E53935}
-\definecolor{myblue}{HTML}{1E88E5}
-\definecolor{mygreen}{HTML}{43A047}
-\definecolor{myyellow}{HTML}{FDD835}
-\definecolor{myorange}{HTML}{FB8C00}
-\definecolor{mygold}{HTML}{F9A825}
-\definecolor{mypurple}{HTML}{8E24AA}
-\definecolor{mygray}{HTML}{BDBDBD}
-\definecolor{mybrown}{HTML}{6D4C41}
-\definecolor{mynavy}{HTML}{1A237E}
-\definecolor{mypink}{HTML}{EC407A}
-\definecolor{myseagreen}{HTML}{26A69A}
-\definecolor{myviolet}{HTML}{7E57C2}
-\definecolor{mydarkblue}{HTML}{0D47A1}
-\definecolor{mydarkcyan}{HTML}{00838F}
-\definecolor{mydarkgray}{HTML}{424242}
-\definecolor{mydarkgreen}{HTML}{1B5E20}
-\definecolor{mydarkmagenta}{HTML}{AD1457}
-\definecolor{mydarkorange}{HTML}{EF6C00}
-\definecolor{mydarkred}{HTML}{8B0000}
-\definecolor{mylightblue}{HTML}{29B6F6}
-\definecolor{mylightcyan}{HTML}{4DD0E1}
-\definecolor{mylightgray}{HTML}{E0E0E0}
-\definecolor{mylightgreen}{HTML}{81C784}
-\definecolor{mylightyellow}{HTML}{FFF176}
+\usepackage[dvipsnames]{xcolor}
 %
 \tikzset{baseline={([yshift=-.5ex]current bounding box.center)}}
 %
@@ -111,17 +88,17 @@ preamble = [[\usepackage{tikz}
 %
 \tikzstyle{virtual} = [ color = myred, line width=0.5pt ]
 %
-\tikzstyle{myDash_heavier}  = [ line width=0.75pt ]
-\tikzstyle{myDash_fat}      = [ line width=1.25pt ]
-\tikzstyle{myDash_ultrafat} = [ line width=1.5pt ]
+\tikzstyle{myHeavier}  = [ line width=0.75pt ]
+\tikzstyle{myFat}      = [ line width=1.25pt ]
+\tikzstyle{myUltrafat} = [ line width=1.5pt ]
 %
-\tikzstyle{myDash_dotted}        = [ dash pattern=on \pgflinewidth off 1pt ]
-\tikzstyle{myDash_dashed}        = [ dash pattern=on 3pt off 3pt ]
-\tikzstyle{myDash_dashdotted}    = [ dash pattern=on 3pt off 1pt on \the\pgflinewidth off 1pt ]
-\tikzstyle{myDash_dashdotdotted} = [ dash pattern=on 3pt off 1pt on \the\pgflinewidth off 1pt ]
+\tikzstyle{myDotted}        = [ dash pattern=on \pgflinewidth off 1pt ]
+\tikzstyle{myDashed}        = [ dash pattern=on 3pt off 3pt ]
+\tikzstyle{myDashDotted}    = [ dash pattern=on 3pt off 1pt on \the\pgflinewidth off 1pt ]
+\tikzstyle{myDashDotDotted} = [ dash pattern=on 3pt off 1pt on \the\pgflinewidth off 1pt ]
 %
-\tikzstyle{bevel}      = [ preaction = { draw, white, line width=2pt,  line cap = round } ]
-\tikzstyle{bevel-wide} = [ preaction = { draw, white, line width=4pt,  line cap = round } ]
+\tikzstyle{myBevel}      = [ preaction = { draw, white, line width=2pt,  line cap = round } ]
+\tikzstyle{myBevelWide} = [ preaction = { draw, white, line width=4pt,  line cap = round } ]
 %
 \tikzstyle{myNode}        = [ draw=black, fill=black, line width=0.2pt, inner sep=1.6pt ]
 %
@@ -130,12 +107,12 @@ preamble = [[\usepackage{tikz}
 \tikzstyle{myNode_medium} = [ inner sep=1.3pt ]
 \tikzstyle{myNode_tiny}   = [ inner sep=0.8pt ]
 %
-\tikzstyle{myNode_fsquare} = [ rectangle ]
-\tikzstyle{myNode_cross}   = [ circle ]
-\tikzstyle{myNode_box}     = [ rectangle ]
-\tikzstyle{myNode_fdisk}   = [ circle ]
-\tikzstyle{myNode_disk}    = [ circle ]
-\tikzstyle{myNode_square}  = [ rectangle ]
+\tikzstyle{myFSquare} = [ rectangle ]
+\tikzstyle{myCross}   = [ circle ]
+\tikzstyle{myBox}     = [ rectangle ]
+\tikzstyle{myFDisk}   = [ circle ]
+\tikzstyle{myDisk}    = [ circle ]
+\tikzstyle{mySquare}  = [ rectangle ]
 %
 \newcommand{\myArrowStyle}{line width=0.4pt,length=3pt,width=3.5pt}
 \tikzstyle{->-} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[\myArrowStyle]} }, postaction={decorate} ]
@@ -145,14 +122,14 @@ preamble = [[\usepackage{tikz}
 \tikzstyle{->-75} = [ decoration={ markings, mark = at position 0.75*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[\myArrowStyle]} }, postaction={decorate} ]
 \tikzstyle{-<-75} = [ decoration={ markings, mark = at position 0.75*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[\myArrowStyle]} }, postaction={decorate} ]
 %
-\pgfdeclarepatternformonly{falling}
+\pgfdeclarepatternformonly{myFallingPattern}
     {\pgfqpoint{-1pt}{-1pt}}{\pgfqpoint{5pt}{5pt}}{\pgfqpoint{5pt}{5pt}}{
         \pgfsetlinewidth{0.5pt}
         \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
         \pgfpathlineto{\pgfqpoint{5pt}{5pt}}
         \pgfusepath{stroke}
     }
-\pgfdeclarepatternformonly{raising}
+\pgfdeclarepatternformonly{myRaisingPattern}
     {\pgfqpoint{-5pt}{-5pt}}{\pgfqpoint{10pt}{10pt}}{\pgfqpoint{5pt}{5pt}}{
         \pgfsetlinewidth{0.5pt}
         \pgfpathmoveto{\pgfqpoint{10pt}{-5pt}}
@@ -167,8 +144,8 @@ preamble = [[\usepackage{tikz}
 theSheetStr = [[<?xml version="1.0"?>
 <!DOCTYPE ipestyle SYSTEM "ipe.dtd">
 <ipestyle name="ipetikzmod">
-<color name="aliceblue" value="0.941 0.973 1"/>
-<color name="antiquewhite" value="0.98 0.922 0.843"/>
+<color name="Melon" value="0.941 0.973 1"/>
+<color name="JungleGreen" value="0.98 0.922 0.843"/>
 </ipestyle>]]
 
 -- Globals
@@ -178,10 +155,8 @@ popen = _G.io.popen
 getenv = _G.os.getenv
 execute = _G.os.execute
 indent = ""
-
--- ...
-
 elemNewLine = "\n"
+
 
 --------------------------------------------------------------------------------
 -- Copy to clipboard function
@@ -245,14 +220,14 @@ end
 
 -- Round a number to idp decimal places
 function round(num, idp)
-  local mult = 10^(idp or roundPrec)
+  local mult = 10^(idp or myRoundingPrecision)
   return math.floor(num * mult + 0.5) / mult
 end
 
 
 -- Convert a number to a string, omitting trailing zeros after the decimal, and rounding.
 function sround(num, idp)
-   idp = idp or roundPrec
+   idp = idp or myRoundingPrecision
    num = round(num/resFactor, idp)
    local neg = (num < 0)
    if neg then
@@ -284,7 +259,7 @@ end
 -- Convert a number to a string, omitting trailing zeros after the decimal, and
 -- rounding. For angles only, since no re-scale is performed.
 function sroundang(num, idp)
-   idp = idp or roundPrec
+   idp = idp or myRoundingPrecision
    num = round(num, idp)
    local neg = (num < 0)
    if neg then
