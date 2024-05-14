@@ -37,19 +37,15 @@ methods = {
 about = ">>> Export TikZ code"
 
 shortcuts.ipelet_1_tikzmod = "Ctrl+Shift+T"
-shortcuts.ipelet_3_tikzmod = "Ctrl+Shift+Y"
+shortcuts.ipelet_2_tikzmod = "Ctrl+Shift+Y"
 
 --------------------------------------------------------------------------------
 
--- Shape resize factor (divides coordinates by this number)
-resFactor = 0.03517
+myScaleFactor = 0.035278
 
--- Precision decimals for coordinates and angles
 myRoundingPrecision = 3
 
--- word prepended to every color / node name / dash style from IPE
--- this allows us to make them customizable and coherent in your LaTeX code
-myGlobalPrefix = "ipe"
+myGlobalPrefix = ""
 
 -- delimiter for node styles e.g. myNodeName_large or myNodeName_cross
 myDelimiter = "_"
@@ -228,7 +224,7 @@ end
 -- Convert a number to a string, omitting trailing zeros after the decimal, and rounding.
 function sround(num, idp)
    idp = idp or myRoundingPrecision
-   num = round(num/resFactor, idp)
+   num = round(num*myScaleFactor, idp)
    local neg = (num < 0)
    if neg then
       num = -num
