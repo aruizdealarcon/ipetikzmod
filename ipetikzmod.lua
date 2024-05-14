@@ -1,5 +1,5 @@
 ----------------------------------------------------------------------
--- tikzmod export ipelet
+-- ipetikzmod export ipelet
 ----------------------------------------------------------------------
 --[[
 
@@ -28,7 +28,7 @@
 label = ">>> Export TikZ code"
 
 methods = {
-    { label="Export selection to clipboard (fast)",         run=run},
+    { label="Export selection to clipboard",         run=run},
     --{ label="Export selection to clipboard (more options)", run=run},
    -- { label="-------",                                      run=run},
     { label="Copy preamble to clipboard",                   run=run},
@@ -42,7 +42,7 @@ shortcuts.ipelet_1_tikzmod = "Ctrl+Shift+T"
 
 prefs.initial.grid_size = 8
 
-prefs.styles = { "ipetikz" }
+prefs.styles = { "ipetikzmod" }
 
 prefs.auto_export_resolution = 400
 
