@@ -6,7 +6,7 @@ It is a fork of Joseph Rabinoff's add-on in https://github.com/QBobWatson/ipe2ti
 
 ## How to install in Mac OS X
 
-Download tikzmod.lua
+Download tikzmod.lua from this repository.
 
 In **Finder**, press **Cmd+Alt+G** and go to **Users/{your-username}/.ipe/ipelets/**
 
@@ -23,7 +23,9 @@ If you prefer the terminal, simply execute:
 
 ## How to install in GNU/Linux
 
-Download tikzmod.lua
+Before installing it, make sure you have xsel or xclip installed.
+
+Download tikzmod.lua from this repository.
 
 In your file explorer, go to the path **~/.ipe/ipelets/**
 
@@ -39,7 +41,7 @@ If you prefer the terminal, simply execute:
 
 ## How to install in Microsoft Windows
 
-Download tikzmod.lua
+Download tikzmod.lua from this repository.
 
 In the File Explorer, go to **$USERPROFILE\Ipelets**
 
