@@ -3,9 +3,9 @@
 ----------------------------------------------------------------------
 --[[
 
-    Copyright (C) 2016 Joseph Rabinoff's
+    Copyright (C) 2024 Alberto Ruiz de Alarcon (albertoruizdealarcon@ucm.es)
 
-    Forked by Alberto Ruiz-de-Alarcon (albertoruizdealarcon@ucm.es) 2024
+    Fork of Joseph Rabinoff's ...
 
     ipe2tikz is free software; you can redistribute it and/or modify it under
     the terms of the GNU General Public License as published by the Free
@@ -25,31 +25,20 @@
 --]]
 
 
-label = "Export TikZ code (Beta)"
+label = "Export TikZ code beta"
 
 methods = {
     { label="Export selection to clipboard", run=run },
     { label="Copy preamble to clipboard", run=run },
     { label="Export selection to clipboard (put all nodes in front)", run=run },
+    { label="Export selection to clipboard (compact code)", run=run },
     { label="Show export rules", run=run },
 }
 
 about = "Export TikZ code"
 
+
 shortcuts.ipelet_1_tikzmod = "Ctrl+Shift+T"
-
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-
--- Globals
-
-write = _G.io.write
-popen = _G.io.popen
-getenv = _G.os.getenv
-execute = _G.os.execute
-
-indent_amt = "    "
-indent = ""
 
 --------------------------------------------------------------------------------
 
@@ -84,6 +73,8 @@ drawNewLine = ""
 
 -- ...
 drawIndent = ""
+
+indent_amt = "    "
 
 --------------------------------------------------------------------------------
 
@@ -122,17 +113,17 @@ preamble = [[\usepackage{tikz}
 %
 \tikzstyle{virtual} = [ color = myred, line width=0.5pt ]
 %
-\tikzstyle{myDash_heavier}  = [ line width=1pt ]
-\tikzstyle{myDash_fat}      = [ line width=1.5pt ]
-\tikzstyle{myDash_ultrafat} = [ line width=2pt ]
+\tikzstyle{myDash_heavier}  = [ line width=0.75pt ]
+\tikzstyle{myDash_fat}      = [ line width=1.25pt ]
+\tikzstyle{myDash_ultrafat} = [ line width=1.5pt ]
 %
 \tikzstyle{myDash_dotted}        = [ dash pattern=on \pgflinewidth off 1pt ]
 \tikzstyle{myDash_dashed}        = [ dash pattern=on 3pt off 3pt ]
 \tikzstyle{myDash_dashdotted}    = [ dash pattern=on 3pt off 1pt on \the\pgflinewidth off 1pt ]
 \tikzstyle{myDash_dashdotdotted} = [ dash pattern=on 3pt off 1pt on \the\pgflinewidth off 1pt ]
 %
-\tikzstyle{myBevel}      = [ preaction = { draw, white, line width=2pt,  line cap = round } ]
-\tikzstyle{myBevel_wide} = [ preaction = { draw, white, line width=4pt,  line cap = round } ]
+\tikzstyle{bevel}      = [ preaction = { draw, white, line width=2pt,  line cap = round } ]
+\tikzstyle{bevel-wide} = [ preaction = { draw, white, line width=4pt,  line cap = round } ]
 %
 \tikzstyle{myNode}        = [ draw=black, fill=black, line width=0.2pt, inner sep=1.6pt ]
 %
@@ -149,8 +140,8 @@ preamble = [[\usepackage{tikz}
 \tikzstyle{myNode_square}  = [ rectangle ]
 %
 \newcommand{\myArrowStyle}{line width=0.4pt,length=3pt,width=3.5pt}
-\tikzstyle{->-}   = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[\myArrowStyle]} }, postaction={decorate} ]
-\tikzstyle{-<-}   = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[\myArrowStyle]} }, postaction={decorate} ]
+\tikzstyle{->-} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[\myArrowStyle]} }, postaction={decorate} ]
+\tikzstyle{-<-} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[\myArrowStyle]} }, postaction={decorate} ]
 \tikzstyle{->-25} = [ decoration={ markings, mark = at position 0.25*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[\myArrowStyle]} }, postaction={decorate} ]
 \tikzstyle{-<-25} = [ decoration={ markings, mark = at position 0.25*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[\myArrowStyle]} }, postaction={decorate} ]
 \tikzstyle{->-75} = [ decoration={ markings, mark = at position 0.75*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[\myArrowStyle]} }, postaction={decorate} ]
@@ -173,6 +164,18 @@ preamble = [[\usepackage{tikz}
 %]]
 --------------------------------------------------------------------------------
 
+-- Globals
+
+write = _G.io.write
+popen = _G.io.popen
+getenv = _G.os.getenv
+execute = _G.os.execute
+indent = ""
+
+-- ...
+
+elemNewLine = "\n"
+
 --------------------------------------------------------------------------------
 -- Copy to clipboard function
 --------------------------------------------------------------------------------
@@ -191,7 +194,8 @@ function copy_to_clipboard(text)
         elseif execute("command -v xsel") then
             command = 'xsel --clipboard --input'
         else
-            print("Error: xclip o xsel are not installed.")
+            -- print("Error: xclip o xsel are not installed.")
+            ipeui.messageBox(model.ui:win(), "warning", "TikZ export error", "xclip o xsel are not installed", "ok")
             return
         end
     elseif os_output:match("Darwin") then
@@ -206,6 +210,7 @@ function copy_to_clipboard(text)
         pipe:close()
     else
         print("Error: Cannot access clipboard.")
+        ipeui.messageBox(model.ui:win(), "warning", "TikZ export error", "Cannot access clipboard", "ok")
     end
     
 end
@@ -788,7 +793,7 @@ function export_mark(model, obj, matrix)
         end
         
         -- Let us add the position and the final things
-        write(" at " .. svec(pos) .. " {};\n")
+        write(" at " .. svec(pos) .. " {};" .. elemNewLine)
     
     end
 end
@@ -835,7 +840,7 @@ function export_group(model, obj, matrix)
    end
    indent = old_indent
 
-   write(indent .. "\\end{scope}\n")
+   write(indent .. "\\end{scope}" .. elemNewLine)
 end
 
 
@@ -1009,7 +1014,6 @@ function export_text(model, obj, matrix)
    if #options > 0 then
       write("[" .. table.concat(options, ", ") .. "]")
    end
-   -- write("\n" .. indent .. indent_amt .. " at " .. svec(pos, 3) .. " ") -- we dont want newlines
    write(" at " .. svec(pos, 3) .. " ")
 
    if minipage then
@@ -1039,7 +1043,7 @@ function export_text(model, obj, matrix)
       write("{" .. text .. "}")
    end
 
-   write(";\n")
+   write(";" .. elemNewLine)
 end
 
 --------------------------------------------------------------------------------
@@ -1374,7 +1378,7 @@ function export_path(shape, mode, matrix, obj)
          -- end
          -- need draw= if filling
 
-            if strocol == black then
+            if strocol == "black" then
                 -- do nothing
             else
                 local subtcolor = strocol
@@ -1385,12 +1389,6 @@ function export_path(shape, mode, matrix, obj)
                     end
                 end
                 color_option(subtcolor, "draw", options, nil, not filling)
-                --for _, pair in ipairs(substitutionColors) do
-                --   if pair[1] == strocol then
-                --       color_option(pair[2], "draw", options, nil, not filling)
-                --       break
-                --   end
-                --end
             end
 
          -- pen / line width
@@ -1483,7 +1481,7 @@ function export_path(shape, mode, matrix, obj)
             write("[" .. table.concat(options, ", ") .. "]")
         end
         
-        write(" " .. path_str .. ";\n")
+        write(" " .. path_str .. ";" .. elemNewLine)
     
     end
     
@@ -1642,7 +1640,8 @@ function rearrange_tikz_nodes(tikz_code)
 
     local insert_pos = other_contents:find("\\end{tikzpicture}")
     if not insert_pos then
-        print("Error: Cannot find \\end{tikzpicture}.")
+        ipeui.messageBox(model.ui:win(), "warning", "TikZ export error", "Cannot find end of tikzpicture", "ok")
+        --print("Error: Cannot find \\end{tikzpicture}.")
         return tikz_code
     end
 
@@ -1684,7 +1683,13 @@ function run(model, num)
     local do_clip = (num == 1)
     local do_pream = (num == 2)
     local do_nodes = (num == 3)
-    local do_info = (num == 4)
+    local do_comp = (num == 4)
+    local do_info = (num == 5)
+
+    if do_comp then
+        indent_amt = ""
+	elemNewLine = " "
+    end
 
     if do_info then
     	ipeui.messageBox(model.ui:win(), "information", "TikZ export rules", getInfoStr(), "ok")
@@ -1743,6 +1748,11 @@ function run(model, num)
     elseif do_nodes then
         text_contents_reord = rearrange_tikz_nodes(text_contents)
         copy_to_clipboard(text_contents_reord)
+    elseif do_comp then
+        indent_amt = "    "
+	elemNewLine = "\n"
+        copy_to_clipboard(text_contents)
     end
+
     
 end
