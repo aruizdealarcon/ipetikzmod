@@ -225,10 +225,9 @@ the_preamble = [[\usepackage[dvipsnames]{xcolor}
 \colorlet{Virtual}{RedOrange}
 \tikzstyle{Bevel} = [ preaction = { draw, white, line width=2pt,  line cap = round } ]
 \tikzstyle{Bevel_wide} = [ preaction = { draw, white, line width=4pt,  line cap = round } ]
-\tikzstyle{Mark} = [ draw=black, fill=black, line width=0.2pt, inner sep=1.5pt ]
+\tikzstyle{Mark} = [ draw=black, fill=black, line width=0.3pt, inner sep=1.5pt ]
 \tikzstyle{Mark_large} = [ inner sep=2.1pt ]
 \tikzstyle{Mark_small} = [ inner sep=1pt   ]
-\tikzstyle{Mark_medium} = [ inner sep=1.3pt ]
 \tikzstyle{Mark_tiny} = [ inner sep=0.8pt ]
 \tikzstyle{Mark_fdisk} = [ circle ]
 \tikzstyle{Mark_disk} = [ circle ]
