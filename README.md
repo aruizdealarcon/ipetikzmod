@@ -10,7 +10,7 @@ Download tikzmod.lua from this repository.
 
 In **Finder**, press **Cmd+Alt+G** and go to **Users/{your-username}/.ipe/ipelets/**
 
-Create the folder ipelets if it does not exist.
+Create the folder _ipelets_ if it does not exist.
 
 Copy the .lua file you just downloaded into that folder.
 
@@ -25,11 +25,11 @@ If you prefer the terminal, simply execute:
 
 Before installing it, make sure you have xsel or xclip installed.
 
-Download tikzmod.lua from this repository.
+Download _tikzmod.lua_ from this repository.
 
 In your file explorer, go to the path **~/.ipe/ipelets/**
 
-Create the folder _ipelets: if it does not exist.
+Create the folder _ipelets_ if it does not exist.
 
 Copy the .lua file you just downloaded into that folder.
 
