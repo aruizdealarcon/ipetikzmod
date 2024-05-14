@@ -33,7 +33,6 @@ Copy the .lua file you just downloaded into that folder.
 
 **Close all instances of IPE and run it again**.
 
-
 If you prefer the terminal, simply execute:
 
     mkdir -p ~/.ipe/ipelets/ && cp -f ~/Downloads/tikzmod.lua ~/.ipe/ipelets/
@@ -50,7 +49,7 @@ Copy the .lua file you just downloaded into that folder.
 
 # Usage
 
-## How to use it
+## A simple case
 
 ### Step 1. Select the drawings you want to export to TikZ code.
 <p align="center">
@@ -89,9 +88,9 @@ Click on **Copy preamble to clipboard** to get the the necessary code for compil
 
 In some occasions, we will want to change the names of the colors for others.
 
-By default, the colors assigned by this add-on to the predefined ones in IPE are preceded by the word "my".
+By default, the colors assigned by this add-on to the predefined ones in IPE are preceded by the word "_my_".
 
-For example, when selecting "lightgreen" in IPE, in the TikZ code it will be specified as "mylightgreen".
+For example, when selecting "_lightgreen_" in the IPE Editor, in the exported TikZ code it will be specified as "_mylightgreen_".
 
 However, this can be further customized by editing the .lua file.
 
@@ -103,7 +102,7 @@ However, many times we do not want to get rid of those guide lines in case we ne
 
 Therefore, you can also designate certain forbidden colors in the code, so that objects with those colors will not be exported to the TikZ code.
 
-For example, I have assigned the color "turquoise" to the forbidden colors. In this way, no lines with the color turquoise will appear in the exported TikZ code.
+For example, I have assigned the color "_turquoise_" to the forbidden colors. In this way, no lines with the color turquoise will appear in the exported TikZ code.
 
 ### Feature #3. Text positioning and scaling
 
@@ -115,7 +114,7 @@ That makes the origin of the textbox to be the center and _not_ the lower left c
 
 ## How to customize it further?
 
-You can easily edit the following settings:
+You can easily edit the following settings in the .lua file if you want to customize them further:
 
 The following variable is the number by which the original coordinates of the drawing are divided. Note that the original coordinates may be too large for Latex to handle. The larger the number, the smaller the Latex drawings are compared to IPE drawings.
     
@@ -139,14 +138,23 @@ The following is a delimiter that separates a style and a sub-style. For example
 
     nodeStyleName = "Node"
 
-The following is a list of pairs of two color codes (in string format), which dictate how you should replace the color codes you find with other codes of your choice. For example, the following, which is the default, makes the exporter rename the colors "gold" and "red" with the style "virtual", but you can add and change it as you wish.
+The following is a list of pairs of two color codes (in string format), which dictate how you should replace the color codes you find with other codes of your choice.
 
-    substitutionColors = { { "gold", "virtual" }, { "red", "virtual" } }
+For example, the following, makes the exporter rename the colors "_gold_" and "_red_" within the IPE Editor with the styles "virtual" and "physical", respectively, in the exported code, but you can add and change it as you wish.
 
--- the drawings with this color will be discarded; use them as axis, rules...
--- do not replace them in the previous setting!
+    substitutionColors = { { "red", "virtual" }, { "black", "physical" } }
+
+The default option is the following
+
+    substitutionColors = { { "orange", "virtual" }, { "red", "virtual" } }
+
+In many occasions we want to have guide lines or points that help us in our drawings, but that should not appear in the final results. With this objective, I have introduced a list of strings so that the processor discards to include in the exported code any draw, node or other figure that has as color (either drawing or filling), the colors that are specified in the following array:
 
     forbiddenColors = { "turquoise" }
+
+Another example would be:
+
+    forbiddenColors = { "turquoise", "yellow" }
 
 -- new line append for "\draw" use "\n" in that case for more readability, otherwise for more compact code, leave empty ""
 
