@@ -25,48 +25,46 @@
 --]]
 
 
-label = "Export TikZ code beta"
+label = "Export TikZ code (beta)"
 
 methods = {
-    { label="Export selection to clipboard", run=run },
-    { label="Copy preamble to clipboard", run=run },
-    { label="Export selection to clipboard (put all nodes in front)", run=run },
-    { label="Export selection to clipboard (compact code)", run=run },
-    { label="Show export rules", run=run },
+    { label="Export selection to clipboard", run=runExportFast },
+    { label="Copy preamble to clipboard", run=runCopyPreamble },
+    { label="Export selection to clipboard (all settings)", run=runExportAll },
+    { label="Load styles", run=runLoadStyles },
 }
 
-about = "Export TikZ code"
-
+about = ">>> Export TikZ code"
 
 shortcuts.ipelet_1_tikzmod = "Ctrl+Shift+T"
 
 --------------------------------------------------------------------------------
 
 -- Shape resize factor (divides coordinates by this number)
-resFactor = 50
+resFactor = 0.03517
 
 -- Precision decimals for coordinates and angles
 roundPrec = 3
 
 -- word prepended to every color / node name / dash style from IPE
 -- this allows us to make them customizable and coherent in your LaTeX code
-myPrepend = "my"
+myGlobalPrefix = "ipe"
 
--- delimiter for node styles e.g. nodeStyleName_large or nodeStyleName_cross
-delimStyle = "_"
+-- delimiter for node styles e.g. myNodeName_large or myNodeName_cross
+myDelimiter = "_"
 
-dashPrepend = "Dash"
+myDashPrefix = "Dash"
 
 -- style added to every \node markings, except for text
-nodeStyleName = "Node"
+myNodeName = "Node"
 
 -- all these first colors are substituted with the second one
 -- e.g. if { "color1", "color2" } is present, then "color1" instances are replaced with "color2"
-substitutionColors = { { "gold", "virtual" }, { "red", "virtual" } }
+mySubstitutedColors = { { "gold", "virtual" }, { "red", "virtual" } }
 
 -- the drawings with this color will be discarded; use them as axis, rules...
 -- do not replace them in the previous setting!
-forbiddenColors = { "turquoise" }
+myForbiddenColors = { "turquoise" }
 
 -- new line append for "\draw" use "\n" in that case for more readability, otherwise for more compact code, leave empty ""
 drawNewLine = ""
@@ -74,7 +72,7 @@ drawNewLine = ""
 -- ...
 drawIndent = ""
 
-indent_amt = "    "
+myIndentAmt = "    "
 
 --------------------------------------------------------------------------------
 
@@ -162,7 +160,16 @@ preamble = [[\usepackage{tikz}
         \pgfusepath{stroke}
     }
 %]]
+
+
 --------------------------------------------------------------------------------
+
+theSheetStr = [[<?xml version="1.0"?>
+<!DOCTYPE ipestyle SYSTEM "ipe.dtd">
+<ipestyle name="ipetikzmod">
+<color name="aliceblue" value="0.941 0.973 1"/>
+<color name="antiquewhite" value="0.98 0.922 0.843"/>
+</ipestyle>]]
 
 -- Globals
 
@@ -393,7 +400,7 @@ function color_option(value, key, options, prepend, key_optional)
       if value == "black" or value == "white" or value == "virtual" then
          table.insert(options, key .. (prepend or "") .. value)
       else
-         table.insert(options, key .. (prepend or "") .. myPrepend .. value)
+         table.insert(options, key .. (prepend or "") .. myGlobalPrefix .. value)
       end
    elseif _G.type(value) == "table" then
       table.insert(options, string.format(
@@ -741,8 +748,8 @@ function export_mark(model, obj, matrix)
     local fillcol = obj:get("fill")
 
     -- We are dealing with a \node for a mark, so let us add a predefined style called
-    -- with the global value 'nodeStyleName'
-    local options = { myPrepend .. nodeStyleName }
+    -- with the global value 'myNodeName'
+    local options = { myGlobalPrefix .. myNodeName }
     
     -- The "transformations" attribute has no effect on marks other than
     -- translation
@@ -756,10 +763,10 @@ function export_mark(model, obj, matrix)
     filling = (string.find(actions, "f") ~= nil)
 
     -- we add now the specific style of the \node, e.g. tensorName_disk or tensorName_fdisk or tensorName_cross
-    number_option(markshape, "", options, myPrepend .. nodeStyleName .. delimStyle)
+    number_option(markshape, "", options, myGlobalPrefix .. myNodeName .. myDelimiter)
     
     -- we add now the specific size of the \node, e.g. tensorName_large or tensorName_tiny
-    number_option(obj:get("symbolsize"), "", options, myPrepend .. nodeStyleName .. delimStyle)
+    number_option(obj:get("symbolsize"), "", options, myGlobalPrefix .. myNodeName .. myDelimiter)
     
     -- draw and fill
     if drawing then
@@ -775,7 +782,7 @@ function export_mark(model, obj, matrix)
     -- Make sure not to write an element that has the forbidden drawing color
     
     local isForbidden = false
-    for _, color in ipairs(forbiddenColors) do
+    for _, color in ipairs(myForbiddenColors) do
         if color == strocol or color == fillcol then
             isForbidden = true
             break
@@ -828,7 +835,7 @@ function export_group(model, obj, matrix)
    write("\n")
 
    local old_indent = indent
-   indent = indent_amt .. indent
+   indent = myIndentAmt .. indent
 
    local clip = obj:clip()
    if clip then
@@ -1020,7 +1027,7 @@ function export_text(model, obj, matrix)
       -- Add minipage environment, and indent everything.  The indentation looks
       -- nice, but it'll mess up a verbatim environment or something.  Oh well.
       local old_indent = indent
-      indent = indent .. indent_amt .. indent_amt .. " "
+      indent = indent .. myIndentAmt .. myIndentAmt .. " "
       write("{\n")
       -- The \kern0pt is to cancel out \ignorespaces in the \begin{minipage},
       -- which seems to be what happens when ipe runs LaTeX.
@@ -1035,10 +1042,10 @@ function export_text(model, obj, matrix)
                   .. setsize .. "\\kern0pt\n")
       end
       string.gsub(text .. "\n", "([^\n]*)\n",
-                  function (c) write(indent .. indent_amt .. c .. "\n") end)
+                  function (c) write(indent .. myIndentAmt .. c .. "\n") end)
       write(indent .. "\\end{minipage}\n")
       indent = old_indent
-      write(indent .. indent_amt .. " }")
+      write(indent .. myIndentAmt .. " }")
    else
       write("{" .. text .. "}")
    end
@@ -1382,7 +1389,7 @@ function export_path(shape, mode, matrix, obj)
                 -- do nothing
             else
                 local subtcolor = strocol
-                for _, pair in ipairs(substitutionColors) do
+                for _, pair in ipairs(mySubstitutedColors) do
                     if pair[1] == strocol then
                         subtcolor = pair[2]
                         break
@@ -1394,11 +1401,11 @@ function export_path(shape, mode, matrix, obj)
          -- pen / line width
          local prepend
          prepend = nil
-         number_option(obj:get("pen"), "line width", options, myPrepend .. dashPrepend .. delimStyle)
+         number_option(obj:get("pen"), "line width", options, myGlobalPrefix .. myDashPrefix .. myDelimiter)
 
          -- only symbolic dash styles are supported
          prepend = nil
-         string_option(obj:get("dashstyle"):gsub("%s+", ""), nil, options, myPrepend .. dashPrepend .. delimStyle)
+         string_option(obj:get("dashstyle"):gsub("%s+", ""), nil, options, myGlobalPrefix .. myDashPrefix .. myDelimiter)
 
          -- line join: these have the same names in ipe and TikZ
          string_option(obj:get("linejoin"), "line join", options)
@@ -1456,7 +1463,7 @@ function export_path(shape, mode, matrix, obj)
     -- detect if we are dealing with a forbidden color
     
     local isForbidden = false
-    for _, color in ipairs(forbiddenColors) do
+    for _, color in ipairs(myForbiddenColors) do
         if color == strocol or color == fillcol then
             isForbidden = true
             break
@@ -1634,7 +1641,7 @@ function rearrange_tikz_nodes(tikz_code)
     local nodes = {}
 
     local other_contents = tikz_code:gsub("\\node(.-);%s*", function(node) 
-        table.insert(nodes, indent_amt .. "\\node" .. node .. ";")
+        table.insert(nodes, myIndentAmt .. "\\node" .. node .. ";")
         return ""
     end)
 
@@ -1649,7 +1656,7 @@ function rearrange_tikz_nodes(tikz_code)
     local after_end = other_contents:sub(insert_pos)
     local node_text = table.concat(nodes, "\n")
     if #node_text > 0 then
-        node_text = indent_amt .. "%%%%%%%%%%%%%\n" .. node_text .. "\n"
+        node_text = myIndentAmt .. "%%%%%%%%%%%%%\n" .. node_text .. "\n"
     end
 
     before_end = before_end:gsub("\n%s*\n", "\n")
@@ -1662,7 +1669,7 @@ function getInfoStr()
 
     local infotext = "I am substituting the following colors for every node and draw ... : "
 
-    for i, pair in ipairs(substitutionColors) do
+    for i, pair in ipairs(mySubstitutedColors) do
         if i > 1 then
             infotext = infotext .. " and "
         end
@@ -1671,34 +1678,43 @@ function getInfoStr()
     
     infotext = infotext .. "\n Furthermore, I am avoiding to export the figures with the following colors: "
 
-    infotext = infotext .. table.concat(forbiddenColors, ", ")
+    infotext = infotext .. table.concat(myForbiddenColors, ", ")
  
     return infotext
 
 end
 
 
-function run(model, num)
+function runCopyPreamble(model, num)
+    copy_to_clipboard(preamble)
+end
+
+function runLoadStyles(model, num)
     
+	local sheets = model.doc:sheets()
+	
+	mySheet = ipe.Sheet(nil, theSheetStr)
+    
+	mySheet:setName("ipetikzmod")
+    
+	doc = model.doc
+	sheets = doc:sheets()
+	sheets:insert(sheets:count()+1, mySheet)
+	
+	ipeui.messageBox(model.ui:win(), "information", "TikZ Export Message", "Styles loaded", "ok")
+    
+end
+
+function runExport(model, num)
+		
     local do_clip = (num == 1)
-    local do_pream = (num == 2)
-    local do_nodes = (num == 3)
-    local do_comp = (num == 4)
-    local do_info = (num == 5)
+    local do_all = (num == 2)
+    local do_pream = (num == 3)
 
     if do_comp then
-        indent_amt = ""
+        -- adjust global variables to compress the code
+        myIndentAmt = ""
 	elemNewLine = " "
-    end
-
-    if do_info then
-    	ipeui.messageBox(model.ui:win(), "information", "TikZ export rules", getInfoStr(), "ok")
-        return
-    end
-
-    if do_pream then
-        copy_to_clipboard(preamble)
-        return
     end
 
     local page = model:page()
@@ -1707,7 +1723,7 @@ function run(model, num)
     -- Run the parameters dialog
     params = params_text
     if #model:selection() == 0 then
-        ipeui.messageBox(model.ui:win(), "warning", "TikZ export error", "Please select some objects to convert to a TikZ text object", "ok")
+        ipeui.messageBox(model.ui:win(), "warning", "TikZ Export error", "Please, select the objects you want to convert", "ok")
         return
     end
 
@@ -1724,7 +1740,7 @@ function run(model, num)
     local options = {}
     table.insert(options, "scale=1")
     write("[" .. table.concat(options, ", ") .. "]\n")
-    indent = indent_amt
+    indent = myIndentAmt
 
     -- Use the bottom-left corner of the bounding box
     
@@ -1744,15 +1760,14 @@ function run(model, num)
     write("\\end{" .. envname .. "}")
 
     if do_clip then
-        copy_to_clipboard(text_contents)
+        ---
     elseif do_nodes then
-        text_contents_reord = rearrange_tikz_nodes(text_contents)
-        copy_to_clipboard(text_contents_reord)
+        text_contents = rearrange_tikz_nodes(text_contents)
     elseif do_comp then
-        indent_amt = "    "
+        myIndentAmt = "    "
 	elemNewLine = "\n"
-        copy_to_clipboard(text_contents)
     end
-
+	
+    copy_to_clipboard(text_contents_reord)
     
 end
