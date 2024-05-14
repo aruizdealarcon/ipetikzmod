@@ -29,11 +29,7 @@ label = ">>> Export TikZ code"
 
 methods = {
     { label="Export selection to clipboard",         run=run},
-    --{ label="Export selection to clipboard (more options)", run=run},
-   -- { label="-------",                                      run=run},
     { label="Copy preamble to clipboard",                   run=run},
-   -- { label="-------",                                      run=run},
-   -- { label="Load additional styles",                       run=run},
 }
 
 about = "Export TikZ code"
@@ -221,7 +217,7 @@ indent_amt = "    "
 
 --------------------------------------------------------------------------------
 
-preamble = [[\usepackage[dvipsnames]{xcolor}
+the_preamble = [[\usepackage[dvipsnames]{xcolor}
 \usepackage{tikz}
 \usetikzlibrary{decorations.pathmorphing, decorations.markings, arrows, arrows.meta, shapes, patterns}
 \tikzset{baseline={([yshift=-.5ex]current bounding box.center)}}
@@ -255,13 +251,7 @@ getenv = _G.os.getenv
 execute = _G.os.execute
 indent = ""
 
--- ...
-
 elemNewLine = "\n"
-
-node_counter = 0
-
-append_node_id = false
 
 --------------------------------------------------------------------------------
 -- Copy to clipboard function
@@ -928,13 +918,13 @@ function export_mark(model, obj, matrix)
         end
         
         -- Let us add the position and the final things
-        if append_node_id then
-            write(" (" .. genNodeId(node_counter) .. ") at " .. svec(pos) .. " {};" .. elemNewLine)
-        else
-            write(" at " .. svec(pos) .. " {};" .. elemNewLine)
-        end
+        --if append_node_id then
+        --    write(" (" .. genNodeId(node_counter) .. ") at " .. svec(pos) .. " {};" .. elemNewLine)
+        --else
+        write(" at " .. svec(pos) .. " {};" .. elemNewLine)
+        --end
 
-        node_counter = node_counter + 1
+        --node_counter = node_counter + 1
     
     end
 end
@@ -1864,33 +1854,15 @@ end
 function run(model, num)
     
     local do_fast = (num == 1)
-    local do_more = (num == 3)
-    local do_nothing1 = (num == 3)
     local do_preamble = (num == 2)
-    local do_nothing2 = (num == 3)
-    local do_styles = (num == 3)
 
-    node_counter = 0
-
-    if do_nothing1 or do_nothing2 then
-        return
-    end
-
+    --node_counter = 0
+	
     if do_preamble then
-        copy_to_clipboard(preamble)
+        copy_to_clipboard(the_preamble)
         return
     end
-
-    if do_more then
-        ipeui.messageBox(model.ui:win(), "warning", "TikZ export error", "Not ready yet", "ok")
-        return
-    end
-
-    if do_styles then
-        load_stylesheet(model)
-        return
-    end
-
+	
     local page = model:page()
     local sheets = model.doc:sheets()
     
