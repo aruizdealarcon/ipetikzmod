@@ -34,7 +34,7 @@ methods = {
 
 about = "Export TikZ code"
 
-shortcuts.ipelet_1_tikzmod = "Ctrl+Shift+T"
+shortcuts.ipelet_1_ipetikzmod = "Ctrl+Shift+T"
 
 prefs.initial.grid_size = 8
 
