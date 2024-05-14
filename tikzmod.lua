@@ -25,124 +25,227 @@
 --]]
 
 
-label = "Export TikZ code (beta)"
+label = ">>> Export TikZ code"
 
 methods = {
-    { label="Export selection to clipboard (fast)", run=runExport },
-    { label="Export selection to clipboard (all settings)", run=runExport },
-    { label="Export preamble to clipboard", run=runCopyPreamble },
-    { label="Load styles to IPE", run=runLoadStyles },
+    { label="Export selection to clipboard (fast)",         run=run},
+    --{ label="Export selection to clipboard (more options)", run=run},
+   -- { label="-------",                                      run=run},
+    { label="Copy preamble to clipboard",                   run=run},
+   -- { label="-------",                                      run=run},
+   -- { label="Load additional styles",                       run=run},
 }
 
-about = ">>> Export TikZ code"
+about = "Export TikZ code"
 
 shortcuts.ipelet_1_tikzmod = "Ctrl+Shift+T"
-shortcuts.ipelet_2_tikzmod = "Ctrl+Shift+Y"
+
+prefs.initial.grid_size = 8
+
+prefs.styles = { "ipetikz" }
+
+prefs.auto_export_resolution = 400
+
+basic_sheet_substitution = [[<?xml version="1.0"?>
+<!DOCTYPE ipestyle SYSTEM "ipe.dtd">
+<ipestyle name="basic">
+<color name="NotExported" value="1 0.753 0.796"/>
+<color name="Virtual" value="1.0 0.35 0.27"/>
+<color name="Apricot" value="1.0 0.68 0.48"/>
+<color name="Aquamarine" value="0.5 1.0 0.83"/>
+<color name="Blue" value="0.0 0.0 1.0"/>
+<color name="BrickRed" value="0.8 0.25 0.33"/>
+<color name="Cerulean" value="0.0 0.48 0.65"/>
+<color name="Emerald" value="0.0 0.79 0.34"/>
+<color name="Goldenrod" value="0.85 0.65 0.13"/>
+<color name="Lavender" value="0.9 0.9 0.98"/>
+<color name="Magenta" value="1.0 0.0 1.0"/>
+<color name="Orchid" value="0.85 0.44 0.84"/>
+<color name="Peach" value="1.0 0.85 0.73"/>
+<color name="SkyBlue" value="0.53 0.81 0.92"/>
+<color name="SpringGreen" value="0.0 1.0 0.5"/>
+<color name="Tan" value="0.82 0.71 0.55"/>
+<color name="YellowOrange" value="1.0 0.68 0.26"/>
+<dashstyle name="dotted" value="[1 3] 0"/>
+<dashstyle name="densely dotted" value="[1 1] 0"/>
+<dashstyle name="dashed" value="[4] 0"/>
+<dashstyle name="densely dashed" value="[3 2] 0"/>
+<dashstyle name="dashdotted" value="[4 2 1 2] 0"/>
+<pen name="normal" value="0.5"/>
+<pen name="ultra thin" value="0.1"/>
+<pen name="very thin" value="0.2"/>
+<pen name="thick" value="0.8"/>
+<pen name="very thick" value="1.2"/>
+<pen name="ultra thick" value="1.6"/>
+<textsize name="large" value="\large"/>
+<textsize name="Large" value="\Large"/>
+<textsize name="LARGE" value="\LARGE"/>
+<textsize name="huge" value="\huge"/>
+<textsize name="Huge" value="\Huge"/>
+<textsize name="small" value="\small"/>
+<textsize name="footnote" value="\footnotesize"/>
+<textsize name="script" value="\scriptsize"/>
+<textsize name="tiny" value="\tiny"/>
+<symbolsize name="small" value="2"/>
+<symbolsize name="tiny" value="1.1"/>
+<symbolsize name="large" value="5"/>
+<arrowsize name="small" value="5"/>
+<arrowsize name="tiny" value="3"/>
+<arrowsize name="large" value="10"/>
+<gridsize name="4 pts" value="4"/>
+<gridsize name="8 pts (~3 mm)" value="8"/>
+<gridsize name="16 pts (~6 mm)" value="16"/>
+<gridsize name="32 pts (~12 mm)" value="32"/>
+<gridsize name="10 pts (~3.5 mm)" value="10"/>
+<gridsize name="20 pts (~7 mm)" value="20"/>
+<gridsize name="14 pts (~5 mm)" value="14"/>
+<gridsize name="28 pts (~10 mm)" value="28"/>
+<gridsize name="56 pts (~20 mm)" value="56"/>
+<anglesize name="90 deg" value="90"/>
+<anglesize name="60 deg" value="60"/>
+<anglesize name="45 deg" value="45"/>
+<anglesize name="30 deg" value="30"/>
+<anglesize name="22.5 deg" value="22.5"/>
+<symbol name="mark/disk(sx)" transformations="translations">
+<path fill="sym-stroke">
+0.6 0 0 0.6 0 0 e
+</path></symbol>
+<symbol name="mark/fdisk(sfx)" transformations="translations">
+<group><path fill="sym-fill">
+0.5 0 0 0.5 0 0 e
+</path><path fill="sym-stroke" fillrule="eofill">
+0.6 0 0 0.6 0 0 e 0.4 0 0 0.4 0 0 e
+</path></group></symbol>
+<symbol name="mark/square(sx)" transformations="translations">
+<path fill="sym-stroke">
+-0.6 -0.6 m 0.6 -0.6 l 0.6 0.6 l -0.6 0.6 l h</path></symbol>
+<symbol name="mark/fsquare(sfx)" transformations="translations">
+<group><path fill="sym-fill">
+-0.5 -0.5 m 0.5 -0.5 l 0.5 0.5 l -0.5 0.5 l h</path>
+<path fill="sym-stroke" fillrule="eofill">
+-0.6 -0.6 m 0.6 -0.6 l 0.6 0.6 l -0.6 0.6 l h
+-0.4 -0.4 m 0.4 -0.4 l 0.4 0.4 l -0.4 0.4 l h</path></group></symbol>
+<symbol name="arrow/arc(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
+0 0 m -1.0 0.333 l -1.0 -0.333 l h</path></symbol>
+<symbol name="arrow/farc(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="white">
+0 0 m -1.0 0.333 l -1.0 -0.333 l h</path></symbol>
+<symbol name="arrow/ptarc(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
+0 0 m -1.0 0.333 l -0.8 0 l -1.0 -0.333 l h</path></symbol>
+<symbol name="arrow/fptarc(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="white">
+0 0 m -1.0 0.333 l -0.8 0 l -1.0 -0.333 l h</path></symbol>
+<symbol name="arrow/fnormal(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="white">
+0 0 m -1.0 0.333 l -1.0 -0.333 l h</path></symbol>
+<symbol name="arrow/pointed(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
+0 0 m -1.0 0.333 l -0.8 0 l -1.0 -0.333 l h</path></symbol>
+<symbol name="arrow/fpointed(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="white">
+0 0 m -1.0 0.333 l -0.8 0 l -1.0 -0.333 l h</path></symbol>
+<symbol name="arrow/linear(spx)">
+<path pen="sym-pen" stroke="sym-stroke">
+-1.0 0.333 m 0 0 l -1.0 -0.333 l</path></symbol>
+<symbol name="arrow/fdouble(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="white">
+0 0 m -1.0 0.333 l -1.0 -0.333 l h
+-1 0 m -2.0 0.333 l -2.0 -0.333 l h
+</path></symbol>
+<symbol name="arrow/double(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
+0 0 m -1.0 0.333 l -1.0 -0.333 l h
+-1 0 m -2.0 0.333 l -2.0 -0.333 l h
+</path></symbol>
+<symbol name="arrow/mid-normal(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
+0.5 0 m -0.5 0.333 l -0.5 -0.333 l h
+</path></symbol>
+<symbol name="arrow/mid-fnormal(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="white">
+0.5 0 m -0.5 0.333 l -0.5 -0.333 l h
+</path></symbol>
+<symbol name="arrow/mid-pointed(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
+0.5 0 m -0.5 0.333 l -0.3 0 l -0.5 -0.333 l h</path></symbol>
+<symbol name="arrow/mid-fpointed(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="white">
+0.5 0 m -0.5 0.333 l -0.3 0 l -0.5 -0.333 l h</path></symbol>
+<symbol name="arrow/mid-double(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
+1 0 m -0 0.333 l 0 -0.333 l h
+0 0 m -1 0.333 l -1 -0.333 l h
+</path></symbol>
+<symbol name="arrow/mid-fdouble(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="white">
+1 0 m -0 0.333 l 0 -0.333 l h
+0 0 m -1 0.333 l -1 -0.333 l h
+</path></symbol>
+<opacity name="10%" value="0.1"/>
+<opacity name="30%" value="0.3"/>
+<opacity name="50%" value="0.5"/>
+<opacity name="75%" value="0.75"/>
+<tiling name="falling" angle="-60" width="1" step="4"/>
+<tiling name="rising" angle="30" width="1" step="4"/>
+<textstyle name="center" begin="\begin{center}"
+end="\end{center}"/>
+<textstyle name="itemize" begin="\begin{itemize}"
+end="\end{itemize}"/>
+<textstyle name="item" begin="\begin{itemize}\item{}"
+end="\end{itemize}"/>
+</ipestyle>]]
 
 --------------------------------------------------------------------------------
 
-myScaleFactor = 0.035278
+rescale_factor = 0.035278
 
-myRoundingPrecision = 3
+rounding_precision = 3
 
-myGlobalPrefix = ""
+global_prefix = ""
 
--- delimiter for node styles e.g. myNodeName_large or myNodeName_cross
-myDelimiter = "_"
+delimiter_symbol = "_"
 
-myDashPrefix = "Dash"
+node_style_name = "Mark"
 
--- style added to every \node markings, except for text
-myNodeName = "Node"
+substitution_colors = {  }
 
--- all these first colors are substituted with the second one
--- e.g. if { "color1", "color2" } is present, then "color1" instances are replaced with "color2"
-mySubstitutedColors = { { "gold", "virtual" }, { "red", "virtual" } }
+forbidden_colors = { "NotExported" }
 
--- the drawings with this color will be discarded; use them as axis, rules...
--- do not replace them in the previous setting!
-myForbiddenColors = { "turquoise" }
+draw_newline = ""
 
--- new line append for "\draw" use "\n" in that case for more readability, otherwise for more compact code, leave empty ""
-drawNewLine = ""
+draw_indent = ""
 
--- ...
-drawIndent = ""
-
-myIndentAmt = "    "
+indent_amt = "    "
 
 --------------------------------------------------------------------------------
 
-preamble = [[
+preamble = [[\usepackage[dvipsnames]{xcolor}
 \usepackage{tikz}
 \usetikzlibrary{decorations.pathmorphing, decorations.markings, arrows, arrows.meta, shapes, patterns}
-\usepackage[dvipsnames]{xcolor}
-%
 \tikzset{baseline={([yshift=-.5ex]current bounding box.center)}}
-%
 \tikzset{every path/.style={ line width=0.5pt, line cap=round }}
-%
-\tikzstyle{virtual} = [ color = myred, line width=0.5pt ]
-%
-\tikzstyle{myHeavier}  = [ line width=0.75pt ]
-\tikzstyle{myFat}      = [ line width=1.25pt ]
-\tikzstyle{myUltrafat} = [ line width=1.5pt ]
-%
-\tikzstyle{myDotted}        = [ dash pattern=on \pgflinewidth off 1pt ]
-\tikzstyle{myDashed}        = [ dash pattern=on 3pt off 3pt ]
-\tikzstyle{myDashDotted}    = [ dash pattern=on 3pt off 1pt on \the\pgflinewidth off 1pt ]
-\tikzstyle{myDashDotDotted} = [ dash pattern=on 3pt off 1pt on \the\pgflinewidth off 1pt ]
-%
-\tikzstyle{myBevel}      = [ preaction = { draw, white, line width=2pt,  line cap = round } ]
-\tikzstyle{myBevelWide} = [ preaction = { draw, white, line width=4pt,  line cap = round } ]
-%
-\tikzstyle{myNode}        = [ draw=black, fill=black, line width=0.2pt, inner sep=1.6pt ]
-%
-\tikzstyle{myNode_large}  = [ inner sep=1.6pt ]
-\tikzstyle{myNode_small}  = [ inner sep=1pt   ]
-\tikzstyle{myNode_medium} = [ inner sep=1.3pt ]
-\tikzstyle{myNode_tiny}   = [ inner sep=0.8pt ]
-%
-\tikzstyle{myFSquare} = [ rectangle ]
-\tikzstyle{myCross}   = [ circle ]
-\tikzstyle{myBox}     = [ rectangle ]
-\tikzstyle{myFDisk}   = [ circle ]
-\tikzstyle{myDisk}    = [ circle ]
-\tikzstyle{mySquare}  = [ rectangle ]
-%
+\colorlet{Virtual}{RedOrange}
+\tikzstyle{Bevel} = [ preaction = { draw, white, line width=2pt,  line cap = round } ]
+\tikzstyle{Bevel_wide} = [ preaction = { draw, white, line width=4pt,  line cap = round } ]
+\tikzstyle{Mark} = [ draw=black, fill=black, line width=0.2pt, inner sep=1.5pt ]
+\tikzstyle{Mark_large} = [ inner sep=2.1pt ]
+\tikzstyle{Mark_small} = [ inner sep=1pt   ]
+\tikzstyle{Mark_medium} = [ inner sep=1.3pt ]
+\tikzstyle{Mark_tiny} = [ inner sep=0.8pt ]
+\tikzstyle{Mark_fdisk} = [ circle ]
+\tikzstyle{Mark_disk} = [ circle ]
+\tikzstyle{Mark_square} = [ rectangle ]
+\tikzstyle{Mark_fsquare} = [ rectangle ]
 \newcommand{\myArrowStyle}{line width=0.4pt,length=3pt,width=3.5pt}
 \tikzstyle{->-} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[\myArrowStyle]} }, postaction={decorate} ]
 \tikzstyle{-<-} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[\myArrowStyle]} }, postaction={decorate} ]
 \tikzstyle{->-25} = [ decoration={ markings, mark = at position 0.25*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[\myArrowStyle]} }, postaction={decorate} ]
 \tikzstyle{-<-25} = [ decoration={ markings, mark = at position 0.25*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[\myArrowStyle]} }, postaction={decorate} ]
 \tikzstyle{->-75} = [ decoration={ markings, mark = at position 0.75*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[\myArrowStyle]} }, postaction={decorate} ]
-\tikzstyle{-<-75} = [ decoration={ markings, mark = at position 0.75*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[\myArrowStyle]} }, postaction={decorate} ]
-%
-\pgfdeclarepatternformonly{myFallingPattern}
-    {\pgfqpoint{-1pt}{-1pt}}{\pgfqpoint{5pt}{5pt}}{\pgfqpoint{5pt}{5pt}}{
-        \pgfsetlinewidth{0.5pt}
-        \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
-        \pgfpathlineto{\pgfqpoint{5pt}{5pt}}
-        \pgfusepath{stroke}
-    }
-\pgfdeclarepatternformonly{myRaisingPattern}
-    {\pgfqpoint{-5pt}{-5pt}}{\pgfqpoint{10pt}{10pt}}{\pgfqpoint{5pt}{5pt}}{
-        \pgfsetlinewidth{0.5pt}
-        \pgfpathmoveto{\pgfqpoint{10pt}{-5pt}}
-        \pgfpathlineto{\pgfqpoint{-5pt}{10pt}}
-        \pgfusepath{stroke}
-    }
-%]]
-
-
+\tikzstyle{-<-75} = [ decoration={ markings, mark = at position 0.75*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[\myArrowStyle]} }, postaction={decorate} ] ]]
 --------------------------------------------------------------------------------
-
-theSheetStr = [[<?xml version="1.0"?>
-<!DOCTYPE ipestyle SYSTEM "ipe.dtd">
-<ipestyle name="ipetikzmod">
-<color name="Melon" value="0.941 0.973 1"/>
-<color name="JungleGreen" value="0.98 0.922 0.843"/>
-</ipestyle>]]
 
 -- Globals
 
@@ -151,8 +254,14 @@ popen = _G.io.popen
 getenv = _G.os.getenv
 execute = _G.os.execute
 indent = ""
+
+-- ...
+
 elemNewLine = "\n"
 
+node_counter = 0
+
+append_node_id = false
 
 --------------------------------------------------------------------------------
 -- Copy to clipboard function
@@ -194,6 +303,54 @@ function copy_to_clipboard(text)
 end
 
 --------------------------------------------------------------------------------
+
+function genNodeId(num)
+
+    local str = ""
+    
+    -- Generate the three characters
+    for j = 1, 3 do
+        local char = string.char((num % 26) + 65)  -- 65 is the ASCII value for 'A'
+        str = char .. str
+        num = math.floor(num / 26)
+    end
+    
+    return "n" .. str
+
+end
+
+local function processNodeIdsAndCoords(content)
+    -- Tabla para almacenar los nodos
+    local nodes = {}
+
+    -- Buscar nodos y almacenar id y coordenadas
+    for id, x, y in content:gmatch("\\node%s*%[.-%]%s*%((.-)%)%s*at%s*%(([%d%.%-]+),%s*([%d%.%-]+)%)") do
+        nodes[#nodes + 1] = {id = id, x = x, y = y}
+    end
+
+    -- Función para reemplazar coordenadas en un comando
+    local function replaceCoordinates(command)
+        return command:gsub("%(([%d%.%-]+),%s*([%d%.%-]+)%)",
+            function(z, w)
+                for _, node in ipairs(nodes) do
+                    if tonumber(node.x) == tonumber(z) and tonumber(node.y) == tonumber(w) then
+                        return "(" .. node.id .. ")"
+                    end
+                end
+                return "(" .. z .. "," .. w .. ")"
+            end
+        )
+    end
+
+    -- Reemplazar coordenadas en \draw
+    local processedContent = content:gsub("\\draw%s*(.-);", replaceCoordinates)
+
+    return processedContent
+end
+
+
+
+--------------------------------------------------------------------------------
 -- Utility
 --------------------------------------------------------------------------------
 
@@ -216,15 +373,15 @@ end
 
 -- Round a number to idp decimal places
 function round(num, idp)
-  local mult = 10^(idp or myRoundingPrecision)
+  local mult = 10^(idp or rounding_precision)
   return math.floor(num * mult + 0.5) / mult
 end
 
 
 -- Convert a number to a string, omitting trailing zeros after the decimal, and rounding.
 function sround(num, idp)
-   idp = idp or myRoundingPrecision
-   num = round(num*myScaleFactor, idp)
+   idp = idp or rounding_precision
+   num = round(num*rescale_factor, idp)
    local neg = (num < 0)
    if neg then
       num = -num
@@ -255,7 +412,7 @@ end
 -- Convert a number to a string, omitting trailing zeros after the decimal, and
 -- rounding. For angles only, since no re-scale is performed.
 function sroundang(num, idp)
-   idp = idp or myRoundingPrecision
+   idp = idp or rounding_precision
    num = round(num, idp)
    local neg = (num < 0)
    if neg then
@@ -371,7 +528,7 @@ function color_option(value, key, options, prepend, key_optional)
       if value == "black" or value == "white" or value == "virtual" then
          table.insert(options, key .. (prepend or "") .. value)
       else
-         table.insert(options, key .. (prepend or "") .. myGlobalPrefix .. value)
+         table.insert(options, key .. (prepend or "") .. global_prefix .. value)
       end
    elseif _G.type(value) == "table" then
       table.insert(options, string.format(
@@ -719,8 +876,8 @@ function export_mark(model, obj, matrix)
     local fillcol = obj:get("fill")
 
     -- We are dealing with a \node for a mark, so let us add a predefined style called
-    -- with the global value 'myNodeName'
-    local options = { myGlobalPrefix .. myNodeName }
+    -- with the global value 'node_style_name'
+    local options = { global_prefix .. node_style_name }
     
     -- The "transformations" attribute has no effect on marks other than
     -- translation
@@ -734,10 +891,10 @@ function export_mark(model, obj, matrix)
     filling = (string.find(actions, "f") ~= nil)
 
     -- we add now the specific style of the \node, e.g. tensorName_disk or tensorName_fdisk or tensorName_cross
-    number_option(markshape, "", options, myGlobalPrefix .. myNodeName .. myDelimiter)
+    number_option(markshape, "", options, global_prefix .. node_style_name .. delimiter_symbol)
     
     -- we add now the specific size of the \node, e.g. tensorName_large or tensorName_tiny
-    number_option(obj:get("symbolsize"), "", options, myGlobalPrefix .. myNodeName .. myDelimiter)
+    number_option(obj:get("symbolsize"), "", options, global_prefix .. node_style_name .. delimiter_symbol)
     
     -- draw and fill
     if drawing then
@@ -753,7 +910,7 @@ function export_mark(model, obj, matrix)
     -- Make sure not to write an element that has the forbidden drawing color
     
     local isForbidden = false
-    for _, color in ipairs(myForbiddenColors) do
+    for _, color in ipairs(forbidden_colors) do
         if color == strocol or color == fillcol then
             isForbidden = true
             break
@@ -771,7 +928,13 @@ function export_mark(model, obj, matrix)
         end
         
         -- Let us add the position and the final things
-        write(" at " .. svec(pos) .. " {};" .. elemNewLine)
+        if append_node_id then
+            write(" (" .. genNodeId(node_counter) .. ") at " .. svec(pos) .. " {};" .. elemNewLine)
+        else
+            write(" at " .. svec(pos) .. " {};" .. elemNewLine)
+        end
+
+        node_counter = node_counter + 1
     
     end
 end
@@ -806,7 +969,7 @@ function export_group(model, obj, matrix)
    write("\n")
 
    local old_indent = indent
-   indent = myIndentAmt .. indent
+   indent = indent_amt .. indent
 
    local clip = obj:clip()
    if clip then
@@ -998,7 +1161,7 @@ function export_text(model, obj, matrix)
       -- Add minipage environment, and indent everything.  The indentation looks
       -- nice, but it'll mess up a verbatim environment or something.  Oh well.
       local old_indent = indent
-      indent = indent .. myIndentAmt .. myIndentAmt .. " "
+      indent = indent .. indent_amt .. indent_amt .. " "
       write("{\n")
       -- The \kern0pt is to cancel out \ignorespaces in the \begin{minipage},
       -- which seems to be what happens when ipe runs LaTeX.
@@ -1013,10 +1176,10 @@ function export_text(model, obj, matrix)
                   .. setsize .. "\\kern0pt\n")
       end
       string.gsub(text .. "\n", "([^\n]*)\n",
-                  function (c) write(indent .. myIndentAmt .. c .. "\n") end)
+                  function (c) write(indent .. indent_amt .. c .. "\n") end)
       write(indent .. "\\end{minipage}\n")
       indent = old_indent
-      write(indent .. myIndentAmt .. " }")
+      write(indent .. indent_amt .. " }")
    else
       write("{" .. text .. "}")
    end
@@ -1055,9 +1218,9 @@ function export_curve(subpath, matrix, options)
          first_point = matrix*pt1
          if translate_origin then
             matrix = ipe.Translation(-pt1)
-            ret = ret .. drawNewLine .. drawIndent .. "(0, 0)"
+            ret = ret .. draw_newline .. draw_indent .. "(0, 0)"
          else
-            ret = ret .. drawNewLine .. drawIndent .. svec(matrix*pt1)
+            ret = ret .. draw_newline .. draw_indent .. svec(matrix*pt1)
          end
          ret = ret .. " rectangle " .. svec(matrix*pt3)
          subpath = {}
@@ -1070,12 +1233,12 @@ function export_curve(subpath, matrix, options)
             first_point = matrix*segment[1]
             if translate_origin then
                matrix = ipe.Translation(-segment[1])
-               ret = ret .. drawNewLine .. drawIndent .. "(0, 0)"
+               ret = ret .. draw_newline .. draw_indent .. "(0, 0)"
             else
-               ret = ret .. drawNewLine .. drawIndent .. svec(matrix*segment[1])
+               ret = ret .. draw_newline .. draw_indent .. svec(matrix*segment[1])
             end
          end
-         ret = ret .. drawNewLine .. drawIndent .. " -- " .. svec(matrix*segment[2])
+         ret = ret .. draw_newline .. draw_indent .. " -- " .. svec(matrix*segment[2])
 
       elseif segment.type == "spline" or
            segment.type == "oldspline" then
@@ -1089,12 +1252,12 @@ function export_curve(subpath, matrix, options)
                first_point = matrix*bezier[1]
                if translate_origin then
                   matrix = ipe.Translation(-bezier[1])
-                  ret = ret .. drawNewLine .. drawIndent .. "(0, 0)"
+                  ret = ret .. draw_newline .. draw_indent .. "(0, 0)"
                else
-                  ret = ret .. drawNewLine .. drawIndent .. svec(matrix*bezier[1])
+                  ret = ret .. draw_newline .. draw_indent .. svec(matrix*bezier[1])
                end
             end
-            ret = ret .. drawNewLine .. drawIndent .. " .. controls "
+            ret = ret .. draw_newline .. draw_indent .. " .. controls "
                .. svec(matrix*bezier[2])
                .. " and " .. svec(matrix*bezier[3])
                .. " .. " .. svec(matrix*bezier[4])
@@ -1117,16 +1280,16 @@ function export_curve(subpath, matrix, options)
             first_point = matrix*beginp
             if translate_origin then
                matrix = ipe.Translation(-beginp)
-               ret = ret .. drawNewLine .. drawIndent .. "(0, 0)"
+               ret = ret .. draw_newline .. draw_indent .. "(0, 0)"
             else
-               ret = ret .. drawNewLine .. drawIndent .. svec(matrix*beginp)
+               ret = ret .. draw_newline .. draw_indent .. svec(matrix*beginp)
             end
          end
 
          matrix_to_ellipse_options(arc_matrix, arc_options)
 
          subpath_options = concat_pairs(arc_options, ", ", {"rotate", "cm"})
-         ret = ret .. drawNewLine .. drawIndent
+         ret = ret .. draw_newline .. draw_indent
          if subpath_options ~= "" then
             ret = ret .. " { [" .. subpath_options .. "]"
          end
@@ -1143,7 +1306,7 @@ function export_curve(subpath, matrix, options)
    if subpath.closed then
       -- Use "--" (path-to) in all cases: for arcs and splines, the end point is
       -- on top of the first point anyway.
-      ret = ret .. drawNewLine .. drawIndent .. " -- cycle"
+      ret = ret .. draw_newline .. draw_indent .. " -- cycle"
    end
 
    if translate_origin then
@@ -1360,7 +1523,7 @@ function export_path(shape, mode, matrix, obj)
                 -- do nothing
             else
                 local subtcolor = strocol
-                for _, pair in ipairs(mySubstitutedColors) do
+                for _, pair in ipairs(substitution_colors) do
                     if pair[1] == strocol then
                         subtcolor = pair[2]
                         break
@@ -1372,11 +1535,11 @@ function export_path(shape, mode, matrix, obj)
          -- pen / line width
          local prepend
          prepend = nil
-         number_option(obj:get("pen"), "line width", options, myGlobalPrefix .. myDashPrefix .. myDelimiter)
+         number_option(obj:get("pen"), "line width", options, "")
 
          -- only symbolic dash styles are supported
          prepend = nil
-         string_option(obj:get("dashstyle"):gsub("%s+", ""), nil, options, myGlobalPrefix .. myDashPrefix .. myDelimiter)
+         string_option(obj:get("dashstyle"), nil, options, "")
 
          -- line join: these have the same names in ipe and TikZ
          string_option(obj:get("linejoin"), "line join", options)
@@ -1434,7 +1597,7 @@ function export_path(shape, mode, matrix, obj)
     -- detect if we are dealing with a forbidden color
     
     local isForbidden = false
-    for _, color in ipairs(myForbiddenColors) do
+    for _, color in ipairs(forbidden_colors) do
         if color == strocol or color == fillcol then
             isForbidden = true
             break
@@ -1612,7 +1775,7 @@ function rearrange_tikz_nodes(tikz_code)
     local nodes = {}
 
     local other_contents = tikz_code:gsub("\\node(.-);%s*", function(node) 
-        table.insert(nodes, myIndentAmt .. "\\node" .. node .. ";")
+        table.insert(nodes, indent_amt .. "\\node" .. node .. ";")
         return ""
     end)
 
@@ -1627,7 +1790,7 @@ function rearrange_tikz_nodes(tikz_code)
     local after_end = other_contents:sub(insert_pos)
     local node_text = table.concat(nodes, "\n")
     if #node_text > 0 then
-        node_text = myIndentAmt .. "%%%%%%%%%%%%%\n" .. node_text .. "\n"
+        node_text = indent_amt .. "%%%%%%%%%%%%%\n" .. node_text .. "\n"
     end
 
     before_end = before_end:gsub("\n%s*\n", "\n")
@@ -1636,56 +1799,96 @@ function rearrange_tikz_nodes(tikz_code)
     
 end
 
-function getInfoStr()
+function mainWindow(model)
+   if model.ui.win == nil then
+      return model.ui
+   else
+      return model.ui:win()
+   end
+end
 
-    local infotext = "I am substituting the following colors for every node and draw ... : "
 
-    for i, pair in ipairs(mySubstitutedColors) do
-        if i > 1 then
-            infotext = infotext .. " and "
+function load_stylesheet(model)
+
+    doc = model.doc
+
+    local cascade = doc:sheets()
+
+    -- Find the index of the "basic" sheet
+    local basic_index = nil
+
+    for i = 1, cascade:count() do
+        local sheetith = cascade:sheet(i)
+        if sheetith:name() == "basic" then
+            basic_index = i
+            break
         end
-        infotext = infotext .. pair[1] .. " with " .. pair[2]
     end
-    
-    infotext = infotext .. "\n Furthermore, I am avoiding to export the figures with the following colors: "
 
-    infotext = infotext .. table.concat(myForbiddenColors, ", ")
- 
-    return infotext
+    -- If "basic" sheet is found, delete it
+    if basic_index then
+        cascade:remove(basic_index)
+        --
+    else
+        --model:warning("Sheet 'basic' not found")
+        --return
+    end
 
-end
+    local my_basic_sheet = ipe.Sheet(nil, basic_sheet_substitution)
 
+    my_basic_sheet:setName("basic")
 
-function runCopyPreamble(model, num)
-    copy_to_clipboard(preamble)
-end
-
-function runLoadStyles(model, num)
-    
-	local sheets = model.doc:sheets()
+    cascade:insert(cascade:count()+1, my_basic_sheet)
 	
-	mySheet = ipe.Sheet(nil, theSheetStr)
-    
-	mySheet:setName("ipetikzmod")
-    
-	doc = model.doc
-	sheets = doc:sheets()
-	sheets:insert(sheets:count()+1, mySheet)
-	
-	ipeui.messageBox(model.ui:win(), "information", "TikZ Export Message", "Styles loaded", "ok")
-    
+    --model:modified()
+    --model:action_update_style_sheets()
+
+    local t = { label="update style sheets",
+  	        style_sheets_changed = true,
+	        final = cascade,
+	        original = model.doc:sheets():clone(),
+	      }
+    t.undo = function (t, doc)
+	       t.final = doc:replaceSheets(t.original)
+	     end
+    t.redo = function (t, doc)
+	       t.original = doc:replaceSheets(t.final)
+	     end
+
+    model:register(t)
+    model:action_check_style()
+
 end
 
-function runExport(model, num)
-		
-    local do_clip = (num == 1)
-    local do_all = (num == 2)
-    local do_pream = (num == 3)
 
-    if do_comp then
-        -- adjust global variables to compress the code
-        myIndentAmt = ""
-	elemNewLine = " "
+function run(model, num)
+    
+    local do_fast = (num == 1)
+    local do_more = (num == 3)
+    local do_nothing1 = (num == 3)
+    local do_preamble = (num == 2)
+    local do_nothing2 = (num == 3)
+    local do_styles = (num == 3)
+
+    node_counter = 0
+
+    if do_nothing1 or do_nothing2 then
+        return
+    end
+
+    if do_preamble then
+        copy_to_clipboard(preamble)
+        return
+    end
+
+    if do_more then
+        ipeui.messageBox(model.ui:win(), "warning", "TikZ export error", "Not ready yet", "ok")
+        return
+    end
+
+    if do_styles then
+        load_stylesheet(model)
+        return
     end
 
     local page = model:page()
@@ -1694,7 +1897,7 @@ function runExport(model, num)
     -- Run the parameters dialog
     params = params_text
     if #model:selection() == 0 then
-        ipeui.messageBox(model.ui:win(), "warning", "TikZ Export error", "Please, select the objects you want to convert", "ok")
+        ipeui.messageBox(model.ui:win(), "warning", "TikZ export error", "Please select the objects you want to export", "ok")
         return
     end
 
@@ -1711,7 +1914,7 @@ function runExport(model, num)
     local options = {}
     table.insert(options, "scale=1")
     write("[" .. table.concat(options, ", ") .. "]\n")
-    indent = myIndentAmt
+    indent = indent_amt
 
     -- Use the bottom-left corner of the bounding box
     
@@ -1730,15 +1933,6 @@ function runExport(model, num)
     
     write("\\end{" .. envname .. "}")
 
-    if do_clip then
-        ---
-    elseif do_nodes then
-        text_contents = rearrange_tikz_nodes(text_contents)
-    elseif do_comp then
-        myIndentAmt = "    "
-	elemNewLine = "\n"
-    end
-	
-    copy_to_clipboard(text_contents_reord)
-    
+    copy_to_clipboard(text_contents)
+
 end
