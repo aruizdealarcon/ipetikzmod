@@ -10,16 +10,13 @@ Download tikzmod.lua from this repository.
 
 In **Finder**, press **Cmd+Alt+G** and go to **Users/{your-username}/.ipe/ipelets/**
 
-Create the folder _ipelets_ if it does not exist.
+Create the folders _styles_ and _ipelets_ if they do not exist.
 
-Copy the .lua file you just downloaded into that folder.
+Copy the .lua file you just downloaded into Users/{your-username}/.ipe/ipelets/
+
+and the .isy file into Users/{your-username}/.ipe/styles/
 
 **Close all instances of IPE** (use e.g. Cmd+Q on it) **and run it again**.
-
-If you prefer the terminal, simply execute:
-
-    mkdir -p ~/.ipe/ipelets/ && cp -f ~/Downloads/tikzmod.lua ~/.ipe/ipelets/
-
 
 ## How to install in GNU/Linux
 
@@ -75,18 +72,13 @@ Click on **Export selection to clipboard** to transform the figures into a tex
     
 ### Step 3. Option 2.
 
-Click on **Export selection to clipboard (nodes first)** to first reorganize all \nodes to the top layer and export the code.
-
-
-### Step 3. Option 3.
-
 Click on **Copy preamble to clipboard** to get the the necessary code for compiling the exported codes into your LaTeX project.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Also, you can customize the preamble on the .lua file!
 
 ## Some useful rules and features
 
-### Feature #1. Change some color names to others
+### Feature #1. Create new colors
 
 In some occasions, we will want to change the names of the colors for others.
 
@@ -104,7 +96,7 @@ However, many times we do not want to get rid of those guide lines in case we ne
 
 Therefore, you can also designate certain forbidden colors in the code, so that objects with those colors will not be exported to the TikZ code.
 
-For example, I have assigned the color "_turquoise_" to the forbidden colors. In this way, no lines with the color turquoise will appear in the exported TikZ code.
+For example, I have assigned the color "NotExportable" to the forbidden colors. In this way, no lines with the color NotExportable will appear in the exported TikZ code.
 
 ### Feature #3. Text positioning and scaling
 
@@ -114,61 +106,7 @@ Select the textbox and go to the **Properties** tab, there, set **horizontal ali
 
 That makes the origin of the textbox to be the center and _not_ the lower left corner, which is the default one.
 
-## How to customize it further?
-
-You can easily edit the following settings in the .lua file if you want to customize them further:
-
-The following variable is the number by which the original coordinates of the drawing are divided. Note that the original coordinates may be too large for Latex to handle. The larger the number, the smaller the Latex drawings are compared to IPE drawings.
-    
-    resFactor = 50
-
-The following variable contains the precision in numbers of decimal places with which coordinates, angles, etc. are calculated. By default, we consider three decimal places.
-
-    roundPrec = 3
-
-For all new styles that will be defined the program will add the following prefix. Here, we have chosen the word "my", so that, for example, all lines that have color blue, will receive the color myblue. We believe this is convenient so that anyone can individually customize their styles and the names do not coincide with default TikZ styles.
-
-    myPrepend = "my"
-
-The following is a delimiter that separates a style and a sub-style. For example, a node having the style myNode may also have a sub-style myNode_cross, which specifies that it is a particular cross.
-
-    delimStyle = "_"
-
-    dashPrepend = "Dash"
-
--- style added to every \node markings, except for text
-
-    nodeStyleName = "Node"
-
-The following is a list of pairs of two color codes (in string format), which dictate how you should replace the color codes you find with other codes of your choice.
-
-For example, the following, makes the exporter rename the colors "_gold_" and "_red_" within the IPE Editor with the styles "virtual" and "physical", respectively, in the exported code, but you can add and change it as you wish.
-
-    substitutionColors = { { "red", "virtual" }, { "black", "physical" } }
-
-The default option is the following
-
-    substitutionColors = { { "orange", "virtual" }, { "red", "virtual" } }
-
-In many occasions we want to have guide lines or points that help us in our drawings, but that should not appear in the final results. With this objective, I have introduced a list of strings so that the processor discards to include in the exported code any draw, node or other figure that has as color (either drawing or filling), the colors that are specified in the following array:
-
-    forbiddenColors = { "turquoise" }
-
-Another example would be:
-
-    forbiddenColors = { "turquoise", "yellow" }
-
--- new line append for "\draw" use "\n" in that case for more readability, otherwise for more compact code, leave empty ""
-
-    drawNewLine = ""
-
--- ...
-
-    drawIndent = ""
-
-
 # Some examples
-
 
 <p align="center">
 <img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/example1.png?raw=true" width="600"/>
