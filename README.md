@@ -84,7 +84,7 @@ In some occasions, we will want to change the names of the colors for others.
 
 By default, the colors found with these addons are the ones defined by the package _xcolor_ with the option _dvipsnames_.
 
-I chose 15 among the following, but you can include more if you want or even define new ones.
+I chose ... among the following, but you can include more if you want or even define new ones.
 
 <p align="center">
 <img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/xcolordvips.png?raw=true" width="500"/>
@@ -102,11 +102,13 @@ For example, I have assigned the color "NotExportable" to the forbidden colors. 
 
 ### Feature #3. Text positioning and scaling
 
-When you put text in the figures, the exported result may not be scaled correctly. _You must fix this manually_ in the IPE Editor as follows:
+This add-on sets to have default the following properties for text: **horizontal alignment** to **center** and **vertical alignment** to **center**.
 
-Select the textbox and go to the **Properties** tab, there, set **horizontal alignment** to **center** and **vertical alignment** to **center**.
+That makes the origin of the textbox to be the center and _not_ the lower left corner, which is the default one with the IPE Editor.
 
-That makes the origin of the textbox to be the center and _not_ the lower left corner, which is the default one.
+### Feature #4. Load beamer layout
+
+....
 
 # Some examples
 
