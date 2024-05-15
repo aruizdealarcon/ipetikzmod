@@ -82,12 +82,9 @@ Click on **Copy preamble to clipboard** to get the the necessary code for compil
 
 In some occasions, we will want to change the names of the colors for others.
 
-By default, the colors assigned by this add-on to the predefined ones in IPE are preceded by the word "_my_".
+By default, the colors found with these addons are the ones defined by the package _xcolor_ with the option _dvipsnames_.
 
-For example, when selecting "_lightgreen_" in the IPE Editor, in the exported TikZ code it will be specified as "_mylightgreen_".
-
-However, this can be further customized by editing the .lua file.
-
+I chose 15 among the following, but you can include more if you want or even define new ones.
 
 <p align="center">
 <img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/xcolordvips.png?raw=true" width="500"/>
