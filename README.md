@@ -88,6 +88,11 @@ For example, when selecting "_lightgreen_" in the IPE Editor, in the exported Ti
 
 However, this can be further customized by editing the .lua file.
 
+
+<p align="center">
+<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/xcolordvips.png?raw=true" width="500"/>
+</p>
+
 ### Feature #2. Avoid certain drawings to be exported
 
 On other occasions, especially with complex drawings, it is common to help yourself by creating guide lines or grids to help you draw.
