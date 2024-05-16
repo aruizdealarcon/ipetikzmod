@@ -101,7 +101,7 @@ By default, the colors found with these addons are the ones defined by the packa
 I chose ... among the following, but you can include more if you want or even define new ones.
 
 <p align="center">
-<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/xcolordvips.png?raw=true" width="500"/>
+<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/paleta.png?raw=true" height="300"/>
 </p>
 
 ### Feature #2. Avoid certain drawings to be exported
