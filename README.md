@@ -2,11 +2,14 @@ This plugin for the IPE editor allows you to export clean and customizable TikZ 
 
 It is a fork of Joseph Rabinoff's project github.com/QBobWatson/ipe2tikz
 
-- **No tienes que volver a calcular coordenadas o ángulos en TikZ**. Si tienes que hacer muchos gráficos para tu proyecto, esto puede suponer un gran carga de trabajo, 
-- **Es más fácil de mantener que el código**. Si no estás trabajando en un proyecto de manera continua, lo normal es que te olvides de cómo hiciste cierto gráfico, y entonces tienes que ponerte a leer todo el código. Simplemente abre tu proyecto en IPE y sigue editándolo.
-- **Las curvas que no son arcos de circunferencia son muy dificiles de imaginar en TikZ**; sin embargo, en el editor puedes manejar los nodos de control y dibujas las curvas a tu antojo.
-- **El código es fácilmente importable en LaTeX, directamente desde el portapapeles**; a diferencia del proyecto ipe2tikz, no hace falta lidiar con archivos o cajas de texto, este plugin copia directamente el código limpio de TikZ en el portapapeles, para que lo lleves a tu proyecto en LaTeX como tú prefieras.
-- **Si llegas a necesitar modificar el código, puedes hacerlo!**; el código sigue siendo limpio e intuitivo.
+    *You no longer have to calculate coordinates or angles in TikZ.* If you have to create a significant number of graphics for your project, this can be a significant time-saver.
+    
+    *It is easier to maintain than code*. If you are not working on a project continuously, you usually forget how you made a certain graph, and then you have to read all the code. Just open your project in IPE and keep editing it.
+    
+    *It is challenging to visualize curves that are not arcs of a circumference in TikZ*. However, in the editor, you can manage the control nodes and draw the curves as you see fit.
+    
+    *The code is easily importable in LaTeX, directly from the clipboard*. Unlike the ipe2tikz project, there is no need to deal with files or text boxes. This plugin copies directly the clean TikZ code to the clipboard, so you can take it to your LaTeX project as you prefer.
+If you need to modify the code, you can do it; the code remains clean and intuitive.
 
 # Installation
 
