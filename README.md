@@ -14,7 +14,7 @@ If you need to modify the code, you can do it; the code remains clean and intuit
 **El preámbulo para incluir tikz y las especificaciones de estilos es extremadamente pequeño, y lo puedes obtener con solo dos clicks.**
 Al cargar el editor de IPE con este plug-in, los estilos se adaptan a los predeterminados de TikZ, algo que no pasa con la stylesheet de IPE. Además, todas las definiciones de colores coinciden con las del paquete xcolor, de forma que.
 
-**Es altamente personalizable**
+**Es altamente personalizable.** Más abajo te explico cómo personalizar el código, por si en tu día a día necesitas algo que este plug-in no te proporciona.
 
 # Installation
 
