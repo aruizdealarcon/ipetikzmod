@@ -2,9 +2,9 @@ This plugin for the IPE editor allows you to export clean and customizable TikZ 
 
 It is a fork of Joseph Rabinoff's project github.com/QBobWatson/ipe2tikz
 
-**You no longer have to calculate coordinates or angles in TikZ.** If you have to create a significant number of graphics for your project, this can be a significant time-saver.
+**You no longer have to calculate coordinates or angles in TikZ.** If you have to create a significant number of graphics for your project, this plugin can be a great time and work-saver.
     
-**It is easier to maintain than code.** If you are not working on a project continuously, you usually forget how you made a certain graph, and then you have to read all the code. Just open your project in IPE and keep editing it.
+**It is easier to maintain than code.** If you are not working on a project continuously, one usually forgets how you made a certain graph, and then you have to read all the code. Just open your project in IPE and keep editing it.
     
 **It is challenging to visualize curves that are not arcs of a circumference in TikZ.** However, in the editor, you can manage the control nodes and draw the curves as you see fit.
     
