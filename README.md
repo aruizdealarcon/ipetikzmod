@@ -2,13 +2,13 @@ This plugin for the IPE editor allows you to export clean and customizable TikZ 
 
 It is a fork of Joseph Rabinoff's project github.com/QBobWatson/ipe2tikz
 
-    *You no longer have to calculate coordinates or angles in TikZ.* If you have to create a significant number of graphics for your project, this can be a significant time-saver.
+**You no longer have to calculate coordinates or angles in TikZ.** If you have to create a significant number of graphics for your project, this can be a significant time-saver.
     
-    *It is easier to maintain than code*. If you are not working on a project continuously, you usually forget how you made a certain graph, and then you have to read all the code. Just open your project in IPE and keep editing it.
+**It is easier to maintain than code.** If you are not working on a project continuously, you usually forget how you made a certain graph, and then you have to read all the code. Just open your project in IPE and keep editing it.
     
-    *It is challenging to visualize curves that are not arcs of a circumference in TikZ*. However, in the editor, you can manage the control nodes and draw the curves as you see fit.
+**It is challenging to visualize curves that are not arcs of a circumference in TikZ.** However, in the editor, you can manage the control nodes and draw the curves as you see fit.
     
-    *The code is easily importable in LaTeX, directly from the clipboard*. Unlike the ipe2tikz project, there is no need to deal with files or text boxes. This plugin copies directly the clean TikZ code to the clipboard, so you can take it to your LaTeX project as you prefer.
+**The code is easily importable in LaTeX, directly from the clipboard.** Unlike the ipe2tikz project, there is no need to deal with files or text boxes. This plugin copies directly the clean TikZ code to the clipboard, so you can take it to your LaTeX project as you prefer.
 If you need to modify the code, you can do it; the code remains clean and intuitive.
 
 # Installation
