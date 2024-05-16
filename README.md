@@ -1,20 +1,18 @@
-This plugin for the IPE editor allows you to export clean and customizable TikZ code from a selection of graphics, directly to the clipboard.
+This plugin for the IPE editor allows you to export clean and customizable TikZ code from a selection of graphics directly to the clipboard.
 
-It is a fork of Joseph Rabinoff's project github.com/QBobWatson/ipe2tikz
+It is a fork of Joseph Rabinoff's project: github.com/QBobWatson/ipe2tikz.
 
-**You no longer have to calculate coordinates or angles in TikZ.** If you have to create a significant number of graphics for your project, this plugin can be a great time and work-saver.
-    
-**It is easier to maintain than code.** If you are not working on a project continuously, one usually forgets how you made a certain graph, and then you have to read all the code. Just open your project in IPE and keep editing it.
-    
-**It is challenging to visualize curves that are not arcs of a circumference in TikZ.** However, in the editor, you can manage the control nodes and draw the curves as you see fit.
-    
-**The code is easily importable in LaTeX, directly from the clipboard.** Unlike the ipe2tikz project, there is no need to deal with files or text boxes. This plugin copies directly the clean TikZ code to the clipboard, so you can take it to your LaTeX project as you prefer.
-If you need to modify the code, you can do it; the code remains clean and intuitive.
+You no longer have to calculate coordinates or angles in TikZ manually. If you need to create many graphics for your project, this plugin can save you a significant amount of time and effort.
 
-**El preámbulo para incluir tikz y las especificaciones de estilos es extremadamente pequeño, y lo puedes obtener con solo dos clicks.**
-Al cargar el editor de IPE con este plug-in, los estilos se adaptan a los predeterminados de TikZ, algo que no pasa con la stylesheet de IPE. Además, todas las definiciones de colores coinciden con las del paquete xcolor, de forma que.
+It is easier to maintain than raw code. If you are not working on a project continuously, you might forget how you created a particular graph and have to read through all the code again. With this plugin, you can simply open your project in IPE and continue editing it.
 
-**Es altamente personalizable.** Más abajo te explico cómo personalizar el código, por si en tu día a día necesitas algo que este plug-in no te proporciona.
+Visualizing curves that are not arcs of a circle in TikZ can be challenging. However, in the IPE editor, you can manage control nodes and draw the curves as you need.
+
+The code can be easily imported into LaTeX directly from the clipboard. Unlike the ipe2tikz project, there is no need to handle files or text boxes. This plugin copies the clean TikZ code directly to the clipboard, making it easy to transfer to your LaTeX project. If you need to modify the code, you can do so; the code remains clean and intuitive.
+
+The preamble for including TikZ and style specifications is extremely small and can be obtained with just two clicks. When you load the IPE editor with this plugin, the styles adapt to TikZ's defaults, unlike IPE's stylesheet. Additionally, all color definitions match those in the xcolor package.
+
+This plugin is highly customizable. Below, I explain how to personalize the code in case you need features that the plugin does not provide.
 
 # Installation
 
