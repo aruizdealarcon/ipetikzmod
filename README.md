@@ -1,14 +1,14 @@
-This project consists of an add-on for the IPE editor that exports clean and customizable TikZ code from a selection of graphics, directly to the clipboard.
+This plugin for the IPE editor allows you to export clean and customizable TikZ code from a selection of graphics, directly to the clipboard.
 
-It is a fork of Joseph Rabinoff's add-on in https://github.com/QBobWatson/ipe2tikz
+It is a fork of Joseph Rabinoff's project github.com/QBobWatson/ipe2tikz
 
 # Installation
 
 ## How to install in Mac OS X
 
-Download tikzmod.lua from this repository.
+Download _ipetikzmod.lua_ and _ipetikzmod.isy_ above from this repository.
 
-In **Finder**, press **Cmd+Alt+G** and go to **Users/{your-username}/.ipe/ipelets/**
+In **Finder**, press **Cmd+Alt+G** and go to **Users/{your-username}/.ipe/** or simply **~/.ipe/**
 
 Create the folders _styles_ and _ipelets_ if they do not exist.
 
