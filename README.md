@@ -11,6 +11,11 @@ It is a fork of Joseph Rabinoff's project github.com/QBobWatson/ipe2tikz
 **The code is easily importable in LaTeX, directly from the clipboard.** Unlike the ipe2tikz project, there is no need to deal with files or text boxes. This plugin copies directly the clean TikZ code to the clipboard, so you can take it to your LaTeX project as you prefer.
 If you need to modify the code, you can do it; the code remains clean and intuitive.
 
+**El preámbulo para incluir tikz y las especificaciones de estilos es extremadamente pequeño, y lo puedes obtener con solo dos clicks.**
+Al cargar el editor de IPE con este plug-in, los estilos se adaptan a los predeterminados de TikZ, algo que no pasa con la stylesheet de IPE. Además, todas las definiciones de colores coinciden con las del paquete xcolor, de forma que.
+
+**Es altamente personalizable**
+
 # Installation
 
 ## How to install in Mac OS X
