@@ -48,11 +48,10 @@ prefs.auto_export_resolution = 400
 
 prefs.spell_check = false
 
-
 basic_sheet_xml = [[<?xml version="1.0"?>
 <!DOCTYPE ipestyle SYSTEM "ipe.dtd">
 <ipestyle name="ipetikzmod">
-<color name="NotExported" value="1 0.753 0.796"/>
+<color name="DoNotExport" value="1 0.753 0.796"/>
 <color name="Virtual" value="1.0 0.35 0.27"/>
 <color name="Apricot" value="1.0 0.68 0.48"/>
 <color name="Aquamarine" value="0.5 1.0 0.83"/>
@@ -213,7 +212,7 @@ beamer_sheet_xml =  [[<?xml version="1.0"?>
 
 --------------------------------------------------------------------------------
 
-rescale_factor = 0.035278
+rescale_factor = 0.0352778 -- conversion 1 pt to 0.352mm
 
 rounding_precision = 3
 
@@ -225,7 +224,7 @@ node_style_name = "Mark"
 
 substitution_colors = {  }
 
-forbidden_colors = { "NotExported" }
+forbidden_colors = { "DoNotExport" }
 
 draw_newline = ""
 
