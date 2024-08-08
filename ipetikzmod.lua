@@ -592,7 +592,7 @@ function arrow_spec(shapes, size, forward)
       _, _, arrow = string.find(shape, "^(%S+)$")
       end
       if arrow == "To" or arrow == "normal" then
-         if forward then arrow = ">-" else arrow = "-<" end
+         if forward then arrow = ">" else arrow = "<" end
       elseif arrow == "Bar" then
          arrow = "|"
       end
