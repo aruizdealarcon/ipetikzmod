@@ -218,9 +218,9 @@ rounding_precision = 3
 
 global_prefix = ""
 
-delimiter_symbol = "_"
+delimiter_symbol = " "
 
-node_style_name = "Mark"
+node_style_name = "mark"
 
 substitution_colors = {  }
 
@@ -240,24 +240,20 @@ the_preamble = [[\usepackage[dvipsnames]{xcolor}
 \tikzset{baseline={([yshift=-.5ex]current bounding box.center)}}
 \tikzset{every path/.style={ line width=0.5pt, line cap=round }}
 \colorlet{Virtual}{RedOrange}
-\tikzstyle{Bevel} = [ preaction = { draw, white, line width=2pt,  line cap = round } ]
-\tikzstyle{Bevel_wide} = [ preaction = { draw, white, line width=4pt,  line cap = round } ]
-\tikzstyle{Mark} = [ draw=black, fill=black, line width=0.2pt, inner sep=1.5pt ]
-\tikzstyle{Mark_large} = [ inner sep=2.1pt ]
-\tikzstyle{Mark_small} = [ inner sep=1pt   ]
-\tikzstyle{Mark_medium} = [ inner sep=1.3pt ]
-\tikzstyle{Mark_tiny} = [ inner sep=0.8pt ]
-\tikzstyle{Mark_fdisk} = [ circle ]
-\tikzstyle{Mark_disk} = [ circle ]
-\tikzstyle{Mark_square} = [ rectangle ]
-\tikzstyle{Mark_fsquare} = [ rectangle ]
+\tikzstyle{bevel} = [ preaction = { draw, white, line width=2pt,  line cap = round } ]
+\tikzstyle{bevel wide} = [ preaction = { draw, white, line width=4pt,  line cap = round } ]
+\tikzstyle{mark} = [ draw=black, fill=black, line width=0.2pt, inner sep=1.5pt ]
+\tikzstyle{mark large} = [ inner sep=2.1pt ]
+\tikzstyle{mark small} = [ inner sep=1pt   ]
+\tikzstyle{mark medium} = [ inner sep=1.3pt ]
+\tikzstyle{mark tiny} = [ inner sep=0.8pt ]
+\tikzstyle{mark fdisk} = [ circle ]
+\tikzstyle{mark disk} = [ circle ]
+\tikzstyle{mark square} = [ rectangle ]
+\tikzstyle{mark fsquare} = [ rectangle ]
 \newcommand{\myArrowStyle}{line width=0.4pt,length=3pt,width=3.5pt}
 \tikzstyle{->-} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[\myArrowStyle]} }, postaction={decorate} ]
-\tikzstyle{-<-} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[\myArrowStyle]} }, postaction={decorate} ]
-\tikzstyle{->-25} = [ decoration={ markings, mark = at position 0.25*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[\myArrowStyle]} }, postaction={decorate} ]
-\tikzstyle{-<-25} = [ decoration={ markings, mark = at position 0.25*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[\myArrowStyle]} }, postaction={decorate} ]
-\tikzstyle{->-75} = [ decoration={ markings, mark = at position 0.75*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[\myArrowStyle]} }, postaction={decorate} ]
-\tikzstyle{-<-75} = [ decoration={ markings, mark = at position 0.75*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[\myArrowStyle]} }, postaction={decorate} ] ]]
+\tikzstyle{-<-} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[\myArrowStyle]} }, postaction={decorate} ] ]]
 --------------------------------------------------------------------------------
 
 -- Globals
