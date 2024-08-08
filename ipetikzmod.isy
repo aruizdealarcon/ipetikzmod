@@ -87,63 +87,9 @@
 <path fill="sym-stroke" fillrule="eofill">
 -0.6 -0.6 m 0.6 -0.6 l 0.6 0.6 l -0.6 0.6 l h
 -0.4 -0.4 m 0.4 -0.4 l 0.4 0.4 l -0.4 0.4 l h</path></group></symbol>
-<symbol name="arrow/arc(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
-0 0 m -1.0 0.333 l -1.0 -0.333 l h</path></symbol>
-<symbol name="arrow/farc(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="white">
-0 0 m -1.0 0.333 l -1.0 -0.333 l h</path></symbol>
-<symbol name="arrow/ptarc(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
-0 0 m -1.0 0.333 l -0.8 0 l -1.0 -0.333 l h</path></symbol>
-<symbol name="arrow/fptarc(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="white">
-0 0 m -1.0 0.333 l -0.8 0 l -1.0 -0.333 l h</path></symbol>
-<symbol name="arrow/fnormal(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="white">
-0 0 m -1.0 0.333 l -1.0 -0.333 l h</path></symbol>
-<symbol name="arrow/pointed(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
-0 0 m -1.0 0.333 l -0.8 0 l -1.0 -0.333 l h</path></symbol>
-<symbol name="arrow/fpointed(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="white">
-0 0 m -1.0 0.333 l -0.8 0 l -1.0 -0.333 l h</path></symbol>
-<symbol name="arrow/linear(spx)">
-<path pen="sym-pen" stroke="sym-stroke">
--1.0 0.333 m 0 0 l -1.0 -0.333 l</path></symbol>
-<symbol name="arrow/fdouble(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="white">
-0 0 m -1.0 0.333 l -1.0 -0.333 l h
--1 0 m -2.0 0.333 l -2.0 -0.333 l h
-</path></symbol>
-<symbol name="arrow/double(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
-0 0 m -1.0 0.333 l -1.0 -0.333 l h
--1 0 m -2.0 0.333 l -2.0 -0.333 l h
-</path></symbol>
 <symbol name="arrow/mid-normal(spx)">
 <path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
 0.5 0 m -0.5 0.333 l -0.5 -0.333 l h
-</path></symbol>
-<symbol name="arrow/mid-fnormal(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="white">
-0.5 0 m -0.5 0.333 l -0.5 -0.333 l h
-</path></symbol>
-<symbol name="arrow/mid-pointed(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
-0.5 0 m -0.5 0.333 l -0.3 0 l -0.5 -0.333 l h</path></symbol>
-<symbol name="arrow/mid-fpointed(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="white">
-0.5 0 m -0.5 0.333 l -0.3 0 l -0.5 -0.333 l h</path></symbol>
-<symbol name="arrow/mid-double(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
-1 0 m -0 0.333 l 0 -0.333 l h
-0 0 m -1 0.333 l -1 -0.333 l h
-</path></symbol>
-<symbol name="arrow/mid-fdouble(spx)">
-<path pen="sym-pen" stroke="sym-stroke" fill="white">
-1 0 m -0 0.333 l 0 -0.333 l h
-0 0 m -1 0.333 l -1 -0.333 l h
 </path></symbol>
 <opacity name="10%" value="0.1"/>
 <opacity name="30%" value="0.3"/>
