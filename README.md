@@ -4,9 +4,11 @@ It is a fork of Joseph Rabinoff's github.com/QBobWatson/ipe2tikz.
 
 Some advantages on using IPE and this plugin are the following:
 
+
 **There is no need to calculate coordinates, distances nor angles in TikZ.**
 
 If you need to create many graphics, this plugin can save you a significant amount of time and effort.
+
 
 **It is easier to maintain than code.**
 
@@ -14,9 +16,11 @@ If you are not working on a project continuously, you might forget how you creat
 
 With this plugin, you can simply open your project in the IPE editor and continue editing it.
 
+
 **Designing curves that are not arcs of a circle in TikZ can be challenging.**
 
 However, within the IPE editor, you can manage control nodes and draw the curves as you need.
+
 
 **The code can be easily imported into LaTeX directly from the clipboard.**
 
@@ -25,6 +29,7 @@ There is no need to handle files nor other elements, compared to ip2tikz.
 This plugin copies the clean TikZ code directly to the clipboard.
 
 If you need to modify the code, you can do so: the code remains clean and intuitive.
+
 
 **The preamble for including TikZ and style specifications is extremely small and can be obtained with just two clicks.**
 
