@@ -20,7 +20,11 @@ However, within the IPE editor, you can manage control nodes and draw the curves
 
 **The code can be easily imported into LaTeX directly from the clipboard.**
 
-There is no need to handle files nor other elements, compared to ip2tikz. This plugin copies the clean TikZ code directly to the clipboard; and if you need to modify the code, you can do so; the code remains clean and intuitive.
+There is no need to handle files nor other elements, compared to ip2tikz.
+
+This plugin copies the clean TikZ code directly to the clipboard.
+
+If you need to modify the code, you can do so: the code remains clean and intuitive.
 
 **The preamble for including TikZ and style specifications is extremely small and can be obtained with just two clicks.**
 
