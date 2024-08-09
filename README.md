@@ -29,9 +29,13 @@ In **Finder**, press **Cmd+Alt+G** and go to
 
 Create the folders _styles_ and _ipelets_ if they do not exist.
 
-Copy the .lua file you just downloaded into Users/{your-username}/.ipe/ipelets/
+**Copy the file _ipetikzmod.lua_** you just downloaded into
 
-and the .isy file into Users/{your-username}/.ipe/styles/
+    Users/{your-username}/.ipe/ipelets/
+
+and **copy the file __ipetikzmod.isy_** into
+    
+    Users/{your-username}/.ipe/styles/
 
 **Close all instances of IPE** (use e.g. Cmd+Q on it) **and run it again**.
 
