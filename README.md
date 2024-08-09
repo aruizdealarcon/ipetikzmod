@@ -10,7 +10,7 @@ If you need to create many graphics, this plugin can save you a significant amou
 
 **It is easier to maintain than code.**
 
-If you are not working on a project continuously, you might forget how you created a particular figure and need to go through the code again.
+If you are not working on a project continuously, you might forget how you created a particular figure and need to go through the code.
 
 With this plugin, you can simply open your project in the IPE editor and continue editing it.
 
