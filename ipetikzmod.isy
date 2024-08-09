@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipestyle SYSTEM "ipe.dtd">
 <ipestyle name="basic">
+
 <color name="DoNotExport" value="1 0.753 0.796"/>
 <color name="Virtual" value="1.0 0.35 0.27"/>
 <color name="GreenYellow!50" value="0.94 0.95 0.74"/>
@@ -27,18 +28,21 @@
 <color name="black!25" value="0.75 0.75 0.75"/>
 <color name="black!50" value="0.50 0.50 0.50"/>
 <color name="black!75" value="0.25 0.25 0.25"/>
+
 <dashstyle name="dotted" value="[1 3] 0"/>
 <dashstyle name="densely dotted" value="[1 1] 0"/>
 <dashstyle name="dashed" value="[4] 0"/>
 <dashstyle name="densely dashed" value="[3 2] 0"/>
 <dashstyle name="dashdotted" value="[4 2 1 2] 0"/>
 <dashstyle name="bevel" value="[1 0.25] 0"/>
+
 <pen name="normal" value="0.5"/>
 <pen name="ultra thin" value="0.1"/>
 <pen name="very thin" value="0.2"/>
 <pen name="thick" value="0.8"/>
 <pen name="very thick" value="1.2"/>
 <pen name="ultra thick" value="1.6"/>
+
 <textsize name="large" value="\large"/>
 <textsize name="Large" value="\Large"/>
 <textsize name="LARGE" value="\LARGE"/>
@@ -48,12 +52,15 @@
 <textsize name="footnote" value="\footnotesize"/>
 <textsize name="script" value="\scriptsize"/>
 <textsize name="tiny" value="\tiny"/>
+
 <symbolsize name="small" value="2"/>
 <symbolsize name="tiny" value="1.1"/>
 <symbolsize name="large" value="5"/>
+
 <arrowsize name="small" value="5"/>
 <arrowsize name="tiny" value="3"/>
 <arrowsize name="large" value="10"/>
+
 <gridsize name="4 pts" value="4"/>
 <gridsize name="8 pts (~3 mm)" value="8"/>
 <gridsize name="16 pts (~6 mm)" value="16"/>
@@ -63,49 +70,91 @@
 <gridsize name="14 pts (~5 mm)" value="14"/>
 <gridsize name="28 pts (~10 mm)" value="28"/>
 <gridsize name="56 pts (~20 mm)" value="56"/>
+
 <anglesize name="90 deg" value="90"/>
 <anglesize name="60 deg" value="60"/>
 <anglesize name="45 deg" value="45"/>
 <anglesize name="30 deg" value="30"/>
 <anglesize name="22.5 deg" value="22.5"/>
+
 <symbol name="mark/disk(sx)" transformations="translations">
 <path fill="sym-stroke">
 0.6 0 0 0.6 0 0 e
-</path></symbol>
+</path>
+</symbol>
+
 <symbol name="mark/fdisk(sfx)" transformations="translations">
-<group><path fill="sym-fill">
+<group>
+<path fill="sym-fill">
 0.5 0 0 0.5 0 0 e
 </path><path fill="sym-stroke" fillrule="eofill">
 0.6 0 0 0.6 0 0 e 0.4 0 0 0.4 0 0 e
-</path></group></symbol>
+</path>
+</group>
+</symbol>
+
 <symbol name="mark/square(sx)" transformations="translations">
 <path fill="sym-stroke">
--0.6 -0.6 m 0.6 -0.6 l 0.6 0.6 l -0.6 0.6 l h</path></symbol>
+-0.6 -0.6 m 0.6 -0.6 l 0.6 0.6 l -0.6 0.6 l h</path>
+</symbol>
+
 <symbol name="mark/fsquare(sfx)" transformations="translations">
-<group><path fill="sym-fill">
+<group>
+<path fill="sym-fill">
 -0.5 -0.5 m 0.5 -0.5 l 0.5 0.5 l -0.5 0.5 l h</path>
 <path fill="sym-stroke" fillrule="eofill">
 -0.6 -0.6 m 0.6 -0.6 l 0.6 0.6 l -0.6 0.6 l h
--0.4 -0.4 m 0.4 -0.4 l 0.4 0.4 l -0.4 0.4 l h</path></group></symbol>
+-0.4 -0.4 m 0.4 -0.4 l 0.4 0.4 l -0.4 0.4 l h</path>
+</group>
+</symbol>
+
 <symbol name="arrow/mid-normal(spx)">
 <path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
 0.5 0 m -0.5 0.333 l -0.5 -0.333 l h
+</path>
+</symbol>
+
+<symbol name="arrow/Stealth(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
+0 0 m -1.0 0.333 l -0.8 0 l -1.0 -0.333 l h</path>
+</symbol>
+
+<symbol name="arrow/>(spx)">
+<path pen="sym-pen" stroke="sym-stroke">
+-1.0 0.333 m 0 0 l -1.0 -0.333 l</path>
+</symbol>
+
+<symbol name="arrow/>>(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
+-1.0 0.333 m 0 0 l -1.0 -0.333 l
+-2.0 0.333 m -1 0 l -2.0 -0.333 l
 </path></symbol>
+
+<symbol name="arrow/{Stealth Stealth}(spx)">
+<path pen="sym-pen" stroke="sym-stroke" fill="sym-stroke">
+0 0 m -1.0 0.333 l -1.0 -0.333 l h
+-1 0 m -2.0 0.333 l -2.0 -0.333 l h
+</path></symbol>
+
 <opacity name="10%" value="0.1"/>
 <opacity name="30%" value="0.3"/>
 <opacity name="50%" value="0.5"/>
 <opacity name="75%" value="0.75"/>
+
 <tiling name="falling" angle="-60" width="1" step="4"/>
 <tiling name="rising" angle="30" width="1" step="4"/>
+
 <textstyle name="center" begin="\begin{center}"
 end="\end{center}"/>
 <textstyle name="itemize" begin="\begin{itemize}"
 end="\end{itemize}"/>
 <textstyle name="item" begin="\begin{itemize}\item{}"
 end="\end{itemize}"/>
+
 <preamble>
 \usepackage[utf8]{inputenc}
 \usepackage{amssymb,amsmath,amsthm,dsfont}
 \usepackage[scr=rsfso]{mathalpha}
 </preamble>
+
 </ipestyle>
