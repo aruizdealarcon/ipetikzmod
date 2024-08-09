@@ -131,7 +131,7 @@ On other occasions, especially with complex drawings, it is common to help yours
 
 However, many times we do not want to get rid of those guide lines in case we need to fix a drawing in the future.
 
-Therefore, I have assigned the color _DoNotExport_ to the forbidden colors. In this way, no lines with this color will appear in the exported TikZ code.
+Therefore, I have included a color named _DoNotExport_. No figures with this color will appear in the exported TikZ code.
 
 ### Feature #3. Text positioning and scaling
 
