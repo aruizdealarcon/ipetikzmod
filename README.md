@@ -113,9 +113,7 @@ On other occasions, especially with complex drawings, it is common to help yours
 
 However, many times we do not want to get rid of those guide lines in case we need to fix a drawing in the future.
 
-Therefore, you can also designate certain forbidden colors in the code, so that objects with those colors will not be exported to the TikZ code.
-
-For example, I have assigned the color "NotExportable" to the forbidden colors. In this way, no lines with the color NotExportable will appear in the exported TikZ code.
+Therefore, I have assigned the color _DoNotExport_ to the forbidden colors. In this way, no lines with this color will appear in the exported TikZ code.
 
 ### Feature #3. Text positioning and scaling
 
