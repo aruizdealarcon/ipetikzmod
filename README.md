@@ -23,7 +23,9 @@ Some advantages on using IPE and this plugin are the following:
 
 Download _ipetikzmod.lua_ and _ipetikzmod.isy_ above from this repository.
 
-In **Finder**, press **Cmd+Alt+G** and go to **Users/{your-username}/.ipe/** or simply **~/.ipe/**
+In **Finder**, press **Cmd+Alt+G** and go to
+
+    Users/{your-username}/.ipe/
 
 Create the folders _styles_ and _ipelets_ if they do not exist.
 
