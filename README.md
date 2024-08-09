@@ -6,7 +6,7 @@ Some advantages on using IPE and this plugin are the following:
 
 **There is no need to calculate coordinates, distances nor angles in TikZ.**
 
-If you need to create many graphics for your project, this plugin can save you a significant amount of time and effort.
+If you need to create many graphics, this plugin can save you a significant amount of time and effort.
 
 **It is easier to maintain than code.**
 
