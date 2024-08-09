@@ -1,6 +1,6 @@
 This plugin for the IPE editor allows you to export clean TikZ code from a selection of graphics, directly to the clipboard.
 
-This is a fork of Joseph Rabinoff's project: github.com/QBobWatson/ipe2tikz.
+It is a fork of Joseph Rabinoff's github.com/QBobWatson/ipe2tikz.
 
 Some advantages on using IPE and this plugin are the following:
 
