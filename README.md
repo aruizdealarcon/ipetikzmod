@@ -4,7 +4,7 @@ It is a fork of Joseph Rabinoff's github.com/QBobWatson/ipe2tikz.
 
 Some advantages on using IPE and this plugin are the following:
 
-**You no longer have to calculate coordinates or angles in TikZ.**
+**There is no need to calculate coordinates, distances nor angles in TikZ.**
 
 If you need to create many graphics for your project, this plugin can save you a significant amount of time and effort.
 
