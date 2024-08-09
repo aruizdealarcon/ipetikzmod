@@ -67,9 +67,7 @@ Copy the .lua file you just downloaded into that folder.
 
 **Close all instances of IPE and run it again**.
 
-# Usage
-
-## A simple case
+# A simple case of usage
 
 ### Step 1. Select the drawings you want to export to TikZ code.
 <p align="center">
