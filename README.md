@@ -26,7 +26,7 @@ However, within the IPE editor, you can manage control nodes and draw the curves
 
 There is no need to handle files nor other elements, compared to ipe2tikz.
 
-This plugin _copies_ the clean TikZ code directly to the clipboard.
+This plugin exports clean and formatted TikZ code directly to the clipboard.
 
 If you need to modify the TikZ code, you can do so: the code remains clean and readable.
 
