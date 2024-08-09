@@ -39,43 +39,25 @@ Additionally, all color definitions match those in the _xcolor_ package.
 
 # Installation
 
-## How to install in Mac OS X
+## How to install in OSX and GNU/Linux
 
 Download _ipetikzmod.lua_ and _ipetikzmod.isy_ above from this repository.
 
 In **Finder**, press **Cmd+Alt+G** and go to
 
-    Users/{your-username}/.ipe/
+    ~/.ipe/
 
 Create the folders _styles_ and _ipelets_ if they do not exist.
 
 **Copy the file _ipetikzmod.lua_** you just downloaded into
 
-    Users/{your-username}/.ipe/ipelets/
+   ~/.ipe/styles/
 
 and **copy the file __ipetikzmod.isy_** into
     
-    Users/{your-username}/.ipe/styles/
+    ~/.ipe/styles/
 
-**Close all instances of IPE** (use e.g. Cmd+Q on it) **and run it again**.
-
-## How to install in GNU/Linux
-
-Before installing it, make sure you have xsel or xclip installed.
-
-Download _tikzmod.lua_ from this repository.
-
-In your file explorer, go to the path **~/.ipe/ipelets/**
-
-Create the folder _ipelets_ if it does not exist.
-
-Copy the .lua file you just downloaded into that folder.
-
-**Close all instances of IPE and run it again**.
-
-If you prefer the terminal, simply execute:
-
-    mkdir -p ~/.ipe/ipelets/ && cp -f ~/Downloads/tikzmod.lua ~/.ipe/ipelets/
+**Close all instances of IPE** (in OSX use Cmd+Q on it) **and run it again**.
 
 ## How to install in Microsoft Windows
 
