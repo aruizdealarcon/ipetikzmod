@@ -51,7 +51,7 @@ Create the folders _styles_ and _ipelets_ if they do not exist.
 
 **Copy the file _ipetikzmod.lua_** you just downloaded into
 
-   ~/.ipe/styles/
+    ~/.ipe/ipelets/
 
 and **copy the file __ipetikzmod.isy_** into
     
