@@ -39,7 +39,7 @@ Additionally, all color definitions match those in the _xcolor_ package.
 
 # Installation
 
-## How to install in OSX and GNU/Linux
+## How to install in OSX and Linux
 
 Download _ipetikzmod.lua_ and _ipetikzmod.isy_ above from this repository.
 
@@ -61,7 +61,7 @@ and **copy the file __ipetikzmod.isy_** into
 
 **Close all instances of IPE** (in OSX use Cmd+Q on it) **and run it again**.
 
-## How to install in Microsoft Windows
+## How to install in Windows
 
 Download tikzmod.lua from this repository.
 
