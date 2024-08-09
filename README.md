@@ -10,7 +10,7 @@ Some advantages on using IPE and this plugin are the following:
 
 **Visualizing curves that are not arcs of a circle in TikZ can be challenging.** However, in the IPE editor, you can manage control nodes and draw the curves as you need.
 
-**The code can be easily imported into LaTeX directly from the clipboard.** There is no need to handle files nor other elements. This plugin copies the clean TikZ code directly to the clipboard, making it easy to transfer to your LaTeX project. If you need to modify the code, you can do so; the code remains clean and intuitive.
+**The code can be easily imported into LaTeX directly from the clipboard.** There is no need to handle files nor other elements, compared to ip2tikz. This plugin copies the clean TikZ code directly to the clipboard; and if you need to modify the code, you can do so; the code remains clean and intuitive.
 
 **The preamble for including TikZ and style specifications is extremely small and can be obtained with just two clicks.** When you load the IPE editor with this plugin, the styles adapt to TikZ's defaults, unlike IPE's stylesheet. Additionally, all color definitions match those in the xcolor package.
 
