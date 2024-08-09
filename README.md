@@ -69,31 +69,26 @@ Copy the .lua file you just downloaded into that folder.
 
 ### Step 1. Select the drawings you want to export to TikZ code.
 <p align="center">
-<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/selection.png?raw=true" width="600"/>
+<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/example_1.png?raw=true" width="600"/>
 </p>
 
 ### Step 2. Click on the tab named _Ipelets_ and then go to _Export TikZ code_
 <p align="center">
-<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/menu.png?raw=true" width="600"/>
+<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/example_2.png?raw=true" width="600"/>
 </p>
 
-Now, we have different options
 
-### Step 3. Option 1.
+### Step 3. Click on the tab named _Ipelets_ and then go to _Export TikZ code_
 
 Click on **Export selection to clipboard** to transform the figures into a tex
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A key shortcut for this option is _Cmd+Shift+T_.
+A key shortcut for this option is **Cmd+Shift+T**.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note that you can customize it on the .lua file, see below.
-    
-### Step 3. Option 2.
+<p align="center">
+<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/example_3.png?raw=true" width="600"/>
+</p>
 
-Click on **Copy preamble to clipboard** to get the the necessary code for compiling the exported codes into your LaTeX project.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Also, you can customize the preamble on the .lua file!
-
-## Some useful rules and features
+## A few useful rules and features
 
 ### Feature #1. Create new colors
 
