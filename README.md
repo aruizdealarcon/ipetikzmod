@@ -43,9 +43,11 @@ Additionally, all color definitions match those in the _xcolor_ package.
 
 Download _ipetikzmod.lua_ and _ipetikzmod.isy_ above from this repository.
 
-In **Finder**, press **Cmd+Alt+G** and go to
+In **Finder** or your file explorer, go to...
 
     ~/.ipe/
+
+(In OSX, use press Cmd+Alt+G to specify a path on Finder)
 
 Create the folders _styles_ and _ipelets_ if they do not exist.
 
