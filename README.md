@@ -31,7 +31,7 @@ This plugin copies the clean TikZ code directly to the clipboard.
 If you need to modify the code, you can do so: the code remains clean and intuitive.
 
 
-**The preamble for including TikZ and style specifications is extremely small and can be obtained with just two clicks.**
+**The preamble needed in LaTeX is extremely small and is obtained with just two clicks.**
 
 When you load the IPE editor with this plugin, the styles adapt to TikZ's defaults, unlike IPE's stylesheet.
 
