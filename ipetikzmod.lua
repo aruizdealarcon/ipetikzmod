@@ -68,7 +68,7 @@ global_prefix = ""
 
 delimiter_symbol = " "
 
-node_style_name = "mark"
+node_style_name = "symb"
 
 substitution_colors = {  }
 
@@ -90,18 +90,17 @@ the_preamble = [[\usepackage[dvipsnames]{xcolor}
 \colorlet{Virtual}{RedOrange}
 \tikzstyle{bevel} = [ preaction = { draw, white, line width=2pt,  line cap = round } ]
 \tikzstyle{bevel wide} = [ preaction = { draw, white, line width=4pt,  line cap = round } ]
-\tikzstyle{mark} = [ draw=black, fill=black, line width=0.2pt, inner sep=1.5pt ]
-\tikzstyle{mark large} = [ inner sep=2.1pt ]
-\tikzstyle{mark small} = [ inner sep=1pt   ]
-\tikzstyle{mark medium} = [ inner sep=1.3pt ]
-\tikzstyle{mark tiny} = [ inner sep=0.8pt ]
-\tikzstyle{mark fdisk} = [ circle ]
-\tikzstyle{mark disk} = [ circle ]
-\tikzstyle{mark square} = [ rectangle ]
-\tikzstyle{mark fsquare} = [ rectangle ]
-\newcommand{\myArrowStyle}{line width=0.4pt,length=3pt,width=3.5pt}
-\tikzstyle{->-} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[\myArrowStyle]} }, postaction={decorate} ]
-\tikzstyle{-<-} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.4*3pt with \arrow{<[\myArrowStyle]} }, postaction={decorate} ] ]]
+\tikzstyle{symb} = [ draw=black, fill=black, line width=0.4pt, inner sep=1.5pt ]
+\tikzstyle{symb large} = [ inner sep=2.1pt ]
+\tikzstyle{symb small} = [ inner sep=1pt   ]
+\tikzstyle{symb medium} = [ inner sep=1.3pt ]
+\tikzstyle{symb tiny} = [ inner sep=0.8pt ]
+\tikzstyle{symb fdisk} = [ circle ]
+\tikzstyle{symb disk} = [ circle ]
+\tikzstyle{symb square} = [ rectangle ]
+\tikzstyle{symb fsquare} = [ rectangle ]
+\tikzstyle{-mid-normal} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.6*3pt with \arrow{>} }, postaction={decorate} ]
+]]
 --------------------------------------------------------------------------------
 
 -- Globals
@@ -424,7 +423,7 @@ function arrow_spec(shapes, size, forward)
    _, _, shapes = string.find(shapes, "arrow/([^(]+)%(")
 
    local sizeopt = {}
-   number_option(size, "scale", sizeopt, "ipe arrow ")
+   number_option(size, "scale", sizeopt, "arrow ")
    if #sizeopt > 0 then
       sizeopt = sizeopt[1]
    else
@@ -440,9 +439,12 @@ function arrow_spec(shapes, size, forward)
       _, _, arrow = string.find(shape, "^(%S+)$")
       end
       if arrow == "To" or arrow == "normal" then
-         if forward then arrow = ">" else arrow = "<" end
+         if forward then arrow = "Latex" else arrow = "Latex" end
       elseif arrow == "Bar" then
          arrow = "|"
+      end
+      if arrow == ">" then
+         if forward then arrow = ">" else arrow = "<" end
       end
       if forward then
          table.insert(arrows, {arrow=arrow, options=options})
