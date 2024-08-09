@@ -14,9 +14,9 @@ If you are not working on a project continuously, you might forget how you creat
 
 With this plugin, you can simply open your project in the IPE editor and continue editing it.
 
-**Visualizing curves that are not arcs of a circle in TikZ can be challenging.**
+**Designing curves that are not arcs of a circle in TikZ can be challenging.**
 
-However, in the IPE editor, you can manage control nodes and draw the curves as you need.
+However, within the IPE editor, you can manage control nodes and draw the curves as you need.
 
 **The code can be easily imported into LaTeX directly from the clipboard.**
 
