@@ -10,7 +10,9 @@ If you need to create many graphics, this plugin can save you a significant amou
 
 **It is easier to maintain than code.**
 
-If you are not working on a project continuously, you might forget how you created a particular graph and have to read through all the code again. With this plugin, you can simply open your project in IPE and continue editing it.
+If you are not working on a project continuously, you might forget how you created a particular figure and need to go through the code again.
+
+With this plugin, you can simply open your project in the IPE editor and continue editing it.
 
 **Visualizing curves that are not arcs of a circle in TikZ can be challenging.**
 
