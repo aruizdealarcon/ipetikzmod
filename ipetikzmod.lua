@@ -88,8 +88,7 @@ the_preamble = [[\usepackage[dvipsnames]{xcolor}
 \tikzset{baseline={([yshift=-.5ex]current bounding box.center)}}
 \tikzset{every path/.style={ line width=0.5pt, line cap=round }}
 \colorlet{Virtual}{RedOrange}
-\tikzstyle{bevel} = [ preaction = { draw, white, line width=2pt,  line cap = round } ]
-\tikzstyle{bevel wide} = [ preaction = { draw, white, line width=4pt,  line cap = round } ]
+\tikzstyle{bevel} = [ preaction = { draw, white, line width=3pt,  line cap = round } ]
 \tikzstyle{symb} = [ draw=black, fill=black, line width=0.4pt, inner sep=1.5pt ]
 \tikzstyle{symb large} = [ inner sep=2.1pt ]
 \tikzstyle{symb small} = [ inner sep=1pt   ]
