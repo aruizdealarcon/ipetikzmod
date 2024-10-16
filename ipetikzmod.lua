@@ -99,7 +99,8 @@ the_preamble = [[\usepackage[dvipsnames]{xcolor}
 \tikzstyle{symb disk} = [ circle ]
 \tikzstyle{symb square} = [ rectangle ]
 \tikzstyle{symb fsquare} = [ rectangle ]
-\tikzstyle{-mid-normal} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.6*3pt with \arrow{>} }, postaction={decorate} ]
+\tikzstyle{-mid} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[width=3pt]} }, postaction={decorate} ]
+\tikzstyle{mid-} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.6*3pt with \arrow{<[width=3pt]} }, postaction={decorate} ]
 ]]
 --------------------------------------------------------------------------------
 
