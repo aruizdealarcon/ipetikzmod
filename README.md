@@ -2,7 +2,7 @@
 
 This project is a fork of Joseph Rabinoff's <a href="https://github.com/QBobWatson/ipe2tikz">ipe2tikz</a>.
 
-Some advantages on using IPE with this plugin are the following:
+Some advantages on using IPE together with this plug-in are the following:
 
 
 **There is no need to calculate coordinates, distances nor angles in TikZ.**
