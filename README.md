@@ -160,3 +160,6 @@ In many cases, we do not want to have the original layout, which is very large, 
 
 Therefore, if you select this option, the layout will be loaded with these dimensions, adapted to the actual size of the beamer layout with this aspect ratio.
 
+<p align="center">
+<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/example_06.jpg?raw=true" width="800"/>
+</p>
