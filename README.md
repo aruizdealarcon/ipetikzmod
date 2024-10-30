@@ -13,19 +13,19 @@ If you need to create many graphics, this plug-in can save you a significant amo
 
 
 
-**(ii) It is easier to maintain than code.**
+### It is easier to maintain than code.
 
 If you are not working on a project continuously, you might forget how you created a particular figure and need to go through the code.
 
 With this plugin, you can simply open your project in the IPE editor and continue editing it.
 
 
-**(iii) Writing TikZ code for curves can be challenging.**
+### Writing TikZ code for curves can be challenging.
 
 However, within the IPE editor, you can manage control nodes and draw the curves as you want.
 
 
-**(iv) The code can be easily imported into LaTeX, directly from the clipboard.**
+### The code can be easily imported into LaTeX, directly from the clipboard.
 
 There is no need to handle files nor other elements (compared to the original plug-in ipe2tikz).
 
@@ -34,7 +34,7 @@ This plugin exports clean and formatted TikZ code directly to the clipboard.
 If you need to modify the TikZ code, you can do so: the code remains clean and readable.
 
 
-**(v) The preamble needed in LaTeX is extremely small and is obtained with just two clicks.**
+### The preamble needed in LaTeX is extremely small and is obtained with just two clicks.
 
 This plug-in makes the IPE editor to load adapting it to TikZ's defaults, unlike IPE's stylesheet.
 
