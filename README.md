@@ -75,6 +75,11 @@ Copy the .lua file you just downloaded into that folder.
 
 # A simple case of usage
 
+### Step 0. Prepare the drawings in the IPE editor.
+<p align="center">
+<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/example_1.png?raw=true" width="800"/>
+</p>
+
 ### Step 1. Select the drawings you want to export to TikZ code.
 <p align="center">
 <img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/example_1.png?raw=true" width="800"/>
