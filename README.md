@@ -141,6 +141,12 @@ However, many times we do not want to get rid of those guide lines in case we ne
 
 Therefore, we have included a color named _DoNotExport_. No figures with this color will appear in the exported TikZ code.
 
+
+<p align="center">
+<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/example_05.jpg?raw=true" width="800"/>
+</p>
+
+
 ### Feature #3. Text positioning and scaling
 
 This add-on sets to have default the following properties for text: **horizontal alignment** to **center** and **vertical alignment** to **center**.
