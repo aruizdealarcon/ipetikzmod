@@ -109,7 +109,7 @@ A key shortcut for this option is **Cmd+Shift+T**.
 </p>
 
 
-### Step 3. Copy to your LaTeX project and compile it
+### Step 3. Paste into your LaTeX project and compile it
 
 For the first time, you will need to copy the preamble include the tikz package and some styles.
 
