@@ -6,7 +6,7 @@ This project is a fork of Joseph Rabinoff's <a href="https://github.com/QBobWats
 
 
 <p align="center">
-<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/example_00.jpg?raw=true" width="800"/>
+<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/example_00.jpg?raw=true" width="500"/>
 </p>
 
 
