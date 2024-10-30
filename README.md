@@ -33,9 +33,9 @@ If you need to modify the TikZ code, you can do so: the code remains clean and r
 
 **(v) The preamble needed in LaTeX is extremely small and is obtained with just two clicks.**
 
-When you load the IPE editor with this plugin, the styles adapt to TikZ's defaults, unlike IPE's stylesheet.
+This plug-in makes the IPE editor to load adapting it to TikZ's defaults, unlike IPE's stylesheet.
 
-Additionally, all color definitions match those in the _xcolor_ package.
+Additionally, all color definitions match those in the _xcolor_ package, line thickness, arrow styles and many more adapt to the _tikz_ package predefined ones.
 
 # Installation
 
