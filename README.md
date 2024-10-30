@@ -17,7 +17,7 @@ If you are not working on a project continuously, you might forget how you creat
 With this plugin, you can simply open your project in the IPE editor and continue editing it.
 
 
-**(iii) Writing code for curves can be challenging.**
+**(iii) Writing TikZ code for curves can be challenging.**
 
 However, within the IPE editor, you can manage control nodes and draw the curves as you want.
 
