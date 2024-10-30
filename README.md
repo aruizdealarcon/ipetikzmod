@@ -4,6 +4,12 @@ This is a plugin for the <a href="https://ipe.otfried.org/">IPE editor</a> that 
 
 This project is a fork of Joseph Rabinoff's <a href="https://github.com/QBobWatson/ipe2tikz">ipe2tikz</a>.
 
+
+<p align="center">
+<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/example_00.jpg?raw=true" width="800"/>
+</p>
+
+
 Some advantages on using IPE together with this plug-in are the following:
 
 
@@ -80,12 +86,12 @@ Copy the .lua file you just downloaded into that folder.
 
 ### Step 0. Prepare the drawings in the IPE editor.
 <p align="center">
-<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/example_1.png?raw=true" width="800"/>
+<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/example_01.jpg?raw=true" width="800"/>
 </p>
 
 ### Step 1. Select the drawings you want to export to TikZ code.
 <p align="center">
-<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/example_1.png?raw=true" width="800"/>
+<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/example_02.jpg?raw=true" width="800"/>
 </p>
 
 ### Step 2. Click on the tab named _Ipelets_ and then go to _Export TikZ code_
@@ -96,7 +102,7 @@ Click on **Export selection to clipboard** to transform the figures into a tex
 A key shortcut for this option is **Cmd+Shift+T**.
 
 <p align="center">
-<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/example_2.png?raw=true" width="800"/>
+<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/example_03.jpg?raw=true" width="800"/>
 </p>
 
 
@@ -107,7 +113,7 @@ For the first time, you will need to copy the preamble include the tikz package 
 The following is the corresponding example of piece of code and compiled output.
 
 <p align="center">
-<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/example_3.png?raw=true" width="800"/>
+<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/example_04.jpg?raw=true" width="800"/>
 </p>
 
 ## A few useful rules and features
