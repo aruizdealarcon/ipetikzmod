@@ -35,7 +35,7 @@ If you need to modify the TikZ code, you can do so: the code remains clean and r
 
 This plug-in makes the IPE editor to load adapting it to TikZ's defaults, unlike IPE's stylesheet.
 
-Additionally, all color definitions match those in the _xcolor_ package, line thickness, arrow styles and many more adapt to the _tikz_ package predefined ones.
+Additionally, all color definitions match those in the _xcolor_ package. Other parameters, such as line thickness, arrow styles and many more adapt to the _tikz_ package predefined ones.
 
 # Installation
 
