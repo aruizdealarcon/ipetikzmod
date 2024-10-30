@@ -129,7 +129,7 @@ On other occasions, especially with complex drawings, it is common to help yours
 
 However, many times we do not want to get rid of those guide lines in case we need to fix a drawing in the future.
 
-Therefore, I have included a color named _DoNotExport_. No figures with this color will appear in the exported TikZ code.
+Therefore, we have included a color named _DoNotExport_. No figures with this color will appear in the exported TikZ code.
 
 ### Feature #3. Text positioning and scaling
 
@@ -137,7 +137,7 @@ This add-on sets to have default the following properties for text: **horizontal
 
 That makes the origin of the textbox to be the center and _not_ the lower left corner, which is the default one with the IPE Editor.
 
-### Feature #4. Load beamer layout
+### Feature #4. Load a 1080p beamer layout
 
 ....
 
