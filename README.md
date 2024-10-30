@@ -1,4 +1,4 @@
-## The plug-in
+# The plug-in
 
 This is a plugin for the <a href="https://ipe.otfried.org/">IPE editor</a> that exports clean TikZ code from a selection of graphics to the clipboard.
 
