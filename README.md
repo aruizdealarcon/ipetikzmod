@@ -90,6 +90,9 @@ Copy the .lua file you just downloaded into that folder.
 </p>
 
 ### Step 1. Select the drawings you want to export to TikZ code.
+
+You can do this by simply mantaining the Cmd/Win key pressed and clicking the mouse.
+
 <p align="center">
 <img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/example_02.jpg?raw=true" width="800"/>
 </p>
