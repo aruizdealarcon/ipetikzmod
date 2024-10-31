@@ -9,6 +9,7 @@ This project is a fork of Joseph Rabinoff's <a href="https://github.com/QBobWats
 <img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/example_00.jpg?raw=true" width="500"/>
 </p>
 
+## Why using it?
 
 Some advantages on using IPE together with this plug-in are the following:
 
