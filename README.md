@@ -30,14 +30,13 @@ With this plugin, you can simply open your project in the IPE editor and continu
 However, within the IPE editor, you can manage control nodes and draw the curves as you want.
 
 
-### The code can be easily imported into LaTeX, directly from the clipboard.
+### The code is easily imported into your LaTeX project, directly from the clipboard.
 
 There is no need to handle files nor other elements (compared to the original plug-in _ipe2tikz_).
 
-This plugin exports clean and formatted TikZ code directly to the clipboard.
+This plugin simply exports clean and formatted TikZ code, directly to the clipboard.
 
-If you need to modify the TikZ code, you can do so: the code remains clean and readable.
-
+## If you need to modify the TikZ code, you can do so: the code remains clean and readable.
 
 ### The preamble needed in LaTeX is extremely small and is obtained with just two clicks.
 
