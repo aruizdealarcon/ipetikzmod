@@ -13,10 +13,9 @@ This project is a fork of Joseph Rabinoff's <a href="https://github.com/QBobWats
 Some advantages on using IPE together with this plug-in are the following:
 
 
-### There is no need to calculate coordinates, distances nor angles in TikZ
+### There is no need to know TikZ and no need to calculate coordinates, distances or angles.
 
 If you need to create many graphics, this plug-in can save you a significant amount of time and effort.
-
 
 
 ### It is easier to maintain than code.
