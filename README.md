@@ -1,9 +1,8 @@
 # The plug-in
 
-This is a plugin for the <a href="https://ipe.otfried.org/">IPE editor</a> that exports clean TikZ code from a selection of graphics to the clipboard.
+This is a plugin for the <a href="https://ipe.otfried.org/">IPE editor</a> that exports clean TikZ code from a selection of graphics.
 
 This project is a fork of Joseph Rabinoff's <a href="https://github.com/QBobWatson/ipe2tikz">ipe2tikz</a>.
-
 
 <p align="center">
 <img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/example_00.jpg?raw=true" width="500"/>
