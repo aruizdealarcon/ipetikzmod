@@ -61,6 +61,7 @@
 <arrowsize name="tiny" value="3"/>
 <arrowsize name="large" value="10"/>
 
+<gridsize name="~0.25 cm" value="7"/>
 <gridsize name="4 pts" value="4"/>
 <gridsize name="8 pts (~3 mm)" value="8"/>
 <gridsize name="16 pts (~6 mm)" value="16"/>
