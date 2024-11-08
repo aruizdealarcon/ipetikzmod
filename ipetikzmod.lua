@@ -3,7 +3,7 @@
 ----------------------------------------------------------------------
 --[[
 
-    Copyright (C) 2024 Alberto Ruiz de Alarcon (albertoruizdealarcon@ucm.es)
+    Copyright (C) 2024 Alberto Ruiz-de-Alarcon (github.com/aruizdealarcon)
 
     Fork of Joseph Rabinoff's ipe2tikz ipelet
 
@@ -24,18 +24,20 @@
 
 --]]
 
-
 label = ">>> Export TikZ code"
 
 methods = {
     { label="Export selection to clipboard", run=run},
     { label="Copy preamble to clipboard",    run=run},
-    { label="Load beamer layout",            run=run},
+    { label="Process nodes and export selection",   run=run},
+    { label="Load 1080 layout",              run=run},
+    { label="Load normal layout",            run=run},
 } 
 
 about = "Export TikZ code"
 
 shortcuts.ipelet_1_ipetikzmod = "Ctrl+Shift+T"
+shortcuts.ipelet_3_ipetikzmod = "Ctrl+Shift+Y"
 
 prefs.initial.grid_size = 4
 prefs.initial_attributes.horizontalalignment = "hcenter"
@@ -80,6 +82,10 @@ draw_indent = ""
 
 indent_amt = "    "
 
+node_counter = 0
+
+append_node_id = 1
+
 --------------------------------------------------------------------------------
 
 the_preamble = [[\usepackage[dvipsnames]{xcolor}
@@ -88,7 +94,8 @@ the_preamble = [[\usepackage[dvipsnames]{xcolor}
 \tikzset{baseline={([yshift=-.5ex]current bounding box.center)}}
 \tikzset{every path/.style={ line width=0.5pt, line cap=round }}
 \colorlet{Virtual}{RedOrange}
-\tikzstyle{bevel} = [ preaction = { draw, white, line width=3pt,  line cap = round } ]
+\tikzstyle{bevel} = [ preaction = { draw, white, line width=2pt,  line cap = round } ]
+\tikzstyle{bevel wide} = [ preaction = { draw, white, line width=4pt,  line cap = round } ]
 \tikzstyle{symb} = [ draw=black, fill=black, line width=0.4pt, inner sep=1.5pt ]
 \tikzstyle{symb large} = [ inner sep=2.1pt ]
 \tikzstyle{symb small} = [ inner sep=1pt   ]
@@ -151,54 +158,6 @@ function copy_to_clipboard(text)
     end
     
 end
-
---------------------------------------------------------------------------------
-
-function genNodeId(num)
-
-    local str = ""
-    
-    -- Generate the three characters
-    for j = 1, 3 do
-        local char = string.char((num % 26) + 65)  -- 65 is the ASCII value for 'A'
-        str = char .. str
-        num = math.floor(num / 26)
-    end
-    
-    return "n" .. str
-
-end
-
-local function processNodeIdsAndCoords(content)
-    -- Tabla para almacenar los nodos
-    local nodes = {}
-
-    -- Buscar nodos y almacenar id y coordenadas
-    for id, x, y in content:gmatch("\\node%s*%[.-%]%s*%((.-)%)%s*at%s*%(([%d%.%-]+),%s*([%d%.%-]+)%)") do
-        nodes[#nodes + 1] = {id = id, x = x, y = y}
-    end
-
-    -- Función para reemplazar coordenadas en un comando
-    local function replaceCoordinates(command)
-        return command:gsub("%(([%d%.%-]+),%s*([%d%.%-]+)%)",
-            function(z, w)
-                for _, node in ipairs(nodes) do
-                    if tonumber(node.x) == tonumber(z) and tonumber(node.y) == tonumber(w) then
-                        return "(" .. node.id .. ")"
-                    end
-                end
-                return "(" .. z .. "," .. w .. ")"
-            end
-        )
-    end
-
-    -- Reemplazar coordenadas en \draw
-    local processedContent = content:gsub("\\draw%s*(.-);", replaceCoordinates)
-
-    return processedContent
-end
-
-
 
 --------------------------------------------------------------------------------
 -- Utility
@@ -781,13 +740,13 @@ function export_mark(model, obj, matrix)
         end
         
         -- Let us add the position and the final things
-        --if append_node_id then
-        --    write(" (" .. genNodeId(node_counter) .. ") at " .. svec(pos) .. " {};" .. elemNewLine)
-        --else
-        write(" at " .. svec(pos) .. " {};" .. elemNewLine)
-        --end
+        if append_node_id then
+            write(" (" .. string.format("myNode%04d", node_counter) .. ") at " .. svec(pos) .. " {};" .. elemNewLine)
+        else
+            write(" at " .. svec(pos) .. " {};" .. elemNewLine)
+        end
 
-        --node_counter = node_counter + 1
+        node_counter = node_counter + 1
     
     end
 end
@@ -1545,34 +1504,6 @@ params_text = {
 
 params = {}
 
-function rearrange_tikz_nodes(tikz_code)
-
-    local nodes = {}
-
-    local other_contents = tikz_code:gsub("\\node(.-);%s*", function(node) 
-        table.insert(nodes, indent_amt .. "\\node" .. node .. ";")
-        return ""
-    end)
-
-    local insert_pos = other_contents:find("\\end{tikzpicture}")
-    if not insert_pos then
-        ipeui.messageBox(model.ui:win(), "warning", "TikZ export error", "Cannot find end of tikzpicture", "ok")
-        --print("Error: Cannot find \\end{tikzpicture}.")
-        return tikz_code
-    end
-
-    local before_end = other_contents:sub(1, insert_pos - 1)
-    local after_end = other_contents:sub(insert_pos)
-    local node_text = table.concat(nodes, "\n")
-    if #node_text > 0 then
-        node_text = indent_amt .. "%%%%%%%%%%%%%\n" .. node_text .. "\n"
-    end
-
-    before_end = before_end:gsub("\n%s*\n", "\n")
-
-    return before_end .. node_text .. after_end
-    
-end
 
 function mainWindow(model)
    if model.ui.win == nil then
@@ -1653,10 +1584,14 @@ function run(model, num)
     
     local do_fast = (num == 1)
     local do_preamble = (num == 2)
-    local do_beamer = (num == 3)
+    local do_nodes = (num == 3)
+    local do_beamer = (num == 4)
+    local do_nobeamer = (num == 5)
 
-    --node_counter = 0
-	
+    node_counter = 0;
+
+    append_node_id = do_nodes;
+
     if do_preamble then
         copy_to_clipboard(the_preamble)
         return
@@ -1664,6 +1599,11 @@ function run(model, num)
 	
     if do_beamer then
         load_stylesheet(model, "ipetikzmodbeamer", beamer_sheet_xml)
+        return
+    end
+	
+    if do_nobeamer then
+        remove_stylesheet(model, "ipetikzmodbeamer", beamer_sheet_xml)
         return
     end
 	
