@@ -24,29 +24,37 @@
 
 --]]
 
-label = ">>> Export TikZ code"
+label = "Export TikZ code"
 
 methods = {
-    { label="Export selection to clipboard", run=run},
-    { label="Copy preamble to clipboard",    run=run},
-    { label="Process nodes and export selection",   run=run},
-    { label="Load 1080 layout",              run=run},
-    { label="Load normal layout",            run=run},
+    { label="Export selection to clipboard", run=run },
+    { label="Copy preamble to clipboard", run=run },
+    { label="Process nodes and export selection (testing)", run=run },
+    { label="Load 1080/beamer layout", run=run },
+    { label="Load normal layout", run=run },
 } 
 
-about = "Export TikZ code"
+about = "TikZ export"
 
 shortcuts.ipelet_1_ipetikzmod = "Ctrl+Shift+T"
 shortcuts.ipelet_3_ipetikzmod = "Ctrl+Shift+Y"
 
-prefs.initial.grid_size = 4
+-- this adjusts the grid size to 4pt by default
+
+prefs.initial.grid_size = 7
+
+-- this adjusts text-boxes origin to both its horizontal and vertical center
+
 prefs.initial_attributes.horizontalalignment = "hcenter"
 prefs.initial_attributes.verticalalignment = "vcenter"
 
+-- this loads the ipetikzmod style
 
 prefs.styles = { "ipetikzmod" }
 
 prefs.auto_export_resolution = 400
+
+-- this adjusts to default no spell checks
 
 prefs.spell_check = false
 
@@ -62,8 +70,8 @@ beamer_sheet_xml =  [[<?xml version="1.0"?>
 
 --------------------------------------------------------------------------------
 
-rescale_factor = 0.0352778 -- conversion 1 pt to 0.352mm
 
+-- precision digits for coordinates
 rounding_precision = 3
 
 global_prefix = ""
@@ -82,9 +90,23 @@ draw_indent = ""
 
 indent_amt = "    "
 
-node_counter = 0
+add_scale1_to_env = true
 
-append_node_id = 1
+-- conversion 1 pt to 0.352mm
+rescale_factor = 0.0352778
+
+--------------------------------------------------------------------------------
+
+-- node identifier prefix
+node_id_name = "no"
+
+-- internal global constant, counts nodes
+node_counter = 0 
+
+-- internal global constant, decides wether export node ids
+append_node_id = false -- this value does not matter
+
+node_list = { }
 
 --------------------------------------------------------------------------------
 
@@ -99,7 +121,6 @@ the_preamble = [[\usepackage[dvipsnames]{xcolor}
 \tikzstyle{symb} = [ draw=black, fill=black, line width=0.4pt, inner sep=1.5pt ]
 \tikzstyle{symb large} = [ inner sep=2.1pt ]
 \tikzstyle{symb small} = [ inner sep=1pt   ]
-\tikzstyle{symb medium} = [ inner sep=1.3pt ]
 \tikzstyle{symb tiny} = [ inner sep=0.8pt ]
 \tikzstyle{symb fdisk} = [ circle ]
 \tikzstyle{symb disk} = [ circle ]
@@ -157,6 +178,15 @@ function copy_to_clipboard(text)
         ipeui.messageBox(model.ui:win(), "warning", "TikZ export error", "Cannot access clipboard", "ok")
     end
     
+end
+
+function replace_coordinates_with_nodes(str_rep)
+    for k = 1, node_counter do
+        local coord = node_list[k]
+        local replacement = node_id_name .. k-1
+        str_rep = str_rep:gsub(coord, replacement)
+    end
+    return str_rep
 end
 
 --------------------------------------------------------------------------------
@@ -741,12 +771,13 @@ function export_mark(model, obj, matrix)
         
         -- Let us add the position and the final things
         if append_node_id then
-            write(" (" .. string.format("myNode%04d", node_counter) .. ") at " .. svec(pos) .. " {};" .. elemNewLine)
+            --write(" (" .. node_id_name .. string.format("%04d", node_counter) .. ") at " .. svec(pos) .. " {};" .. elemNewLine)
+            write(" (" .. node_id_name .. node_counter .. ") at " .. svec(pos) .. " {};" .. elemNewLine)
+	    table.insert(node_list, svec(pos))
+            node_counter = node_counter + 1
         else
             write(" at " .. svec(pos) .. " {};" .. elemNewLine)
         end
-
-        node_counter = node_counter + 1
     
     end
 end
@@ -967,7 +998,16 @@ function export_text(model, obj, matrix)
    if #options > 0 then
       write("[" .. table.concat(options, ", ") .. "]")
    end
-   write(" at " .. svec(pos, 3) .. " ")
+   --write(" at " .. svec(pos, 3) .. " ")
+        
+   -- Let us add the position and the final things
+   if append_node_id then
+      write(" (" .. node_id_name .. node_counter .. ") at " .. svec(pos, 3) .. " ")
+      table.insert(node_list, svec(pos, 3))
+      node_counter = node_counter + 1;
+   else
+      write(" at " .. svec(pos, 3) .. " ")
+   end
 
    if minipage then
       -- Add minipage environment, and indent everything.  The indentation looks
@@ -984,7 +1024,7 @@ function export_text(model, obj, matrix)
                   .. setsize .. "\\kern0pt\n")
       else
          write(indent .. "\\begin{minipage}{"
-                  .. sround(obj:get("width")) .. "bp}"
+                  .. sround(obj:get("width")) .. "cm}"
                   .. setsize .. "\\kern0pt\n")
       end
       string.gsub(text .. "\n", "([^\n]*)\n",
@@ -1434,7 +1474,11 @@ function export_path(shape, mode, matrix, obj)
             write("[" .. table.concat(options, ", ") .. "]")
         end
         
-        write(" " .. path_str .. ";" .. elemNewLine)
+        if append_node_id then
+	    write(" " .. replace_coordinates_with_nodes(path_str) .. ";" .. elemNewLine)
+	else
+            write(" " .. path_str .. ";" .. elemNewLine)
+	end
     
     end
     
@@ -1588,7 +1632,8 @@ function run(model, num)
     local do_beamer = (num == 4)
     local do_nobeamer = (num == 5)
 
-    node_counter = 0;
+    node_counter = 0
+    node_list = { }
 
     append_node_id = do_nodes;
 
@@ -1628,7 +1673,7 @@ function run(model, num)
     if params.scopeonly then envname = "scope" end
     write("\\begin{" .. envname .. "}")
     local options = {}
-    table.insert(options, "scale=1")
+    if add_scale1_to_env then table.insert(options, "scale=1") end
     write("[" .. table.concat(options, ", ") .. "]\n")
     indent = indent_amt
 
@@ -1637,18 +1682,54 @@ function run(model, num)
     local box = bounding_box(model)
     local origin = box:bottomLeft()
 
-    for i, obj, sel, layer in page:objects() do
-        -- Only export objects that appear in the current view
-        if page:visible(model.vno, i) then
-            -- Only export selected objects
-            if sel then
-                export_object(model, obj, origin)
-            end
-        end
-    end
-    
-    write("\\end{" .. envname .. "}")
+    if do_nodes then
 
-    copy_to_clipboard(text_contents)
+    	for i, obj, sel, layer in page:objects() do
+    	    -- Only export objects that appear in the current view
+    	    if page:visible(model.vno, i) then
+    	        -- Only export selected objects
+    	        if sel and (obj:type() == "reference" or obj:type() == "text") then
+    	            export_object(model, obj, origin)
+    	        end
+    	    end
+    	end
+
+    	for i, obj, sel, layer in page:objects() do
+    	    -- Only export objects that appear in the current view
+    	    if page:visible(model.vno, i) then
+    	        -- Only export selected objects
+    	        if sel and (obj:type() ~= "reference" and obj:type() ~= "text") then
+    	        	export_object(model, obj, origin)
+    	        end
+    	    end
+    	end
+
+    	write("\\end{" .. envname .. "}")
+
+	copy_to_clipboard(text_contents)
+    
+    elseif do_fast then
+
+    	for i, obj, sel, layer in page:objects() do
+
+    	    -- Only export objects that appear in the current view
+
+    	    if page:visible(model.vno, i) then
+
+    	        -- Only export selected objects
+
+    	        if sel then
+    	        	export_object(model, obj, origin)
+    	        end
+
+    	    end
+
+    	end
+
+    	write("\\end{" .. envname .. "}")
+
+	copy_to_clipboard(text_contents)
+
+    end
 
 end
