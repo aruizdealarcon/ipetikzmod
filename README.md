@@ -49,7 +49,7 @@ There is no need to handle files nor other elements (compared to the original pl
 
 This plugin simply exports clean and formatted TikZ code, directly to the clipboard.
 
-## If you need to modify the TikZ code, you can do so: the code remains clean and readable.
+### If you need to modify the TikZ code, you can do so: the code remains clean and readable.
 
 ### The preamble needed in LaTeX is extremely small and is obtained with just two clicks.
 
