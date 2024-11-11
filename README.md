@@ -9,7 +9,7 @@ First, design the figures you want to export using the IPE editor:
 <img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/intro1.jpg?raw=true" width="500"/>
 </p>
 
-Second, press Ctrl+Shift+T (or Cmd+Shift+T) and automatically get the corresponding TikZ code on your clipboard.
+Second, select the graphics you want to export and press Ctrl+Shift+T (or Cmd+Shift+T) and automatically get the corresponding TikZ code on your clipboard.
 <p align="center">
 <img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/intro2.jpg?raw=true" width="500"/>
 </p>
