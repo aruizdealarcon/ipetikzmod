@@ -1,4 +1,4 @@
-# The plug-in
+# The ipetikzmod plugin
 
 This is a plugin for the <a href="https://ipe.otfried.org/">IPE editor</a> that exports clean TikZ code from a selection of graphics.
 
@@ -6,12 +6,18 @@ This project is a fork of Joseph Rabinoff's <a href="https://github.com/QBobWats
 
 First, design the figures you want to export using the IPE editor:
 <p align="center">
-<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/example_00.jpg?raw=true" width="500"/>
+<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/intro1.jpg?raw=true" width="500"/>
 </p>
 
 Second, press Ctrl+Shift+T (or Cmd+Shift+T) and automatically get the corresponding TikZ code on your clipboard.
+<p align="center">
+<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/intro2.jpg?raw=true" width="500"/>
+</p>
 
-Third, paste it into your LaTeX code and compile it.
+Third, paste it into your LaTeX code and compile it:
+<p align="center">
+<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/intro3.jpg?raw=true" width="500"/>
+</p>
 
 For the first time, you need to include a small preamble (between \documentclass{...} and \begin{document} in your LaTeX project). In order to obtain it, simply click on the Ipelet tab > TikZ export code > Copy preamble into clipboard.
 
