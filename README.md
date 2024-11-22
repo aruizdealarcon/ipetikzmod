@@ -78,6 +78,10 @@ and **copy the file _ipetikzmod.isy_** into
 
 **Close all instances of IPE** (in OSX use Cmd+Q on it) **and run it again**.
 
+**P.S.:** If the IPE editor fails to find MacTeX, a possible solution is to create the file ~/.ipe/ipe.conf with the content
+
+    IPELATEXPATH=/usr/local/texlive/2024/bin/universal-darwin
+
 ## How to install in Windows
 
 Download tikzmod.lua from this repository.
