@@ -19,7 +19,7 @@ Third, paste it into your LaTeX code and compile it:
 <img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/intro3.jpg?raw=true" width="800"/>
 </p>
 
-For the first time, you need to include a small preamble (between \documentclass{...} and \begin{document} in your LaTeX project). In order to obtain it, simply click on the Ipelet tab > TikZ export code > Copy preamble into clipboard.
+For the first time, you need to include a small preamble, between _\documentclass{...}_ and _\begin{document}_. In order to obtain it, simply click on the _Ipelet tab_ > _TikZ export code_ > _Copy preamble into clipboard_.
 
 ## Why using it?
 
