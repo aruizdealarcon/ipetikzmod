@@ -6,17 +6,17 @@ This project is a fork of Joseph Rabinoff's <a href="https://github.com/QBobWats
 
 First, design the figures you want to export using the IPE editor:
 <p align="center">
-<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/intro1.jpg?raw=true" width="500"/>
+<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/intro1.jpg?raw=true" width="800"/>
 </p>
 
 Second, select the graphics you want to export and press Ctrl+Shift+T (or Cmd+Shift+T) and automatically get the corresponding TikZ code on your clipboard.
 <p align="center">
-<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/intro2.jpg?raw=true" width="500"/>
+<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/intro2.jpg?raw=true" width="800"/>
 </p>
 
 Third, paste it into your LaTeX code and compile it:
 <p align="center">
-<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/intro3.jpg?raw=true" width="500"/>
+<img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/intro3.jpg?raw=true" width="800"/>
 </p>
 
 For the first time, you need to include a small preamble (between \documentclass{...} and \begin{document} in your LaTeX project). In order to obtain it, simply click on the Ipelet tab > TikZ export code > Copy preamble into clipboard.
@@ -26,29 +26,28 @@ For the first time, you need to include a small preamble (between \documentclass
 Some advantages on using IPE together with this plug-in are the following:
 
 
-### There is no need to know TikZ and no need to calculate coordinates, distances or angles.
+**There is no need to know TikZ and no need to calculate coordinates, distances or angles.**
 
 If you need to create many graphics, this plug-in can save you a significant amount of time and effort.
 
 
-### It is easier to maintain than code.
+**It is easier to maintain than code.**
 
 If you are not working on a project continuously, you might forget how you created a particular figure and need to go through the code.
-
 With this plugin, you can simply open your project in the IPE editor and continue editing it.
 
 
-### Writing TikZ code for curves can be challenging.
+**Writing TikZ code for curves can be challenging.**
 
 However, within the IPE editor, you can manage control nodes and draw the curves as you want.
 
-### The code is easily imported into your LaTeX project, directly from the clipboard.
+**The code is easily imported into your LaTeX project, directly from the clipboard.**
 
-### If you need to modify the TikZ code, you can do so: the code remains clean and readable.
+**If you need to modify the TikZ code, you can do so: the code remains clean and readable.**
 
-### The preamble needed in LaTeX is extremely small and is obtained with just two clicks.
+**The preamble needed in LaTeX is extremely small and is obtained with just two clicks.**
 
-This plug-in makes the IPE editor to load already adapted to TikZ's defaults, unlike the default stylesheet.
+**This plug-in makes the IPE editor to load already adapted to TikZ's defaults, unlike the default stylesheet.**
 
 Additionally, all color definitions match those in the _xcolor_ package.
 
