@@ -26,32 +26,30 @@ For the first time, you need to include a small preamble, between _\documentclas
 Some advantages on using IPE together with this plug-in are the following:
 
 
-**There is no need to know TikZ and no need to calculate coordinates, distances or angles.**
+**(1) There is no need to know TikZ and no need to calculate coordinates, distances or angles.**
 
 If you need to create many graphics, this plug-in can save you a significant amount of time and effort.
 
 
-**It is easier to maintain than code.**
+**(2) It is easier to maintain than code.**
 
 If you are not working on a project continuously, you might forget how you created a particular figure and need to go through the code.
 With this plugin, you can simply open your project in the IPE editor and continue editing it.
 
-
-**Writing TikZ code for curves can be challenging.**
+**(3) Writing TikZ code for curves can be challenging.**
 
 However, within the IPE editor, you can manage control nodes and draw the curves as you want.
 
-**The code is easily imported into your LaTeX project, directly from the clipboard.**
-
-**If you need to modify the TikZ code, you can do so: the code remains clean and readable.**
-
-**The preamble needed in LaTeX is extremely small and is obtained with just two clicks.**
-
-**This plug-in makes the IPE editor to load already adapted to TikZ's defaults, unlike the default stylesheet.**
+**(4) This plug-in makes the IPE editor to load already adapted to TikZ's defaults, unlike the default stylesheet.**
 
 Additionally, all color definitions match those in the _xcolor_ package.
 
 Other parameters, such as line thickness, arrow styles and many more adapt to the _tikz_ package predefined ones.
+
+**(5) The preamble needed in LaTeX is extremely small and is obtained with just two clicks.**
+
+**(6) The code is easily imported into your LaTeX project, directly from the clipboard.**
+
 
 # Installation
 
