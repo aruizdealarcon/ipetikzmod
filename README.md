@@ -128,13 +128,11 @@ The following is the corresponding example of piece of code and compiled output.
 
 ## A few useful rules and features
 
-### Feature #1. Create new colors
-
-In some occasions, we will want to change the names of the colors for others.
+### Feature #1. New colors
 
 By default, the colors found with these addons are the ones defined by the package _xcolor_ with the option _dvipsnames_.
 
-I chose ... among the following, but you can include more if you want or even define new ones.
+We have chosen the following colors, replacing and extending the original ones from the IPE editor:
 
 <p align="center">
 <img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/paleta.png?raw=true" height="300"/>
@@ -146,7 +144,7 @@ On other occasions, especially with complex drawings, it is common to help yours
 
 However, many times we do not want to get rid of those guide lines in case we need to fix a drawing in the future.
 
-Therefore, we have included a color named _DoNotExport_. No figures with this color will appear in the exported TikZ code.
+Therefore, we have included a color named _DoNotExport_. No figures with this color will appear in the exported TikZ code, even if they are selected.
 
 For example, in the following setting, the diagonal lines are set up with the DoNotExport color, and therefore will not appear in the final TikZ code:
 
