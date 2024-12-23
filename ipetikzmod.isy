@@ -37,6 +37,7 @@
 <dashstyle name="bevel" value="[1 0.25] 0"/>
 
 <pen name="normal" value="0.5"/>
+<pen name="thin" value="0.35"/>
 <pen name="ultra thin" value="0.1"/>
 <pen name="very thin" value="0.2"/>
 <pen name="thick" value="0.8"/>
