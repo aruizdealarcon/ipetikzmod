@@ -30,7 +30,8 @@ methods = {
     { label="Export selection to clipboard", run=run },
     { label="Copy preamble to clipboard", run=run },
     { label="Process nodes and export selection (testing)", run=run },
-    { label="Load 1080/beamer layout", run=run },
+    { label="Load 1080 layout", run=run },
+    { label="Load Beamer layout", run=run },
     { label="Load normal layout", run=run },
 } 
 
@@ -41,7 +42,7 @@ shortcuts.ipelet_3_ipetikzmod = "Ctrl+Shift+Y"
 
 -- this adjusts the grid size to 4pt by default
 
-prefs.initial.grid_size = 7
+prefs.initial.grid_size = 4
 
 -- this adjusts text-boxes origin to both its horizontal and vertical center
 
@@ -65,6 +66,16 @@ beamer_sheet_xml =  [[<?xml version="1.0"?>
 \usepackage{mlmodern}
 </preamble>
 <layout paper="454 255" origin="0 0" frame="454 255" skip="0" crop="no"/>
+</ipestyle>
+]]
+
+beamerb_sheet_xml =  [[<?xml version="1.0"?>
+<!DOCTYPE ipestyle SYSTEM "ipe.dtd">
+<ipestyle name="ipetikzmodbeamerb">
+<preamble>
+\usepackage{mlmodern}
+</preamble>
+<layout paper="454 255" origin="42 24" frame="368 176" skip="0" crop="no"/>
 </ipestyle>
 ]]
 
@@ -126,10 +137,29 @@ the_preamble = [[\usepackage[dvipsnames]{xcolor}
 \tikzstyle{symb disk} = [ circle ]
 \tikzstyle{symb square} = [ rectangle ]
 \tikzstyle{symb fsquare} = [ rectangle ]
-\tikzstyle{symb star8} = [ star, star points=8, star point height=0.25mm, draw=black, line width=0.4pt, inner sep=1.1pt ]
-\tikzstyle{symb fstar8} = [ star, star points=8, star point height=0.25mm, draw=black, line width=0.4pt, inner sep=1.1pt ]
 \tikzstyle{-mid} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[width=3pt]} }, postaction={decorate} ]
 \tikzstyle{mid-} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.6*3pt with \arrow{<[width=3pt]} }, postaction={decorate} ]
+\tikzstyle{disk}         = [ draw=black, fill=black, line width=0.4pt, inner sep=1.45pt ]
+\tikzstyle{disk large}   = [ draw=black, fill=black, line width=0.4pt, inner sep=1.75pt ]
+\tikzstyle{disk small}   = [ draw=black, fill=black, line width=0.4pt, inner sep=1pt ]
+\tikzstyle{disk tiny}    = [ draw=black, fill=black, line width=0.4pt, inner sep=1.45pt ]
+\tikzstyle{fdisk}        = [ draw=black,             line width=0.4pt, inner sep=1.45pt ]
+\tikzstyle{fdisk large}  = [ draw=black,             line width=0.4pt, inner sep=1.75pt ]
+\tikzstyle{fdisk small}  = [ draw=black,             line width=0.4pt, inner sep=1pt ]
+\tikzstyle{fdisk tiny}   = [ draw=black,             line width=0.4pt, inner sep=1.45pt ]
+\tikzstyle{star8}        = [ draw=black, star, star points=8, star point height=0.25mm,
+                                         fill=black, line width=0.4pt, inner sep=1.1pt ]
+\tikzstyle{star8 small}  = [ draw=black, star, star points=8, star point height=0.2mm,
+                                         fill=black, line width=0.3pt, inner sep=0.8pt ]
+\tikzstyle{star8 large}  = [ draw=black, star, star points=8, star point height=0.25mm,
+                                         fill=black, line width=0.4pt, inner sep=1.45pt ]
+\tikzstyle{fstar8}       = [ draw=black, star, star points=8, star point height=0.25mm,
+                                                     line width=0.4pt, inner sep=1.1pt ]
+\tikzstyle{fstar8 small} = [ draw=black, star, star points=8, star point height=0.25mm,
+                                                     line width=0.4pt, inner sep=1.45pt ]
+\tikzstyle{fstar8 large} = [ draw=black, star, star points=8, star point height=0.25mm,
+                                                     line width=0.4pt, inner sep=1.45pt ]
+
 ]]
 --------------------------------------------------------------------------------
 
@@ -721,7 +751,8 @@ function export_mark(model, obj, matrix)
 
     -- We are dealing with a \node for a mark, so let us add a predefined style called
     -- with the global value 'node_style_name'
-    local options = { global_prefix .. node_style_name }
+    -- ------- local options = { global_prefix .. node_style_name }
+    local options = { }
     
     -- The "transformations" attribute has no effect on marks other than
     -- translation
@@ -734,11 +765,9 @@ function export_mark(model, obj, matrix)
     drawing = (string.find(actions, "s") ~= nil)
     filling = (string.find(actions, "f") ~= nil)
 
-    -- we add now the specific style of the \node, e.g. tensorName_disk or tensorName_fdisk or tensorName_cross
-    number_option(markshape, "", options, global_prefix .. node_style_name .. delimiter_symbol)
-    
-    -- we add now the specific size of the \node, e.g. tensorName_large or tensorName_tiny
-    number_option(obj:get("symbolsize"), "", options, global_prefix .. node_style_name .. delimiter_symbol)
+    -- we add now the specific style and size of the \node
+    table.insert(options, markshape .. " " .. obj:get("symbolsize"))
+    -- number_option(node_style_name, "", options, " " .. markshape .. obj:get("symbolsize") .. delimiter_symbol)
     
     -- draw and fill
     if drawing then
@@ -844,6 +873,15 @@ end
 -- Relevant attributes: stroke, textsize, opacity, textstyle, minipage, width,
 --   horizontalalignment, verticalalignment
 function export_text(model, obj, matrix)
+
+   -- Make sure not to write an element that has the forbidden drawing color
+   strcol = obj:get("stroke")
+   for _, color in ipairs(forbidden_colors) do
+       if color == obj:get("stroke") then
+           return
+       end
+   end
+
    local sheets = model.doc:sheets()
    local text = obj:text()
    local minipage = obj:get("minipage")
@@ -884,8 +922,6 @@ function export_text(model, obj, matrix)
    end
 
    local options = {}
-
-   -- table.insert(options, "ipe node")
 
    -- Handle coordinate transformations
    local pos = matrix*obj:position()
@@ -988,12 +1024,14 @@ function export_text(model, obj, matrix)
       color_option(obj:get("stroke"), "text", options)
    end
 
+
+
    -- opacity is always a symbolic name in ipe
    local opacity = obj:get("opacity")
    local prepend = nil
    opacity = string.gsub(opacity, "%%", "") -- strip %
    if opacity ~= "opaque" then
-      string_option(opacity, nil, options, prepend)
+      string_option(sroundang(opacity/100), "opacity", options, prepend)
    end
 
    write(indent .. "\\node")
@@ -1559,6 +1597,25 @@ function mainWindow(model)
    end
 end
 
+function is_beamer_restr_loaded(model)
+
+    local cascade = model.doc:sheets()
+
+    -- Find the index of the "basic" sheet
+    local found = false
+
+    for i = 1, cascade:count() do
+        local sheetith = cascade:sheet(i)
+        if sheetith:name() == "ipetikzmodbeamerb" then
+            found = true
+            break
+        end
+    end
+
+    return found;
+
+end
+
 function remove_stylesheet(model, ssname)
 
     local cascade = model.doc:sheets()
@@ -1632,7 +1689,8 @@ function run(model, num)
     local do_preamble = (num == 2)
     local do_nodes = (num == 3)
     local do_beamer = (num == 4)
-    local do_nobeamer = (num == 5)
+    local do_restrbeamer = (num == 5)
+    local do_nobeamer = (num == 6)
 
     node_counter = 0
     node_list = { }
@@ -1645,12 +1703,20 @@ function run(model, num)
     end
 	
     if do_beamer then
+        remove_stylesheet(model, "ipetikzmodbeamerb", beamerb_sheet_xml)
         load_stylesheet(model, "ipetikzmodbeamer", beamer_sheet_xml)
         return
     end
 	
     if do_nobeamer then
         remove_stylesheet(model, "ipetikzmodbeamer", beamer_sheet_xml)
+        remove_stylesheet(model, "ipetikzmodbeamerb", beamerb_sheet_xml)
+        return
+    end
+	
+    if do_restrbeamer then
+        remove_stylesheet(model, "ipetikzmodbeamer", beamer_sheet_xml)
+        load_stylesheet(model, "ipetikzmodbeamerb", beamerb_sheet_xml)
         return
     end
 	
@@ -1683,6 +1749,12 @@ function run(model, num)
     
     local box = bounding_box(model)
     local origin = box:bottomLeft()
+
+    if is_beamer_restr_loaded(model) then
+    	write("    \\draw[draw=none] (0, 0) -- (12.982, 0);\n")
+	origin = ipe.Vector(0, 176)
+    end
+
 
     if do_nodes then
 
