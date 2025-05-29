@@ -126,6 +126,8 @@ the_preamble = [[\usepackage[dvipsnames]{xcolor}
 \tikzstyle{symb disk} = [ circle ]
 \tikzstyle{symb square} = [ rectangle ]
 \tikzstyle{symb fsquare} = [ rectangle ]
+\tikzstyle{symb star8} = [ star, star points=8, star point height=0.25mm, draw=black, line width=0.4pt, inner sep=1.1pt ]
+\tikzstyle{symb fstar8} = [ star, star points=8, star point height=0.25mm, draw=black, line width=0.4pt, inner sep=1.1pt ]
 \tikzstyle{-mid} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.6*3pt with \arrow{>[width=3pt]} }, postaction={decorate} ]
 \tikzstyle{mid-} = [ decoration={ markings, mark = at position 0.50*\pgfdecoratedpathlength+0.6*3pt with \arrow{<[width=3pt]} }, postaction={decorate} ]
 ]]
