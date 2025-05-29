@@ -3,7 +3,7 @@
 ----------------------------------------------------------------------
 --[[
 
-    Copyright (C) 2024 Alberto Ruiz-de-Alarcon (github.com/aruizdealarcon)
+    Copyright (C) 2025 Alberto Ruiz-de-Alarcon (github.com/aruizdealarcon)
 
     Fork of Joseph Rabinoff's ipe2tikz ipelet
 
