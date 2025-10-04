@@ -2,6 +2,7 @@
 
 
 This plug-in for the <a href="https://ipe.otfried.org/">IPE editor</a> allows you to export **clean, well-structured TikZ code** directly from selected graphics.
+
 Derived from <a href="https://github.com/QBobWatson/ipe2tikz">ipe2tikz</a>, it introduces improvements that make the generation and editing of LaTeX-compatible figures more efficient.
 
 **First**, design your figure in the IPE editor:
@@ -10,6 +11,7 @@ Derived from <a href="https://github.com/QBobWatson/ipe2tikz">ipe2tikz</a>, it i
 </p>
 
 **Second**, select the elements you wish to export and press `Ctrl+Shift+T` (or `Cmd+Shift+T` on macOS).
+
 The corresponding TikZ code is automatically copied to your clipboard.
 <p align="center">
 <img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/intro2.jpg?raw=true" width="800"/>
