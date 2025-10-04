@@ -23,7 +23,7 @@ The corresponding TikZ code is automatically copied to your clipboard.
 
 When using the plug-in for the first time, include a short TikZ preamble in your LaTeX document.
 
-To obtain it automatically, open the tab _Ipelets_ → _Export TikZ code_ → _Copy preamble into clipboard_.
+To obtain it automatically, open the tab `Ipelets` → `Export TikZ code` → `Copy preamble into clipboard`.
 
 Then paste it into your LaTeX file between `\documentclass{...}` and `\begin{document}`.
 
