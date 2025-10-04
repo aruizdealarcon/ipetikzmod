@@ -2,7 +2,6 @@
 
 
 This plug-in for the <a href="https://ipe.otfried.org/">IPE editor</a> allows you to export **clean, well-structured TikZ code** directly from selected graphics.
-
 Derived from <a href="https://github.com/QBobWatson/ipe2tikz">ipe2tikz</a>, it introduces improvements that make the generation and editing of LaTeX-compatible figures more efficient.
 
 **First**, design your figure in the IPE editor:
