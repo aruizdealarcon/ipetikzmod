@@ -1,91 +1,101 @@
 # The ipetikzmod plugin
 
-This is a plugin for the <a href="https://ipe.otfried.org/">IPE editor</a> that exports clean TikZ code from a selection of graphics.
 
-This project is a fork of Joseph Rabinoff's <a href="https://github.com/QBobWatson/ipe2tikz">ipe2tikz</a>.
+This plug-in for the <a href="https://ipe.otfried.org/">IPE editor</a> allows you to export **clean, well-structured TikZ code** directly from selected graphics.
+Derived from <a href="https://github.com/QBobWatson/ipe2tikz">ipe2tikz</a>, it introduces improvements that make the generation and editing of LaTeX-compatible figures more efficient.
 
-First, design the figures you want to export using the IPE editor:
+**First**, design your figure in the IPE editor:
 <p align="center">
 <img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/intro1.jpg?raw=true" width="800"/>
 </p>
 
-Second, select the graphics you want to export and press Ctrl+Shift+T (or Cmd+Shift+T) and automatically get the corresponding TikZ code on your clipboard.
+**Second**, select the elements you wish to export and press `Ctrl+Shift+T` (or `Cmd+Shift+T` on macOS).
+The corresponding TikZ code is automatically copied to your clipboard.
 <p align="center">
 <img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/intro2.jpg?raw=true" width="800"/>
 </p>
 
-Third, paste it into your LaTeX code and compile it:
+**Third**, paste the copied TikZ code directly into your LaTeX document and compile it.
 <p align="center">
 <img src="https://github.com/aruizdealarcon/ipetikzmod/blob/main/readme_files/intro3.jpg?raw=true" width="800"/>
 </p>
 
-For the first time, you need to include a small preamble, between _\documentclass{...}_ and _\begin{document}_. In order to obtain it, simply click on the _Ipelet tab_ > _TikZ export code_ > _Copy preamble into clipboard_.
+When using the plug-in for the first time, include a short TikZ preamble in your LaTeX document.
+
+To obtain it automatically, open the tab _Ipelets_ → _Export TikZ code_ → _Copy preamble into clipboard_.
+
+Then paste it into your LaTeX file between `\documentclass{...}` and `\begin{document}`.
 
 ## Why using it?
 
 Some advantages on using IPE together with this plug-in are the following:
 
+**No need to learn TikZ or compute coordinates manually.**
+The plug-in eliminates the need to calculate coordinates, distances, or angles. If you produce a large number of graphics, it can save a considerable amount of time and effort.
 
-**(1) There is no need to know TikZ and no need to calculate coordinates, distances or angles.**
+**Improved maintainability compared to code.**
+When returning to a project after some time, it is often difficult to recall how a specific figure was generated. With this plug-in, you can simply reopen the figure in IPE and continue editing it directly, without inspecting or rewriting code.
 
-If you need to create many graphics, this plug-in can save you a significant amount of time and effort.
+**Simplified creation of curves.**
+Writing TikZ code for curves can be tedious. In IPE, you can easily manipulate control nodes to draw curves with the desired shape.
 
+**Automatic adaptation to TikZ defaults.**
+The plug-in configures IPE to use parameters consistent with TikZ’s default settings. Color definitions match those of the xcolor package, and other parameters—such as line thickness and arrow styles—follow TikZ conventions.
 
-**(2) It is easier to maintain than code.**
+**Compact LaTeX preamble.**
+The necessary LaTeX preamble is minimal and can be generated automatically with just two clicks.
 
-If you are not working on a project continuously, you might forget how you created a particular figure and need to go through the code.
-With this plugin, you can simply open your project in the IPE editor and continue editing it.
-
-**(3) Writing TikZ code for curves can be challenging.**
-
-However, within the IPE editor, you can manage control nodes and draw the curves as you want.
-
-**(4) This plug-in makes the IPE editor to load already adapted to TikZ's defaults, unlike the default stylesheet.**
-
-Additionally, all color definitions match those in the _xcolor_ package.
-
-Other parameters, such as line thickness, arrow styles and many more adapt to the _tikz_ package predefined ones.
-
-**(5) The preamble needed in LaTeX is extremely small and is obtained with just two clicks.**
-
-**(6) The code is easily imported into your LaTeX project, directly from the clipboard.**
-
+**Seamless integration with LaTeX.**
+The generated TikZ code can be copied directly from IPE into your LaTeX document, ensuring a smooth workflow.
 
 # Installation
 
 ## How to install in OSX and Linux
 
-Download _ipetikzmod.lua_ and _ipetikzmod.isy_ above from this repository.
+**Step 1: Download the files**
 
-In **Finder** or your file explorer, go to...
+Obtain the files `ipetikzmod.lua` and `ipetikzmod.isy` from this repository.
 
-    ~/.ipe/
+**Step 2: Locate your IPE configuration directory**
 
-(In OSX, use press Cmd+Alt+G to specify a path on Finder)
+In Finder (macOS) or your file explorer (Linux), navigate to: `~/.ipe/`
 
-Create the folders _styles_ and _ipelets_ if they do not exist.
+**Step 3: Create the necessary folders**
 
-**Copy the file _ipetikzmod.lua_** you just downloaded into
+If they do not already exist, create the following subdirectories inside `~/.ipe/`:
 
-    ~/.ipe/ipelets/
+`~/.ipe/ipelets/`
+`~/.ipe/styles/`
 
-and **copy the file _ipetikzmod.isy_** into
-    
-    ~/.ipe/styles/
+**Step 4: Copy the files**
 
-**Close all instances of IPE** (in OSX use Cmd+Q on it) **and run it again**.
+Place the downloaded file `ipetikzmod.lua` in `~/.ipe/ipelets/`
 
-**P.S.:** If the IPE editor fails to find MacTeX, a possible solution is to create the file ~/.ipe/ipe.conf with the content
+Place the downloaded file `ipetikzmod.isy` in `~/.ipe/styles/`
 
-    IPELATEXPATH=/usr/local/texlive/2024/bin/universal-darwin
+**Step 5: Restart IPE**
+
+Close all running instances of IPE (on macOS, use `Cmd + Q`) and then relaunch it.
+
+**Note for macOS users**
+
+If the IPE editor cannot locate MacTeX, you can specify its path manually.
+
+Create a configuration file named ipe.conf in `~/.ipe/` with the following content:
+
+`IPELATEXPATH=/usr/local/texlive/2025/bin/universal-darwin`
 
 ## How to install in Windows
 
-Download tikzmod.lua from this repository.
+Download `ipetikzmod.lua` and `ipetikzmod.isy` from this repository.
 
-In the File Explorer, go to **$USERPROFILE\Ipelets**
+In the File Explorer, go to `$USERPROFILE\Ipelets`
 
-Copy the .lua file you just downloaded into that folder.
+Copy `ipetikzmod.lua` file into that folder.
+
+In the File Explorer, go to `$USERPROFILE\Styles`
+
+Copy `ipetikzmod.isy` file into that folder.
 
 **Close all instances of IPE and run it again**.
 
